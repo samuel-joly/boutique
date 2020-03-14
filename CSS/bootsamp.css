@@ -1,0 +1,93 @@
+/*------------------------------FLEX------------------------------*/
+
+.flexc
+{
+	display:flex;
+	flex-direction:column;
+}
+
+.flexr
+{
+	display:flex;
+	flex-direction:row;
+}
+
+/*---------------FLEX-ALIGN---------------*/
+.center
+{
+	align-self:center;
+}
+
+.align-start
+{
+	align-self:flex-start;
+}
+
+/*---------------FLEX-JUSTIFY---------------*/
+
+.just-center
+{
+	justify-content:center;
+}
+
+.just-between
+{
+	justify-content:space-between;
+}
+
+.just-around
+{
+	justify-content:flex-around;
+}
+
+.just-evenly
+{
+	justify-content:space-evenly;
+}
+
+.just-start
+{
+	justify-content:flex-start;
+}
+
+.just-end
+{
+	justify-content:flex-end;
+}
+
+.just-even
+{
+	justify-content:space-evenly;
+}
+
+/*---------------FLEX-WRAP---------------*/
+.wrap
+{
+	flex-wrap:wrap;
+}
+
+
+/*--------------------------MARGIN PADDING------------------------*/
+.mp0
+{
+	margin:0px;
+	padding:0px;
+}
+
+
+/*------------------------------LINK------------------------------*/
+.a-null
+{
+	text-decoration:none;
+}
+
+/*------------------------------TEXT------------------------------*/
+.text-black
+{
+	color:black;
+}
+
+.text-center
+{
+	text-align:center;
+}
