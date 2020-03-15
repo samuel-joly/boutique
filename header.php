@@ -17,7 +17,7 @@
 
 
 	<div id="product-dropdown" class="flexr">
-		<a href="product.php" class="header-link">Products</a>	
+		<a href="product.php" class="header-link">Products&rarr;</a>	
 		<div id="categorie-dropdown">
 			<div class="header-cat">
 				<a href="product.php?categorie=1">Categorie#1</a>

@@ -14,10 +14,15 @@
 			<?php include("header.php"); ?>
 		</header>
 
-		<main>
-		<video id="video-bg" autoplay muted loop>
-			<source src="Media/Videos/index-bg.mp4" type="video/mp4">
-		</video>
+		<main display="flexc just-center align-center">
+			<video id="video-bg" autoplay muted loop>
+				<source src="Media/Videos/index-bg.mp4" type="video/mp4">
+			</video>
+			
+			<div id="title-box" class="center flexc just-center">
+				<h1 id="main-topTitle">BroomBrand</h1>
+				<h2 id="main-subTitle">Re-invent cleaning</h2>
+			</div>
 		</main>
 
 		<footer>

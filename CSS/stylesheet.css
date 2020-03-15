@@ -3,6 +3,14 @@
 	src:url(../Media/Fonts/Lato.ttf);
 }
 
+@font-face {
+	font-family:roboto;
+	src:url(../Media/Fonts/Roboto.ttf);
+}
+
+
+/*------------------------------BODY------------------------------*/
+
 body
 {
 	font-family:lato;
@@ -12,6 +20,30 @@ body
 	flex-direction:column;
 	justify-content:center;
 }
+
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.4);
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: rgba(50,50,50,0.5);
+  border-radius:2px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/*------------------------------HEADER------------------------------*/
 
 header
 {
@@ -25,6 +57,7 @@ header a
 	color:white;
 	font-size:1.8em;
 	text-decoration:none;
+	width:fit-content;
 }
 
 .header-link
@@ -38,32 +71,13 @@ header a
 	font-size:2em;
 }
 
-/* #news-link */
-/* { */
-	/* margin-left:3.7em; */
-/* } */
-
-/* #profil-link */
-/* { */
-	/* margin-left:3em; */
-/* } */
-
-/* #cart-link */
-/* { */
-	/* margin-left:3.5em; */
-/* } */
-
-/* #search-link */
-/* { */
-	/* margin-left:2em; */
-/* } */
-
+/*--------------------HEADER-CAT-------------------*/
 #product-dropdown
 {
 	position:relative;
 	padding:0.1em;
 	height:fit-content;
-	width:19em;
+	width:fit-content;
 }
 
 #product-dropdown:hover #categorie-dropdown
@@ -78,7 +92,7 @@ header a
 	display:none;
 	flex-direction:column;
 	z-index:1;
-	right:0;
+	right:-10em;
 	top:0.7em;
 	width:10em;
 }
@@ -98,8 +112,17 @@ header a
 
 .header-cat a:hover
 {
-	font-size:1.8em;
+	font-size:1.5em;
 }
+
+#categorie-dropdown .header-cat:hover>a:after
+{
+	content:"→";
+	width:fit-content;
+}
+
+
+/*----------------HEADER-SUBCAT-----------------*/
 
 .header-cat:hover .sub-content
 {
@@ -114,7 +137,7 @@ header a
 	flex-direction:column;
 	left:100%;
 	height:fit-content;
-	top:-0.2em;
+	top:0.1em;
 }
 
 .sub-content a
@@ -126,11 +149,11 @@ header a
 
 .sub-content a:hover
 {
-	font-size:1.5em;
+	font-size:1.3em;
 }
 
 
-/*---------------------VIDEO BACKGROUND---------------------*/
+/*---------------------------VIDEO BACKGROUND---------------------------*/
 
 #video-bg
 {
@@ -139,3 +162,90 @@ header a
 	width:100%;
 	z-index:-1;
 }
+
+/*------------------------------MAIN TITLE------------------------------*/
+
+#title-box
+{
+	margin-top:15%;
+	overflow-x:hidden;
+	width:100%;
+}
+
+#main-topTitle, #main-subTitle
+{
+	font-family:roboto;
+	font-size:5em;
+	color:white;
+	text-align:center;
+	top:5em;
+}
+
+#main-subTitle
+{
+	font-size:2em;
+	margin-top:-1em;
+}
+
+#title-box:before, #title-box:after
+{
+	content:"";
+	height:3px;
+	background:#efefef;
+	
+	animation-duration:3.8s;
+}
+
+
+#title-box:before
+{
+	width:35em;
+	align-self:center;
+	
+	position:relative;
+	top:3em;
+
+	animation-name:fadeInLeft;
+}
+
+#title-box:after
+{
+	width:20em;
+	align-self:center;
+	
+	position:relative;
+	top:-1em;
+
+	animation-name:fadeInRight;
+}
+
+/*-----------------MAIN TITLE ANIMATION----------------------*/
+@keyframes fadeInLeft 
+{
+	0% 
+	{
+		opacity: 0;
+		transform: translate3d(-100%, 0, 0);
+	}
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+} 
+
+@keyframes fadeInRight 
+{
+	0% 
+	{
+		opacity: 0;
+		transform: translate3d(100%, 0, 0);
+	}
+	100% 
+	{
+		opacity: 1;
+		transform: none;
+	}
+}
+
+
