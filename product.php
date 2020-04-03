@@ -30,7 +30,7 @@
 											<h1 class='product-name'><?=$product["title"]?> -- </h1>
 											<h1 class='product-price'><?=$product["price"]?>$</h1>
 										</span>
-										<p>Superficie: <?=$product["size"]?> meters</p>
+										<p>Superficie: <?=$product["size"]?> m&#178;</p>
 										<p>Agency : <?=$product["cost"]?> $</p>
 									</div>
 
@@ -42,7 +42,7 @@
 
 							</div>
 							<div class='product-infos-plus flexc just-evenly align-start'>
-								<p>Size: <?=$product["size"]?></p>
+								<p>Size: <?=$product["size"]?>m&#178;</p>
 								<p>Location: <?=$product["location"]?></p>
 								<p>Orientation: <?=$product["orientation"]?></p>
 								<p>Staff: <?=$product["staff"]?></p>
