@@ -11,8 +11,8 @@
 	<body id='inscription-body'>
 		<header> <?php include("header.php"); ?> </header>
 		
-		<main>
-			<h1 id='top-title'>Log In</h1>
+		<main class='flexc just-center align-center'>
+			<h1 id='top-title' class='center'>Log In</h1>
 			<form action='' method='post' id='connect-form' class='user-form'>
 				<div class='input-zone'>
 					<label for='login'>Login :</label> <input type='text' name='login' required/>

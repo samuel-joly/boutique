@@ -11,7 +11,7 @@
 	<body id='inscription-body'>
 		<header> <?php include("header.php"); ?> </header>
 		
-		<main>
+		<main class='flexc just-center align-center'>
 			<h1 id='top-title'>Sign Up </h1>
 			<form action='' method='post' id='connect-form' class='user-form'>
 				<div class='input-zone'>
@@ -44,6 +44,11 @@
 					<?php } ?>
 			</form>
 		</main>
+
+		<footer>
+			<?php include("footer.php") ?>
+		</footer>
+
 	</body>
 
 

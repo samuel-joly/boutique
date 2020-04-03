@@ -29,6 +29,8 @@
 			
 		</div>
 	</div>
+
+	<a href="index.php" class="header-link">Home</a>	
 	<?php
 		if(isset($_SESSION["id"]))
 		{	?>	

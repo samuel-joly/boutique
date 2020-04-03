@@ -31,20 +31,14 @@ body::-webkit-scrollbar {
 
 /* Track */
 body::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.4);
+  background: #484848;
 }
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: rgba(50,50,50,0.5);
+  background: #e7e7e7;
   border-radius:2px;
 }
-
-/* Handle on hover */
-body::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 
 #inscription-body
 {
@@ -269,7 +263,6 @@ main
 {
 	align-self:center;
 	justify-self:center;
-	margin:auto;
 
 	display:flex;
 	flex-direction:column;
@@ -430,4 +423,121 @@ footer a
 footer a:hover
 {
 	font-size:1.2em;
+}
+
+/*-----------------PRODUCT---------------*/
+
+#product-body
+{
+	background:url("../media/images/bg.jpg");
+	background-size:contain;
+	background-repeat:no-repeat;
+	overflow-x:hidden;
+}
+
+.product-box
+{
+	height:300px;
+	width:40em;
+}
+
+
+.product-box:hover>.product-info-product
+{
+	opacity:1;
+}
+
+.products-box
+{
+	width:100%;
+	max-height:100vh;
+	border:5px solid white;
+	align-self:center;
+	margin:0px;
+}
+
+.products-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.products-box::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+.products-box::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
+.product-agent-avatar
+{
+	width:5em;
+	height:5em;
+	border-radius:50%;
+}
+	
+.product-info-product
+{
+	background-color:#787878de;
+	font-size:1em;
+	color:white;
+	width:100%;
+	align-self:flex-end;
+	height:150px;
+	opacity:0;
+	transition:opacity 0.2s ease;
+}
+
+.product-info-product p ,.product-info-product h1
+{
+	margin:0px;
+}
+
+.product-info-product p 
+{
+	font-size:1.4em;
+	margin:0.2em;
+}
+
+#products-box
+{
+	min-height:100vh;
+}
+
+.product-agent-zone
+{
+	justify-self:flex-end;
+	margin-right:1em;
+}
+
+.product-infos-plus
+{
+	border-left: 2px solid white;
+	height:75%;
+	padding-left:1em;
+	margin-left:1em;
+	color:#e7e7e7;
+}
+
+.product-link
+{
+	background:#484848;
+	padding:1em;
+	transition:all 0.2s ease;
+	text-align:center;
+	color:white;
+	margin-left:1em;
+}
+
+.product-link:hover
+{
+	background:#e7e7e7;
+	color:black;
+}
+
+.product-infos-plus p
+{
+	margin:1em;
 }

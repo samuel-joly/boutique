@@ -31,20 +31,14 @@ body::-webkit-scrollbar {
 
 /* Track */
 body::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.4);
+  background: #484848;
 }
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: rgba(50,50,50,0.5);
+  background: #e7e7e7;
   border-radius:2px;
 }
-
-/* Handle on hover */
-body::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 
 #inscription-body
 {
@@ -269,7 +263,6 @@ main
 {
 	align-self:center;
 	justify-self:center;
-	margin:auto;
 
 	display:flex;
 	flex-direction:column;
@@ -376,6 +369,8 @@ main
 {
 	min-height:80px;
 	max-width:550px;
+	min-width:400px;
+	width:550px;
 }
 
 #profil-data a
@@ -428,4 +423,13 @@ footer a
 footer a:hover
 {
 	font-size:1.2em;
+}
+
+/*-----------------PRODUCT---------------*/
+
+#product-body
+{
+	background:url("../Media/Images/bg.jpg");
+	background-size:contain;
+	overflow-x:hidden;
 }
