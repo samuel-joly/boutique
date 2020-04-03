@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 	<head>
 		<title>Boutique</title>
 		<link rel="stylesheet" type="text/css" href="CSS/stylesheet.css">
 		<link rel="stylesheet" type="text/css" href="CSS/boot.css">
-		<meta charset="UTF-8">
+		<meta charset="UTF-8"/>
 	</head>
 
 	<body>
@@ -20,12 +19,13 @@
 			</video>
 			
 			<div id="title-box" class="center flexc just-center">
-				<h1 id="main-topTitle">BroomBrand</h1>
-				<h2 id="main-subTitle">Re-invent cleaning</h2>
+				<h1 id="main-topTitle">HouseBrand</h1>
+				<h2 id="main-subTitle">Re-invent living</h2>
 			</div>
 		</main>
 
 		<footer>
+			<?php include("footer.php"); ?>
 		</footer>
 	</body>
 </html>
