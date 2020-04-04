@@ -13,8 +13,8 @@
 			<?php include("header.php"); ?> 
 		</header>
 
-		<main>
-			<div id='products-box' class='flexc just-center align-center'>
+		<main class='flexc just-center align-center'>
+			<div id='products-box' class='flexc just-between align-center'>
 			<?php
 				$products = $stmt->query("SELECT *, products.id as id_prod FROM products INNER JOIN agents ON products.id_agent = agents.id INNER JOIN users ON agents.id_user = users.id")->fetchAll(PDO::FETCH_ASSOC);
 				//var_dump($products);
