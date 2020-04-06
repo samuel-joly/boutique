@@ -21,8 +21,7 @@
 				 if(isset($_POST["filter_submit"])) 
 				 { 
 				 	include("filter.php"); 
-					header('location:product.php');
-				} 
+				 } 
 					
 				
 				if(isset($_GET["filter"]))
@@ -39,6 +38,7 @@
 				else
 				{
 					$query = $_SESSION["product_filter"];
+					echo $query;
 				}
 					
 				$products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
@@ -77,7 +77,7 @@
 			</div>	
 		
 			<div id='filter' class='flexc align-start'>
-				<form id='filter-form' method='post'>
+				<form id='filter-form' method='post' action='product.php'>
 					<h1 id='filter-title'>Filter</h1>	
 					<div id='filter-zone' class='flexc just-start align-center'>
 						<p class='filter-separator'>Price</p>
@@ -152,7 +152,7 @@
 					<div class='flexc just-center center align-center'>
 						<input type='submit' name='filter_submit' value='Search' id='filter-submit' style='align-self:center;'/>
 						<a href='product.php?filter=clear' id='filter-reset'>Reset filter</a>
-					</div>
+				
 				
 				</form>
 				

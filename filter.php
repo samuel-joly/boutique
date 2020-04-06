@@ -58,7 +58,7 @@
 						}
 						
 						$query .= " EXISTS( SELECT `category-tag`.`id_product` FROM `category-tag` WHERE `category-tag`.`id_category` = ".$cat_val." AND
-						`sub-category-tag`.`id_product` = `products`.`id`)";
+						`category-tag`.`id_product` = `products`.`id`)";
 					}
 				break;
 				
@@ -75,8 +75,8 @@
 							$query .= " AND ";
 						}
 						
-						$query .= " EXISTS( SELECT `sub-category-tag`.`id_product` FROM `sub-category-tag` WHERE `sub-category-tag`.`id_sub-category` = ".$sub_cat_val." AND
-						`sub-category-tag`.`id_product` = `products`.`id`)";
+						$query .= " EXISTS( SELECT `sub-category-tag`.`id_product` FROM `sub-category-tag` WHERE
+						`sub-category-tag`.`id_sub-category` = ".$sub_cat_val." AND `sub-category-tag`.`id_product` = `products`.`id`)";
 					}
 
 				break;
