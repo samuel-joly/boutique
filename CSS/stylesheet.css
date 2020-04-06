@@ -484,7 +484,7 @@ footer a:hover
 	
 .product-info-product
 {
-	background-color:#787878de;
+	background-color:#787878a6;
 	font-size:1em;
 	color:white;
 	width:100%;
@@ -551,7 +551,7 @@ footer a:hover
 	color:white;
 	background:#2f2f2f;
 	border-radius:3px;
-	height:600px;
+	height:fit-content;
 	padding:1.2em;	
 	width:300px;
 }
@@ -616,14 +616,14 @@ footer a:hover
 }
 
 
-#filter-tag
+.filter-tag
 {
 	display:flex;
 	flex-direction:row;
 	flex-wrap:wrap;
 	max-width:95%;
 	overflow-y:scroll;
-	max-height:328px;
+	max-height:150px;
 	background:#272727;
 }
 
@@ -637,11 +637,19 @@ footer a:hover
 	background:#2f2f2f;
 	border-radius:3px;
 	margin:3px;
+	transition:background 0.2s ease;
 }
 
 .cat_tag:hover
 {
-	background:#2f2f2f;
+	background:#4c4b4b;
+	cursor:pointer;
+
+}
+
+.cat_tag>*:hover
+{
+	cursor:pointer;
 }
 .cat_tag input
 {
@@ -651,37 +659,58 @@ footer a:hover
 }
 
 
-#filter-tag::-webkit-scrollbar {
+.filter-tag::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-#filter-tag::-webkit-scrollbar-track {
+.filter-tag::-webkit-scrollbar-track {
   background: #484848;
 }
 
 /* Handle */
-#filter-tag::-webkit-scrollbar-thumb {
+.filter-tag::-webkit-scrollbar-thumb {
   background: #e7e7e7;
   border-radius:2px;
 }
 
+#filter-submit
+{
+	width:7em;
+	color:white;
+	height:3em;
+	background:#484848;
+	border:0px;
+	text-decoration:underline;
+	transition:all 0.2s ease;
+	margin:1em;
+}
 
 
+#filter-submit:hover, #filter-reset:hover
+{
+	color:black;
+	cursor:pointer;
+	background:#E7E7E7;
+}
 
+#filter-search input
+{
+	width:13em;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#filter-reset
+{
+	width:5em;
+	color:white;
+	padding:0.6em;
+	padding-top:0.8em;
+	padding-bottom:0.8em;
+	background:#484848;
+	border:0px;
+	text-decoration:underline;
+	transition:all 0.2s ease;
+	margin:1em;
+	text-align:center;
+	font-size:0.97em;
+}

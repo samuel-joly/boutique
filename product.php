@@ -14,18 +14,41 @@
 		</header>
 
 		<main class='flexr just-center align-center'>
+		
 			<div id='products-box' class='flexc just-between align-center'>
 			<?php
-				$products = $stmt->query("SELECT *, products.id as id_prod FROM products INNER JOIN agents ON products.id_agent = agents.id INNER JOIN users ON agents.id_user = users.id")->fetchAll(PDO::FETCH_ASSOC);
-				//var_dump($products);
+
+				 if(isset($_POST["filter_submit"])) 
+				 { 
+				 	include("filter.php"); 
+					header('location:product.php');
+				} 
+					
 				
+				if(isset($_GET["filter"]))
+				{
+					unset($_SESSION["product_filter"]);
+				}
+
+				if(!isset($_SESSION["product_filter"]))
+				{
+					$query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost , staff, location, orientation FROM products
+						INNER JOIN agents ON products.id_agent = agents.id
+						INNER JOIN users ON agents.id_user = users.id ";
+				}
+				else
+				{
+					$query = $_SESSION["product_filter"];
+				}
+					
+				$products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
 				foreach($products as $product)
 				{ ?>
 					<div class='flexr just-between product-zone'>
 						<div class='product-box flexr just-between align-center center' 
 							style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
 								<div class=' product-info-product flexr just-between align-center'>
-									<div class='flexc just-center'>
+								<div class='flexc just-center'>
 										<span class='flexr just-start'>
 											<h1 class='product-name'><?=$product["title"]?> -- </h1>
 											<h1 class='product-price'><?=$product["price"]?>$</h1>
@@ -54,7 +77,7 @@
 			</div>	
 		
 			<div id='filter' class='flexc align-start'>
-				<form id='filter-form' action='filter.php' method='post'>
+				<form id='filter-form' method='post'>
 					<h1 id='filter-title'>Filter</h1>	
 					<div id='filter-zone' class='flexc just-start align-center'>
 						<p class='filter-separator'>Price</p>
@@ -82,8 +105,10 @@
 								<input type='text' name='max-size' />m&#178;
 							</div>
 						</div>
-						<h1 id='filter-separator'>Tags</h1>
-						<div id='filter-tag'>
+			
+
+						<p class='filter-separator' style='margin-bottom:5px;'>Category</p>
+						<div class='filter-tag' style='max-height:280px;'>
 							<?php
 					$category_tag = $stmt->query("SELECT `category-tag`.id as id, category.name as name
 					FROM `category-tag` INNER JOIN category ON `category-tag`.id = category.id")->fetchAll();
@@ -94,25 +119,43 @@
 							
 							$category = $stmt->query('SELECT * FROM category')->fetchAll(PDO::FETCH_ASSOC);
 							$sub_category = $stmt->query('SELECT * FROM `sub-category`')->fetchAll(PDO::FETCH_ASSOC);
-//							var_dump($category);
+							
 							foreach($category as $cat_tag)
 							{
-								echo "<span class='cat_tag'><input type='checkbox' id='".$cat_tag["name"]."'
-								name='".$cat_tag["id"]."' id='".$cat_tag["name"]."'/>
+								echo "<span class='cat_tag'><input name='cat[]' type='radio' id='".$cat_tag["name"]."'
+								value='".$cat_tag["id"]."'/>
 								<label for='".$cat_tag["name"]."'>".$cat_tag["name"]."</label></span>";
 							}
+							
+							?>
+						</div>
+						<p class='filter-separator' style='margin-bottom:5px;'>Tag</p>
+						<div class='filter-tag' >
+							<?php
+
+							$sub_category = $stmt->query('SELECT * FROM `sub-category`')->fetchAll(PDO::FETCH_ASSOC);
 							
 							foreach($sub_category as $sub_cat_tag)
 							{
 								echo "<span class='cat_tag'><input type='checkbox' id='".$sub_cat_tag["name"]."'
-								name='".$sub_cat_tag["id"]."'/>
+								name='sub_cat[]' value='".$sub_cat_tag["id"]."'/>
 								<label for='".$sub_cat_tag["name"]."' >".$sub_cat_tag["name"]."</label></span>";
 							}
 							?>
 						</div>
 					</div>
+					
+					<p class='filter-separator'>Name</p>
+					<div class='filter-input-zone' id='filter-search'>
+						<label for='search'>Search :</label><input type='text' name='search'/>
+					</div>
+					<div class='flexc just-center center align-center'>
+						<input type='submit' name='filter_submit' value='Search' id='filter-submit' style='align-self:center;'/>
+						<a href='product.php?filter=clear' id='filter-reset'>Reset filter</a>
+					</div>
 				
 				</form>
+				
 			</div>
 		</main>
 
