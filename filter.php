@@ -9,7 +9,7 @@
 	
 	if(!empty($_POST["cat"]) || !empty($_POST["sub_cat"]))
 	{
-		$query .= " INNER JOIN `category-tag` ON products.id = `category-tag`.id_product INNER JOIN `sub-category-tag` ON products.id = `sub-category-tag`.id_product";
+		$query .= " LEFT JOIN `category-tag` ON products.id = `category-tag`.id_product LEFT JOIN `sub-category-tag` ON products.id = `sub-category-tag`.id_product";
 	}
 	
 	foreach($_POST as $key=>$value)
@@ -82,7 +82,7 @@
 				break;
 
 				case 'search':
-					
+					$query .= " `products`.`title` LIKE '%".$value."%'";	
 				break;
 				
 			}
