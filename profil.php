@@ -33,8 +33,8 @@
 							
 							
 						echo "</div>";
-						
-					 break;	
+
+					break;	
 
 						
 					case "basket":

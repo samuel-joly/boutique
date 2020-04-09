@@ -753,8 +753,8 @@ border:2px white solid;
 
 #titre-product-description{
 margin-top: -3%;
-height: 10%;
-padding-top: 10px;
+height: auto;
+padding-bottom: 5px;
 font-size: 2.2vw;
 text-align: center;
 background-color: grey ;
@@ -763,9 +763,10 @@ border: 3px red solid;
 
 #description-product-description{
 height: 43%;
-padding: 4% 4% 1%;
+padding: 3% 8% 3%;
 text-align: center;
 font-size: 24px;
+overflow-y: scroll;
 background-color: goldenrod;
 border: 3px red solid;
 }
@@ -790,14 +791,21 @@ text-align: center;
 color:black;
 margin: auto;
 margin-left: 2%;
-width: 80%;
+width: 75%;
 height: 30%;
 background-color: yellow;
 }
 
-#agentName{
+#agent-pics{
+width: 25%;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+}
+
+#agentPics{
 text-align: center;
-padding: 5.5% 0% 0% 0%;
+padding: 19% 0% 0% 0%;
 color:black;
 margin: auto;
 width:90px ;
@@ -805,6 +813,15 @@ height: 58px ;
 border:2px black solid;
 border-radius:9em;
 background-color: yellow;
+}
+
+#agentName{
+border:2px black solid;
+text-align: center;
+margin: 0 auto 5%;
+border-radius:0.5em;
+width: 70%;
+background-color: teal;
 }
 
 .img-div4{
@@ -867,7 +884,7 @@ background-color: yellow;
 
 
 
-/* SECTION DROITE */
+/* SECTION DROITE PAGE PRODUCT-DESCRIPTION */
 
 #tag-product-descr
 {
@@ -884,44 +901,48 @@ border: 2px white solid;
 }
 
 #tag{
-	height: 28%;
-	background-color: tan;
+height: 28%;
+background-color: tan;
 }
 
 .tag-inside{
-	width: 100px;
-	text-align: center;
-	border:1px black solid;
-	border-radius:0.5em;
-	font-size: x-large;
-	background-color: slategrey;
+width: 100px;
+text-align: center;
+border:1px black solid;
+border-radius:0.5em;
+font-size: x-large;
+background-color: slategrey;
 }
 
 #specificites{
-	margin-top:5%;
-	height: 50%;
-	padding: 1%;
-	font-size: x-large;
-	background-color: tomato;
+margin-top:5%;
+height: 50%;
+padding: 1%;
+font-size: x-large;
+background-color: tomato;
 }
 
 #addcartgoback{
-	margin-top:5%;
-	padding-top: 0.4px;
-    height: 19%;
-	background-color: turquoise;
+margin-top:5%;
+padding-top: 0.4px;
+height: 19%;
+background-color: turquoise;
 }
 
 .addcartgoback-inside{
-	width: 226px;
-	height: 60px;
-	text-align: center;
-	color: black;
-	padding: 3% 0 0 0%;
-	font-size: 2vw;
-	font-weight: bold;
-	margin: 4% auto 0%;
-	border-radius: 0.5em;
-	border:2px black solid;
-	background-color: wheat;
+width: 226px;
+height: 60px;
+text-align: center;
+color: black;
+padding: 3% 0 0 0%;
+font-size: 2vw;
+font-weight: bold;
+margin: 4% auto 0%;
+border-radius: 0.5em;
+border:2px black solid;
+background-color: wheat;
+}
+
+a{
+	text-decoration: none;
 }
