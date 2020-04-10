@@ -1,25 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Apr 06, 2020 at 10:10 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Hôte : localhost:3306
+-- Généré le :  ven. 10 avr. 2020 à 21:40
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `boutique`
+-- Base de données :  `boutique`
 --
 CREATE DATABASE IF NOT EXISTS `boutique` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `boutique`;
@@ -27,18 +19,16 @@ USE `boutique`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agents`
+-- Structure de la table `agents`
 --
 
-DROP TABLE IF EXISTS `agents`;
-CREATE TABLE IF NOT EXISTS `agents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `agents` (
+  `id` int(11) NOT NULL,
+  `id_user` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `agents`
+-- Déchargement des données de la table `agents`
 --
 
 INSERT INTO `agents` (`id`, `id_user`) VALUES
@@ -48,49 +38,43 @@ INSERT INTO `agents` (`id`, `id_user`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `basket`
+-- Structure de la table `basket`
 --
 
-DROP TABLE IF EXISTS `basket`;
-CREATE TABLE IF NOT EXISTS `basket` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `basket` (
+  `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `quantity` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bought`
+-- Structure de la table `bought`
 --
 
-DROP TABLE IF EXISTS `bought`;
-CREATE TABLE IF NOT EXISTS `bought` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bought` (
+  `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `date` timestamp NOT NULL,
-  `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `quantity` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Structure de la table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `category`
+-- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -102,22 +86,20 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category-tag`
+-- Structure de la table `category_tag`
 --
 
-DROP TABLE IF EXISTS `category-tag`;
-CREATE TABLE IF NOT EXISTS `category-tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `category_tag` (
+  `id` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `id_product` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `category-tag`
+-- Déchargement des données de la table `category_tag`
 --
 
-INSERT INTO `category-tag` (`id`, `id_category`, `id_product`) VALUES
+INSERT INTO `category_tag` (`id`, `id_category`, `id_product`) VALUES
 (6, 3, 1),
 (5, 5, 1),
 (3, 3, 2),
@@ -127,28 +109,25 @@ INSERT INTO `category-tag` (`id`, `id_category`, `id_product`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Structure de la table `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
   `id_creator` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `date` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `comment` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Structure de la table `products`
 --
 
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -159,12 +138,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `staff` int(11) NOT NULL,
   `cost` float NOT NULL,
   `id_agent` int(11) NOT NULL,
-  `max_quantity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `max_quantity` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `products`
+-- Déchargement des données de la table `products`
 --
 
 INSERT INTO `products` (`id`, `price`, `title`, `description`, `image`, `size`, `location`, `orientation`, `staff`, `cost`, `id_agent`, `max_quantity`) VALUES
@@ -175,11 +153,10 @@ INSERT INTO `products` (`id`, `price`, `title`, `description`, `image`, `size`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ratings`
+-- Structure de la table `ratings`
 --
 
-DROP TABLE IF EXISTS `ratings`;
-CREATE TABLE IF NOT EXISTS `ratings` (
+CREATE TABLE `ratings` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `value` int(5) NOT NULL
@@ -188,22 +165,20 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub-category`
+-- Structure de la table `sub_category`
 --
 
-DROP TABLE IF EXISTS `sub-category`;
-CREATE TABLE IF NOT EXISTS `sub-category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sub_category` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `id_category` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `id_category` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sub-category`
+-- Déchargement des données de la table `sub_category`
 --
 
-INSERT INTO `sub-category` (`id`, `name`, `id_category`) VALUES
+INSERT INTO `sub_category` (`id`, `name`, `id_category`) VALUES
 (2, 'Rural', 1),
 (3, 'Garden', 1),
 (4, 'Parcking slots', 1),
@@ -219,22 +194,20 @@ INSERT INTO `sub-category` (`id`, `name`, `id_category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub-category-tag`
+-- Structure de la table `sub_category_tag`
 --
 
-DROP TABLE IF EXISTS `sub-category-tag`;
-CREATE TABLE IF NOT EXISTS `sub-category-tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sub_category_tag` (
+  `id` int(11) NOT NULL,
   `id_sub-category` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `id_product` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sub-category-tag`
+-- Déchargement des données de la table `sub_category_tag`
 --
 
-INSERT INTO `sub-category-tag` (`id`, `id_sub-category`, `id_product`) VALUES
+INSERT INTO `sub_category_tag` (`id`, `id_sub-category`, `id_product`) VALUES
 (1, 2, 1),
 (2, 3, 1),
 (3, 4, 2),
@@ -243,29 +216,151 @@ INSERT INTO `sub-category-tag` (`id`, `id_sub-category`, `id_product`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `avatar` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `avatar`) VALUES
 (1, 'azefortwo', 'samueljoly0@gmail.com', '0', 'default.jpg'),
 (2, 'admien', 'a@a.a', '$2y$10$t9AECZ/p/1qSLJZc7.vPxeJTz9G7tHEJxHRXkh.oSZhN1wnki9ive', 'default.jpg'),
-(3, 'plate', 'Samueljoly0@gmail.com', '$2y$10$t2ZYVfdxtxtMY2v7uA3reeQHYWDJjdBRwkc1beDCchQCAUaR8mUiO', 'default.jpg');
-COMMIT;
+(3, 'plate', 'Samueljoly0@gmail.com', '$2y$10$t2ZYVfdxtxtMY2v7uA3reeQHYWDJjdBRwkc1beDCchQCAUaR8mUiO', 'default.jpg'),
+(4, 'amine', 'amine@gmail.com', '$2y$10$SSLPdmRxX/lVk9c4B1ZDDe6p0sxcmTQ58txT/TpAZaNPiu1ssEjEG', 'avatar/default.png');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `agents`
+--
+ALTER TABLE `agents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `basket`
+--
+ALTER TABLE `basket`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `bought`
+--
+ALTER TABLE `bought`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `category_tag`
+--
+ALTER TABLE `category_tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sub_category`
+--
+ALTER TABLE `sub_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sub_category_tag`
+--
+ALTER TABLE `sub_category_tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `agents`
+--
+ALTER TABLE `agents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `basket`
+--
+ALTER TABLE `basket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `bought`
+--
+ALTER TABLE `bought`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `category_tag`
+--
+ALTER TABLE `category_tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `sub_category`
+--
+ALTER TABLE `sub_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `sub_category_tag`
+--
+ALTER TABLE `sub_category_tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
