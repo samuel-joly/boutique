@@ -17,7 +17,7 @@
 					<div class='header-cat'> 
 						<a href='product.php?category=".$cat["id"]."'>".$cat["name"]."</a><div class='sub-content'>";
 
-					$sub_category = $stmt->query("SELECT * FROM `sub-category` WHERE id_category =".$cat["id"])->fetchAll(PDO::FETCH_ASSOC);
+					$sub_category = $stmt->query("SELECT * FROM `sub_category` WHERE id_category =".$cat["id"])->fetchAll(PDO::FETCH_ASSOC);
 					foreach($sub_category as $sub_cat)
 					{
 						echo "<a href='product.php?category=".$sub_cat["id_category"]."&&sub_category=".$sub_cat["id"]."'>".$sub_cat["name"]."</a>";

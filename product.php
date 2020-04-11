@@ -70,7 +70,7 @@
 								<p>Orientation: <?=$product["orientation"]?></p>
 								<p>Staff: <?=$product["staff"]?></p>
 								<p>Cost/Year: <?=$product["cost"]?>$</p>
-								<a href='product-description.php?id=<?=$product["id_prod"]?>' class='product-link'>See More</a>
+								<a href='product-description.php?id=<?=$product["id_prod"]?>&cat=<?php echo $_GET["category"]; ?>' class='product-link'>See More</a>
 							</div>
 						</div>
 				<?php	}	?>
@@ -110,15 +110,15 @@
 						<p class='filter-separator' style='margin-bottom:5px;'>Category</p>
 						<div class='filter-tag' style='max-height:280px;'>
 							<?php
-					$category_tag = $stmt->query("SELECT `category-tag`.id as id, category.name as name
-					FROM `category-tag` INNER JOIN category ON `category-tag`.id = category.id")->fetchAll();
+					$category_tag = $stmt->query("SELECT `category_tag`.id as id, category.name as name
+					FROM `category_tag` INNER JOIN category ON `category_tag`.id = category.id")->fetchAll();
 
-					$sub_category_tag = $stmt->query("SELECT `sub-category-tag`.id as id, `sub-category`.name as name 
-					FROM `sub-category-tag` INNER JOIN `sub-category` ON `sub-category-tag`.id = `sub-category`.id")->fetchAll();
+					$sub_category_tag = $stmt->query("SELECT `sub_category_tag`.id as id, `sub_category`.name as name 
+					FROM `sub_category_tag` INNER JOIN `sub_category` ON `sub_category_tag`.id = `sub_category`.id")->fetchAll();
 							
 							
 							$category = $stmt->query('SELECT * FROM category')->fetchAll(PDO::FETCH_ASSOC);
-							$sub_category = $stmt->query('SELECT * FROM `sub-category`')->fetchAll(PDO::FETCH_ASSOC);
+							$sub_category = $stmt->query('SELECT * FROM `sub_category`')->fetchAll(PDO::FETCH_ASSOC);
 							
 							foreach($category as $cat_tag)
 							{
@@ -133,7 +133,7 @@
 						<div class='filter-tag' >
 							<?php
 
-							$sub_category = $stmt->query('SELECT * FROM `sub-category`')->fetchAll(PDO::FETCH_ASSOC);
+							$sub_category = $stmt->query('SELECT * FROM `sub_category`')->fetchAll(PDO::FETCH_ASSOC);
 							
 							foreach($sub_category as $sub_cat_tag)
 							{
