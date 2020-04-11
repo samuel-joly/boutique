@@ -127,7 +127,6 @@
                     <div class="specificitesDiv"> Location : <?php echo $location; ?></div>
                     <div class="specificitesDiv"> Direction : <?php echo $orientation; ?></div>
                     <div class="specificitesDiv"> Staff : <?php echo $staff; ?></div>
-                    <div class="specificitesDiv"> Facility : </div>
                     <div class="specificitesDiv"> Cost/Year : <?php echo $cost; ?> $</div>
                 </div>
                 <div id="addcartgoback"> 
