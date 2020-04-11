@@ -26,7 +26,7 @@
 
                     // requete TAG
                     $nameCat=$_GET['cat'];
-                    $requete2="SELECT name FROM sub_category where id_category='".$nameCat."'";
+                    $requete2="SELECT name FROM `sub-category` where id_category='".$nameCat."'";
                     $query2= mysqli_query($connexion,$requete2);
                     $resultat2=mysqli_fetch_all($query2);
                     $i=0;
