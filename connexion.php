@@ -28,6 +28,13 @@
 				<?php } ?>
 			</form>
 		</main>
+<<<<<<< HEAD
+=======
+
+		<footer>
+			<?php include("footer.php"); ?>
+		</footer>
+>>>>>>> master
 	</body>
 </html>
 

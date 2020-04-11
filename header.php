@@ -6,6 +6,7 @@
 
 
 
+	<a href="index.php" class="header-link">Home</a>	
 	<div id="product-dropdown" class="flexr">
 		<a href="product.php" class="header-link">Products&rarr;</a>	
 		<div id="categorie-dropdown">
@@ -26,11 +27,10 @@
 					echo "</div> </div>";
 				}
 			?>
-			
+
 		</div>
 	</div>
 
-	<a href="index.php" class="header-link">Home</a>	
 	<?php
 		if(isset($_SESSION["id"]))
 		{	?>	
@@ -39,8 +39,8 @@
 	<?php 	}
 		else
 		{ ?>
-			<a href="inscription.php" class="header-link" id="profil-link">Inscription</a>
-			<a href="connexion.php" class="header-link" id="profil-link">Connexion</a>
+			<a href="inscription.php" class="header-link" id="profil-link">Sign up</a>
+			<a href="connexion.php" class="header-link" id="profil-link">Log in</a>
 	<?php	} ?>
 	<a href="cart.php" class="header-link" id="cart-link" >Cart</a>
 	<a href="cart.php" class="header-link" id="search-link" >Search</a>
