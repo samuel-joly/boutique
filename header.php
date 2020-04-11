@@ -8,7 +8,7 @@
 
 	<a href="index.php" class="header-link">Home</a>	
 	<div id="product-dropdown" class="flexr">
-		<a href="product.php" class="header-link">Products&rarr;</a>	
+		<a href="product.php?filter=null" class="header-link">Products&rarr;</a>	
 		<div id="categorie-dropdown">
 
 			<?php

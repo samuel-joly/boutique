@@ -18,74 +18,120 @@
 					header("location:connexion.php");
 				}
 
-				$usr = $stmt->query("SELECT * FROM users WHERE id =".$_SESSION["id"])->fetch(PDO::FETCH_ASSOC);
-			?> 
-		</header>
-		
-		<main class='flexr just-center align-center' >
-
-			<?php if(isset($_GET["show"]))
-				{
-					switch($_GET["show"])
-					{
-						case "bought": 
-							echo "<div class='flexc just-center align-center' id='bought-zone'>";	
-							$bought = $stmt->query("SELECT *, users.id AS product_id ,
-							users.name AS agent_name FROM bought
-							INNER JOIN products ON bought.id_product = products.id
-							INNER JOIN agents ON products.id_agent = agents.id
-							INNER JOIN users ON agents.id_user = users.id
-							WHERE bought.id_user =".$_SESSION["id"])->fetchAll(PDO::FETCH_ASSOC);
-							if(!empty($bought))
-							{
-								foreach($bought as $product)
-								{
-								echo "<div class='profil-data-container'>";
-									echo "<div class='bought-product-zone flexr just-between align-center'>";
-									echo "<div class='flexc just-start align-start bought-product-title'>";
-										echo "<h1><u>".$product["title"]."</u></h1>";
-										echo "<p>".$product["price"]."$</p>";
-										echo "<p>".$product["date"]."</p>";
-										echo "<p class='bought-product-desc'>".$product["description"]."</p>";
-									echo "</div>";
-									echo "<div class='bought-agent-zone flexc align-center just-center'>";
-										echo "<img src='".$product["image"]."' class='bought-product-image'/>";
-										echo "<h2>Sold by <b>".$product["agent_name"]."</b></h2>";
-										echo "<span class='flexr just-center align-center center'>";
-										for($i=1;$i<=5;$i++) {
-											echo "<a href='profil.php?show=bought&&rate=".$i."&&id=".$product["product_id"]."'>
-											<img src='Media/Images/Assets/empty-star.png' class='rating-star'/>
-											</a>";
-										}
-										echo "</span>";
-									echo "</div>";
-									echo "</div>";
-								echo "</div>";
-								}
-							}
-							echo "</div>";	
-						break;	
-							
-						case "cart":
-
-							echo "<div class='profil-data-container'>";
-								
-								
-							echo "</div>";
-						break;	
-					}
-				}
-
 				if(isset($_GET["rate"]))
 				{
-					echo "<a href='profil.php?show=bought' class='alert-body'>";
-					echo "</a>";
-					echo "<div class='alert-container'>";
-						// Recup data produit  + agent + rating
-						// Demande commentaire
-						// demander validation 
-						// Maj agen + Maj commentaire
-						// retour a la page profil.php?show=bought
+
+				    $comm = $stmt->query("SELECT * FROM comments WHERE id_creator =".$_SESSION["id"]." AND comments.id_agent =".$_GET["id"])->fetch();
+				    $rate = $stmt->query("SELECT * FROM ratings WHERE id_creator =".$_SESSION["id"]." AND ratings.id_agent =".$_GET["id"])->fetch();
+				    if(!empty($comm) || !empty($rate))
+				    {
+					header("location:profil.php?show=bought");
+				    }
+			    }
+			    $usr = $stmt->query("SELECT * FROM users WHERE id =".$_SESSION["id"])->fetch(PDO::FETCH_ASSOC);
+		    ?> 
+	    </header>
+	    
+	    <main class='flexr just-center align-center' >
+
+		    <?php if(isset($_GET["show"]))
+			    {
+				    switch($_GET["show"])
+				    {
+					    case "bought": 
+						    echo "<div class='flexc just-center align-center' id='bought-zone'>";	
+						    $bought = $stmt->query("SELECT *, users.id AS agent_id , ratings.value AS rate,
+						    users.name AS agent_name FROM bought
+						    INNER JOIN products ON bought.id_product = products.id
+						    INNER JOIN agents ON products.id_agent = agents.id
+						    INNER JOIN users ON agents.id_user = users.id
+						    LEFT JOIN ratings ON products.id_agent = ratings.id_agent
+						    WHERE bought.id_user =".$_SESSION["id"])->fetchAll(PDO::FETCH_ASSOC);
+						    if(!empty($bought))
+						    {
+							    foreach($bought as $product)
+							    {
+							    echo "<div class='profil-data-container'>";
+								    echo "<div class='bought-product-zone flexr just-between align-center'>";
+								    echo "<div class='flexc just-start align-start bought-product-title'>";
+									    echo "<h1><u>".$product["title"]."</u></h1>";
+									    echo "<p>".$product["price"]."$</p>";
+									    echo "<p>".$product["date"]."</p>";
+									    echo "<p class='bought-product-desc'>".$product["description"]."</p>";
+								    echo "</div>";
+								    echo "<div class='bought-agent-zone flexc align-center just-center'>";
+									    echo "<img src='".$product["image"]."' class='bought-product-image'/>";
+									    echo "<h2>Sold by <b>".$product["agent_name"]."</b></h2>";
+									    echo "<span class='flexr just-center align-center center'>";
+									    for($i=1;$i<=5;$i++) {
+									    	    if($i <= $product["rate"])
+										    {
+
+											echo "<a href='profil.php?show=bought&&rate=".$i."&&id=".$product["agent_id"]."'>
+											<img src='Media/Images/Assets/star.png' class='rating-star'/>
+											</a>";
+										    }
+										    else
+										    {
+										    
+											echo "<a href='profil.php?show=bought&&rate=".$i."&&id=".$product["agent_id"]."'>
+											<img src='Media/Images/Assets/empty-star.png' class='rating-star'/>
+											</a>";
+										    }
+									    }
+									    echo "</span>";
+								    echo "</div>";
+								    echo "</div>";
+							    echo "</div>";
+							    }
+						    }
+						    echo "</div>";	
+					    break;	
+						    
+					    case "cart":
+
+						    echo "<div class='profil-data-container'>";
+							    
+							    
+						    echo "</div>";
+					    break;	
+				    }
+			    }
+
+			    if(isset($_GET["rate"]))
+			    {
+				    echo "<a href='profil.php?show=bought' class='alert-body'>";
+				    echo "</a>";
+				    echo "<div class='alert-container'>";
+					    foreach($bought as $product)
+					    {
+						    if($product["agent_id"] == $_GET["id"])
+							{
+								$bought = $product;
+								break;
+							}
+						}
+						echo "<h1> You rated <u>".$bought["agent_name"]."</u> to ".$_GET["rate"]."/5 for ".$bought["title"]."</h2>";
+						echo "<p>For submitting your rating, please leave a comment:</p>";
+						echo "<form action='profil.php?show=bought' method='post' id='profil-rate-form'>
+							<textarea name='comment' cols='80' rows='10' maxlength='255'></textarea>
+							<input type='submit' value='envoyer' name='profil-comment-input'/>
+							</form>
+						";
+						if(isset($_POST["profil-comment-input"]))
+						{
+							if(strlen($_POST["comment"]) > 0)
+							{
+								$comment = htmlspecialchars($_POST["comment"]);
+								
+								$stmt->query("INSERT INTO `comments`(`id`, `id_creator`, `id_agent`,
+								`date`, `comment`) VALUES (NULL, ".$_SESSION["id"].", ".$_GET["id"].",
+								CURRENT_DATE, '".$comment."')");
+
+								$stmt->query("INSERT INTO `ratings`(`id`,`id_agent`,`value`,`id_creator`) VALUES
+								(NULL, ".$_GET["id"].", ".$_GET["rate"].", ".$_SESSION["id"].")");
+							}
+						}
 					echo "</div>";
 				}
 			?>

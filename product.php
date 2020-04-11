@@ -37,7 +37,6 @@
 				else
 				{
 					$query = $_SESSION["product_filter"];
-					echo $query;
 				}
 					
 				$products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
@@ -69,7 +68,7 @@
 								<p>Orientation: <?=$product["orientation"]?></p>
 								<p>Staff: <?=$product["staff"]?></p>
 								<p>Cost/Year: <?=$product["cost"]?>$</p>
-								<a href='product.php?id=<?=$product["id_prod"]?>' class='product-link'>See More</a>
+								<a href='product-description.php?id=<?=$product["id_prod"]?>' class='product-link'>See More</a>
 							</div>
 						</div>
 				<?php	}	?>
