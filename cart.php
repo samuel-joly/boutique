@@ -53,8 +53,24 @@
 
             </section>
 
-            
+
             <section id="ValidationPanier">
+
+            <div id="infoProduct">
+                <article id="infoGeneral">
+                    Info general sur le/les biens
+                </article>
+                <article id="infoTechnique">
+                    Info technique sur le/les biens
+                </article>
+                <article id="option">
+                    Les options proposées sur le/les biens
+                </article>
+            </div>
+            
+            <div id="validationBasket">
+
+            </div>
                 
             </section>
 

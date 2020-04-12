@@ -1014,14 +1014,59 @@ border-radius: 0.3em;
 
 #ValidationPanier{
 width: 25%;
-height: 700px;
+height: 800px;
 background-color: rgb(135, 183, 222);
 border-radius: 3px black solid;
 border-radius: 0.3em;
+color:black;
+font-size: x-large;
 }
 
-#img-product-Basket{
-border-radius: 3px black solid;
-background-color: crimson;
+#infoProduct{
+margin: 2% auto;
+width: 95%;
+height: 60%;
+border: 2px black solid;
+border-radius:0.3em;
+background-color: wheat;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+}
+
+#infoGeneral{
+width: 95%;
+height: 20%;
+border: 2px black solid;
 border-radius: 0.3em;
+background-color:rgb(50, 182, 205) ;
+
+}
+
+#infoTechnique{
+width: 95%;
+height: 35%;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color: rgb(51, 83, 153);
+
+}
+
+#option{
+width: 95%;
+height: 35% ;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color: rgb(200, 255, 47);
+
+}
+
+#validationBasket{
+margin: 2% auto;
+width: 95%;
+height: 35%;
+border: 2px black solid;
+border-radius:0.3em;
+background-color: rgba(243, 122, 122, 0.835);
 }
