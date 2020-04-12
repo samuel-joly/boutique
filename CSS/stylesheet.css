@@ -14,7 +14,7 @@
 body
 {
 	font-family:lato;
-	margin:0;
+	margin:1;
 	padding:0;
 	display:flex;
 	flex-direction:column;
@@ -954,5 +954,74 @@ background-color: wheat;
 }
 
 a{
-	text-decoration: none;
+text-decoration: none;
+}
+
+#validationAchat input{
+width: 10%;
+}
+
+#validationAchat{
+background-color: rgba(255, 99, 71, 0.959);
+width: 50%;
+padding: 2%;
+text-align: center;
+font-size: 2vw;
+border: 2px black;
+border-radius: 0.3em;
+margin: -14% 20%;
+position: absolute;
+}
+
+
+/*------------- PAGE PANIER --------------- */
+
+#cart-body{
+background:url("../media/images/bg.jpg");
+background-size:cover;
+background-repeat:no-repeat;
+color: white;
+display: flex;
+}
+
+
+/* MAISON LISTE */
+
+#panierList{
+margin:10% 1% 10% 12%;
+width: 40%;
+height: 600px;
+background: #484861;
+font-size: 16px;
+text-align: center;
+border-radius: 3px black solid;
+overflow-y: scroll;
+border-radius: 0.3em;
+}
+
+
+#houseInBasket{
+width: 90%;
+height: 45%;
+margin:2%;
+background-color: chocolate;
+border-radius: 3px black solid;
+border-radius: 0.3em;
+}
+
+
+/* VALIDATION PANIER */
+
+#ValidationPanier{
+width: 25%;
+height: 700px;
+background-color: rgb(135, 183, 222);
+border-radius: 3px black solid;
+border-radius: 0.3em;
+}
+
+#img-product-Basket{
+border-radius: 3px black solid;
+background-color: crimson;
+border-radius: 0.3em;
 }

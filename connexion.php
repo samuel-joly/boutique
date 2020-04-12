@@ -52,6 +52,7 @@
 			{
 				if(password_verify($password, $usr["password"]))
 				{
+					$_SESSION["login"]=$_POST["login"];
 					$_SESSION["id"] = $usr["id"];
 					header("location:index.php");
 				}

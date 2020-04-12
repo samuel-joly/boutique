@@ -41,6 +41,7 @@
                     // $resultat2=mysqli_fetch_all($query2);
                     // var_dump($resultat2);
                     // var_dump($resultat);
+                    $id_product=$_GET['id'];
                     $image=$resultat['img'];
                     $title=$resultat['titre'];
                     $description=$resultat['descr'];
@@ -129,15 +130,69 @@
                     <div class="specificitesDiv"> Staff : <?php echo $staff; ?></div>
                     <div class="specificitesDiv"> Cost/Year : <?php echo $cost; ?> $</div>
                 </div>
+
+                <!-- ADD TO CART SECTION -->
                 <div id="addcartgoback"> 
                     <?php $id=$_GET['id']; ?>
-                    <a href="cart.php?id=<?php echo $id?>"><article class='addcartgoback-inside'>Add to Cart</article></a><br>
+
+                    <form method="POST">
+                        <!-- <a href="cart.php?id=<?php echo $id?>"> -->
+                            <article class='addcartgoback-inside'>
+                                <input type="submit" name="valider" id="addCartInput" value="Add to Cart"><br>
+                            </article>
+                        <!-- </a> -->
+                    </form>
+
+                    <!-- <article class='addcartgoback-inside'>Add to Cart</article></a><br> -->
                     <a href="product.php?category=<?php echo $nameCat;?>"><article class="addcartgoback-inside">Go Back</article></a>
                 </div>
             </section>
         
         </main>
 
+        <!-- WARNING           WARNING               WARNING
+        PROBLEME A CORRIGER, L'INSERT DANS LA BASE DE DONNEE SE FAIT DES QUE L'ON CLIQUE SUR ADD TO CART, ET NON LORS DE LA CONFIRMATION DE L'ADD TO CART -->
+
+        <?php
+        $connexion= mysqli_connect("localhost","root","","boutique");
+        $requete= "SELECT * FROM basket where id_product='".$id_product."' ";
+        $query= mysqli_query($connexion,$requete);
+        $resultatVerif=mysqli_fetch_all($query);
+        // var_dump($resultatVerif);
+
+            if(isset($_POST['valider']) && $_POST['valider']=="Add to Cart"){
+                echo $_SESSION['login'].'</br>';
+                echo $_SESSION['id'].'</br>';
+                echo $id_product.'</br>';
+
+                // EVITE D'ENVOYER 2 FOIS LA MEME MAISON DANS LA PAGE PANIER
+                if(empty($resultatVerif)){
+                    ?>
+                        <div id="validationAchat">
+
+                    Put in your Cart ?<br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
+                    
+                        </div>
+                    <?php
+
+                    if(isset($_POST['valider'])){
+                        $connexion= mysqli_connect("localhost","root","","boutique");
+                        $requeteInsert= "INSERT INTO `basket`(`id_user`, `id_product`, `quantity`) VALUES ('".$_SESSION['id']."','".$id_product."',1)";
+                        $query=mysqli_query($connexion,$requeteInsert);
+                        echo $requeteInsert;
+                    }
+                }
+                
+                else{
+                    ?>
+                        <div id="validationAchat">
+                            You have already added this property to your basket. </br> To validate your purchase go on the page <a href='cart.php'>Cart<a> <br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
+                    
+                        </div>
+                    <?php
+                };
+            }
+        ?>
 
 
 
