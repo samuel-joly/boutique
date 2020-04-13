@@ -18,11 +18,25 @@
 					header("location:connexion.php");
 				}
 
+				if(isset($_POST["profil-comment-input"]))
+				    {
+					    if(strlen($_POST["comment"]) > 0)
+					    {
+						    $comment = htmlspecialchars(addslashes($_POST["comment"]));
+						    $stmt->query("INSERT INTO `comments`(`id`, `id_creator`, `id_agent`,
+						    `date`, `comment`, `id_product`) VALUES (NULL, ".$_SESSION["id"].", ".$_GET["id_agent"].",
+						    CURRENT_DATE, '".$comment."', ".$_GET["id_prod"].")");
+
+						    $stmt->query("INSERT INTO `ratings`(`id`,`id_agent`,`value`,`id_creator`, `id_product`) VALUES
+						    (NULL, ".$_GET["id_agent"].", ".$_GET["rate"].", ".$_SESSION["id"].", ".$_GET["id_prod"].")");
+					    }
+					    header('location:profil.php?show=bought');
+				    }
+
 				if(isset($_GET["rate"]))
 				{
-
-				    $comm = $stmt->query("SELECT * FROM comments WHERE id_creator =".$_SESSION["id"]." AND comments.id_agent =".$_GET["id"])->fetch();
-				    $rate = $stmt->query("SELECT * FROM ratings WHERE id_creator =".$_SESSION["id"]." AND ratings.id_agent =".$_GET["id"])->fetch();
+				    $comm = $stmt->query("SELECT * FROM comments WHERE id_creator =".$_SESSION["id"]." AND comments.id_product=".$_GET["id_prod"])->fetch();
+				    $rate = $stmt->query("SELECT * FROM ratings WHERE id_creator =".$_SESSION["id"]." AND ratings.id_product =".$_GET["id_prod"])->fetch();
 				    if(!empty($comm) || !empty($rate))
 				    {
 					header("location:profil.php?show=bought");
@@ -40,12 +54,15 @@
 				    {
 					    case "bought": 
 						    echo "<div class='flexc just-center align-center' id='bought-zone'>";	
-						    $bought = $stmt->query("SELECT *, users.id AS agent_id , ratings.value AS rate,
-						    users.name AS agent_name FROM bought
+						    $bought = $stmt->query("SELECT 
+						    products.title, products.price, products.description, products.image, products.id,
+						    users.id AS agent_id ,users.name AS agent_name,
+						    ratings.value AS rate, bought.date
+						    FROM bought
 						    INNER JOIN products ON bought.id_product = products.id
 						    INNER JOIN agents ON products.id_agent = agents.id
 						    INNER JOIN users ON agents.id_user = users.id
-						    LEFT JOIN ratings ON products.id_agent = ratings.id_agent
+						    LEFT JOIN ratings ON products.id = ratings.id_product
 						    WHERE bought.id_user =".$_SESSION["id"])->fetchAll(PDO::FETCH_ASSOC);
 						    if(!empty($bought))
 						    {
@@ -64,17 +81,17 @@
 									    echo "<h2>Sold by <b>".$product["agent_name"]."</b></h2>";
 									    echo "<span class='flexr just-center align-center center'>";
 									    for($i=1;$i<=5;$i++) {
-									    	    if($i <= $product["rate"])
+									    	    if($i < $product["rate"]+1)
 										    {
 
-											echo "<a href='profil.php?show=bought&&rate=".$i."&&id=".$product["agent_id"]."'>
+											echo "<a href=''>
 											<img src='Media/Images/Assets/star.png' class='rating-star'/>
 											</a>";
 										    }
 										    else
 										    {
 										    
-											echo "<a href='profil.php?show=bought&&rate=".$i."&&id=".$product["agent_id"]."'>
+											echo "<a href='profil.php?show=bought&&rate=".$i."&&id_agent=".$product["agent_id"]."&&id_prod=".$product["id"]."'>
 											<img src='Media/Images/Assets/empty-star.png' class='rating-star'/>
 											</a>";
 										    }
@@ -105,7 +122,7 @@
 				    echo "<div class='alert-container'>";
 					    foreach($bought as $product)
 					    {
-						    if($product["agent_id"] == $_GET["id"])
+						    if($product["id"] == $_GET["id_prod"])
 							{
 								$bought = $product;
 								break;
@@ -113,26 +130,11 @@
 						}
 						echo "<h1> You rated <u>".$bought["agent_name"]."</u> to ".$_GET["rate"]."/5 for ".$bought["title"]."</h2>";
 						echo "<p>For submitting your rating, please leave a comment:</p>";
-						echo "<form action='profil.php?show=bought' method='post' id='profil-rate-form'>
+						echo "<form action='profil.php??show=bought&&rate=".$_GET["rate"]."&&id_agent=".$_GET["id_agent"]."&&id_prod=".$_GET["id_prod"]."' method='post' id='profil-rate-form'>
 							<textarea name='comment' cols='80' rows='10' maxlength='255'></textarea>
 							<input type='submit' value='envoyer' name='profil-comment-input'/>
-							</form>
-						";
-						if(isset($_POST["profil-comment-input"]))
-						{
-							if(strlen($_POST["comment"]) > 0)
-							{
-								$comment = htmlspecialchars($_POST["comment"]);
-								
-								$stmt->query("INSERT INTO `comments`(`id`, `id_creator`, `id_agent`,
-								`date`, `comment`) VALUES (NULL, ".$_SESSION["id"].", ".$_GET["id"].",
-								CURRENT_DATE, '".$comment."')");
-
-								$stmt->query("INSERT INTO `ratings`(`id`,`id_agent`,`value`,`id_creator`) VALUES
-								(NULL, ".$_GET["id"].", ".$_GET["rate"].", ".$_SESSION["id"].")");
-							}
-						}
-					echo "</div>";
+							</form>";
+						echo "</div>";
 				}
 			?>
 			
