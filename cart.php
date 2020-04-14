@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -10,9 +12,27 @@
 
     <body id="cart-body">
 
+    
+
         <header> 
-            <?php include("header.php"); ?> 
+            <?php include("header.php"); 
+            
+            ?> 
         </header>   
+
+<?php
+                if(isset($_POST['removeArticle'])){
+                    $id_product=$_POST['id_product'];
+                    $connexion=mysqli_connect("localhost","root","","boutique");
+                    $requete="DELETE FROM basket WHERE id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
+                    // echo $requete;
+                    $query=mysqli_query($connexion,$requete);
+                    header("location:cart.php");
+                    // echo $requete;
+                    //echo $product['id_basket']."</br></br>";
+                }
+            
+?>
 
 
         <main class='flexr just-center align-center'>
@@ -60,22 +80,20 @@
 								<p>Staff: <?=$product["staff"]?></p>
                                 <p>Cost/Year: <?=$product["cost"]?>$</p>
                                 <form method="POST">
+                                    <input type="hidden" name="id_product" value="<?php echo $product['id_prod'] ;?>">
+
                                     <input type="submit" name="removeArticle" id="removeArticle" value="Remove">
                                 </form>
 							</div>
 						</div>
                 <?php
+                            
+                    
+                }
 
-                    if(isset($_POST['removeArticle'])){
-                        echo "remove article ok </br>";
-                        echo "le  produit".$product["title"]."</br>";
-                        $connexion=mysqli_connect("localhost","root","","boutique");
-                        $requete="DELETE FROM basket WHERE id_product='".$product['id_prod']."' AND id_user='".$_SESSION['id']."' AND id='".$product['id_basket']."'";
-                        $query=mysqli_query($connexion,$requete);
-                        echo $requete;
-                    }
+
             
-            }	?>
+            ?>
 			</div>	
 
             </section>
