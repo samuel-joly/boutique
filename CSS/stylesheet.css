@@ -957,11 +957,11 @@ a{
 text-decoration: none;
 }
 
-#validationAchat input{
+#validationPanier input{
 width: 10%;
 }
 
-#validationAchat{
+#validationPanier{
 background-color: rgba(255, 169, 71, 0.959);
 border: 2px black solid;
 width: 50%;
@@ -1022,7 +1022,7 @@ border-radius: 0.3em;
 
 /* VALIDATION PANIER */
 
-#ValidationPanier{
+#ValidationAchat{
 width: 25%;
 height: 800px;
 background-color: rgb(135, 183, 222);
@@ -1090,18 +1090,33 @@ background-color: rgba(243, 122, 122, 0.835);
 
 .product-infos-basket
 {
-	border-left: 2px solid white;
-	height:75%;
-	padding-left:1em;
-	margin-left:1em;
-	margin-top:42px;
-	color:#e7e7e7;
-	width:191px;
+height:75%;
+padding-left:1em;
+margin-left:1em;
+margin-top:3px;
+color:#e7e7e7;
+width:191px;
 }
 
 #removeArticle{
-	padding:3%;
-	font-size: x-large;
-	border-radius: 0.3em;
-	text-align: center;
+padding:3%;
+font-size: x-large;
+border-radius: 0.3em;
+text-align: center;
+}
+
+#InfoAvantValidation{
+margin:2% auto;
+width: 95%;
+height: 45%;
+background-color: rgb(238, 255, 0);
+text-align: center;
+}
+
+#ValidationAchatOk{
+margin:2% auto;
+width: 95%;
+height: 45%;
+background-color: red;
+text-align: center;	
 }

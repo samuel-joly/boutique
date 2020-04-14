@@ -10,6 +10,7 @@
 
 
     <body id="product-descritption-body">
+
         <header> 
             <?php include("header.php"); ?> 
         </header>    
@@ -36,11 +37,7 @@
                     $query3= mysqli_query($connexion,$requete3);
                     $resultat3=mysqli_fetch_row($query3);
                     $nameCategory=$resultat3[0];
-                    // $requete2="SELECT category.name sub-category.name FROM products INNER JOIN category ON category_tag.id_category = category.id INNER JOIN sub-category ON sub-category-tag.id = sub-category.id INNER JOIN sub-category ON products.id = sub-category.id_product INNER JOIN  category-tag ON products.id = category-tag.id_product where products.id='".$_GET['id']."'";
-                    // $query2=mysqli_connect($connexion,$requete2);
-                    // $resultat2=mysqli_fetch_all($query2);
-                    // var_dump($resultat2);
-                    // var_dump($resultat);
+
                     $id_product=$_GET['id'];
                     $image=$resultat['img'];
                     $title=$resultat['titre'];
@@ -168,9 +165,9 @@
                 // EVITE D'ENVOYER 2 FOIS LA MEME MAISON DANS LA PAGE PANIER
                 if(empty($resultatVerif)){
                     ?>
-                        <div id="validationAchat">
+                        <div id="validationPanier">
 
-                    Put in your Cart ?  <br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
+                            Put in your Cart ?  <br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
                     
                         </div>
                     <?php
@@ -185,7 +182,7 @@
                 
                 else{
                     ?>
-                        <div id="validationAchat">
+                        <div id="validationPanier">
                             You have already added this property to your basket. </br> To validate your purchase go on the page <a href='cart.php'>Cart<a> <br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                     
                         </div>
