@@ -155,7 +155,7 @@
 
         <?php
         $connexion= mysqli_connect("localhost","root","","boutique");
-        $requete= "SELECT * FROM basket where id_product='".$id_product."' ";
+        $requete= "SELECT * FROM basket where id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
         $query= mysqli_query($connexion,$requete);
         $resultatVerif=mysqli_fetch_all($query);
         // var_dump($resultatVerif);
@@ -170,7 +170,7 @@
                     ?>
                         <div id="validationAchat">
 
-                    Put in your Cart ?<br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
+                    Put in your Cart ?  <br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
                     
                         </div>
                     <?php
