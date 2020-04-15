@@ -13,6 +13,7 @@
         <header> 
             <?php include("header.php");?> 
         </header>   
+        
 
             <?php
 
@@ -28,26 +29,34 @@
 
             if(isset($_POST['removeArticle'])){
                 $id_product=$_POST['id_product'];
-                $deleteOnce="DELETE FROM basket WHERE id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
-                delete($deleteOnce);
+                $deleteOne="DELETE FROM basket WHERE id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
+                delete($deleteOne);
             }
-            
             // SUPPRESION DES ARTICLES DU PANIER LORS DE L'ACHAT + INSERTION DES DONNEES DU PANIER DANS BOUGHT
             if(isset($_POST['acheter'])){
                 $connexion=mysqli_connect("localhost","root","","boutique");
                 $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
                 $query=mysqli_query($connexion,$requete);
                 $resultat=mysqli_fetch_all($query);
+                var_dump($resultat);
 
                 foreach($resultat as $achat){
+
+                    $requeteVerif="SELECT id_product FROM bought where id_user='".$_SESSION['id']."'";
+                    $queryVerif=mysqli_query($connexion,$requeteVerif);
+                    $resultatVerif=mysqli_fetch_all($queryVerif);
+                    
+                    if($resultatVeri[0]!=$achat[2]){
+
                     $date=date("Y-m-d:H-m-s");
                     $requeteInsert="INSERT INTO `bought` (`id_user`,`id_product`,`date`,`quantity`) VALUES ('".$achat[1]."','".$achat[2]."','".$date."','".$achat[3]."')";
                     $query=mysqli_query($connexion,$requeteInsert);
                     $requeteDelete="DELETE FROM basket WHERE id_product='".$achat[2]."' AND id_user='".$achat[1]."'";
                     $queryDelete=mysqli_query($connexion,$requeteInsert);
+                    }
+                    
                 }
                 delete($deleteAll);
-                header("location:cart.php");
 
             }
             ?>

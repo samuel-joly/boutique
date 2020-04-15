@@ -135,7 +135,7 @@
                     <form method="POST">
                         <!-- <a href="cart.php?id=<?php echo $id?>"> -->
                             <article class='addcartgoback-inside'>
-                                <input type="submit" name="valider" id="addCartInput" value="Add to Cart"><br>
+                                <input type="submit" name="valider" class="addcartgoback-insideBis" value="Add to Cart"><br>
                             </article>
                         <!-- </a> -->
                     </form>
@@ -167,7 +167,7 @@
                     ?>
                         <div id="validationPanier">
 
-                            Put in your Cart ?  <br><form method='POST'><input type='submit' name='valider2' value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
+                            Put in your Cart ? <form method='POST'><input type='submit' name='valider2' class="addcartgoback-insideBis" value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
                     
                         </div>
                     <?php
@@ -183,7 +183,7 @@
                 else{
                     ?>
                         <div id="validationPanier">
-                            You have already added this property to your basket. </br> To validate your purchase go on the page <a href='cart.php'>Cart<a> <br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
+                            You have <b>already added</b> this property to your basket. </br> To validate your purchase go on the page <a href='cart.php'>Cart<a> </br>or<br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                     
                         </div>
                     <?php
