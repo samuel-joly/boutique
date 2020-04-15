@@ -998,14 +998,15 @@ overflow-y: scroll;
 /* MAISON LISTE */
 
 #panierList{
-margin: 10% 1% 10% 17%;
-width: 47%;
-height: 600px;
+margin: 3% 0% 0% 28%;
+width: 81%;
+height: 388px;
 background: #484861;
 font-size: 16px;
 text-align: center;
 border-radius: 3px black solid;
 overflow-y: scroll;
+overflow-x: visible;
 border-radius: 0.3em;
 }
 
@@ -1023,13 +1024,24 @@ border-radius: 0.3em;
 /* VALIDATION PANIER */
 
 #ValidationAchat{
+margin-top: 2%;
+margin-left: 6%;
 width: 25%;
-height: 800px;
+height: 1000px;
 background-color: rgb(135, 183, 222);
 border-radius: 3px black solid;
 border-radius: 0.3em;
 color:black;
 font-size: x-large;
+}
+
+.titrePanier{
+margin-left: 40%;
+margin-top: 2%;
+margin-bottom: -2%;
+text-align: center;
+font-size: xx-large;
+color: rgb(219, 219, 84);
 }
 
 #infoProduct{
@@ -1090,15 +1102,15 @@ background-color: rgba(243, 122, 122, 0.835);
 
 .product-infos-basket
 {
-height:75%;
+height: 90%;
 padding-left:1em;
 margin-left:1em;
-margin-top:3px;
+margin-top: 15px;
 color:#e7e7e7;
 width:191px;
 }
 
-#removeArticle{
+.removeArticle{
 padding:3%;
 font-size: x-large;
 border-radius: 0.3em;
@@ -1119,4 +1131,23 @@ width: 95%;
 height: 45%;
 background-color: red;
 text-align: center;	
+}
+
+#product-bought{
+background: #484848d2;
+font-size: x-large;
+padding: 5.6em 0px;
+width: 640px;
+text-align: center;
+border-radius: 0.3em;
+border: 4px black solid;
+color: white;
+margin-top: -0.05em;
+margin-left: -26.81em;
+margin-right: -1.1em;
+}
+
+#aucunAchat{
+margin: 15% auto;
+font-size: xx-large;
 }
