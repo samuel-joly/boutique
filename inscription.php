@@ -4,6 +4,7 @@
 	<head>
 		<title>Boutique</title>
 		<link rel='stylesheet' type='text/css' href="CSS/stylesheet.css" />		
+		<link rel="stylesheet" type="text/css" href="CSS/inscription.css">
 		<link rel="stylesheet" type="text/css" href="CSS/boot.css"/>
 		<meta charset='UTF-8'>
 	</head>

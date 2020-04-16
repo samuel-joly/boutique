@@ -1,0 +1,224 @@
+/*-------------------------------PROFIL-------------------------*/
+
+#profil-body
+{
+	background-color:#787878;
+}
+
+#avatar-input
+{
+	display:none;
+}
+
+#profil-container
+{
+	background-color:#E8E8E8bd;
+	border-radius:10px;
+	min-width:400px;
+	max-width:550px;
+}
+
+#image-container
+{
+	width:5em;
+	border-radius:50%;
+	height:5em;
+
+	overflow:hidden;
+
+	border:2px solid black;
+	display:flex;
+	justify-content:flex-start;
+	flex-direction:column;
+	align-self:center;
+	margin-bottom:15px;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+#sub-img-container
+{
+	height:5em;
+}
+
+#image-container span
+{
+	position:relative;
+	top:-5.2em;
+	max-width:6em;
+	border-radius:50%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:#484848be;
+	opacity:0;
+	transition:opacity 0.2s ease;
+	color:white;
+	text-align:center;
+}
+
+#image-container:hover>div>span
+{
+	opacity:1;
+}
+
+
+#image-container span p
+{
+	padding:0.3em;
+}
+
+#profil-image
+{
+	margin:0px;
+	width:5em;
+	height:5em;
+	border-radius:50%;
+}
+
+#profil-data
+{
+	width:95%;
+}
+
+#profil-data a
+{
+	color:white;
+	text-decoration:none;
+	font-size:1.2em;
+	background:#787878;
+	padding:0.3em;
+	border-radius:5px;
+	width:90%;
+	text-align:center;
+	margin:2px;
+	transition:background 0.2s ease;
+}
+
+#profil-data a:hover
+{
+	background-color:#5a5a5a;
+}
+#profil-container .input-zone
+{
+	width:88%;
+	align-self:center;
+}
+#profil-container .input-zone input
+{
+	width:60%;
+}
+
+#profil-container .input-zone label
+{
+	width:45%;
+	margin:0.3em;
+}
+
+.profil-submit
+{
+	padding:0.3em;
+	width:30%;
+	align-self:center;
+	background:#787878;
+	transition:all 0.2s ease;
+	color:white;
+	border:0px;
+	border-radius:3px;
+	text-decoration:underline;
+	margin:0.3em;
+	font-size:1em;
+}
+
+.profil-submit:hover
+{
+	cursor:pointer;
+	background:#E7E7E7;
+	color:black;
+}
+
+
+.profil-data-container
+{
+	width:40vw;
+	height:fit-content;
+	max-height:10em;
+	padding:1em;
+	margin-right:3em;
+	background:#E8E8E8bd;
+	border-radius:5px;
+	margin:1em;
+}
+
+.bought-product-image
+{
+	width:10em;
+	border:2px solid white;
+	border-radius:3px;
+}
+
+#bought-zone
+{
+	overflow-y:scroll;
+	max-height:70vh;
+	flex-wrap:wrap;
+	margin-right:3em;
+}
+
+#bought-zone::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#bought-zone::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+#bought-zone::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
+.bought-product-title h1, .bought-product-title p
+{
+	margin:0;
+}
+
+.bought-product-title
+{
+	width:60%;
+}
+
+.bought-product-desc::-webkit-scrollbar {
+  width: 10px;
+  background: #787878;
+}
+
+/* Track */
+.bought-product-desctag::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+.bought-product-desc::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+.bought-product-desc
+{
+	width:30em;
+	max-height:6em;
+	overflow-y:scroll;
+}
+
+
+.rating-star
+{
+	width:25px;
+}
+
+.bought-agent-zone h2
+{
+	margin:0;
+}

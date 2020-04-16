@@ -5,6 +5,7 @@
 		<title>Boutique</title>
 		<link rel='stylesheet' type='text/css' href="CSS/stylesheet.css" />		
 		<link rel="stylesheet" type="text/css" href="CSS/boot.css"/>
+		<link rel="stylesheet" type="text/css" href="CSS/profil.css">
 		<meta charset='UTF-8'>
 	</head>
 

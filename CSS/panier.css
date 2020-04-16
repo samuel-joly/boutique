@@ -1,0 +1,173 @@
+
+/*---------------------------- PAGE PANIER -------------------------------- */
+
+#cart-body{
+background:url("../media/images/bg.jpg");
+background-size:cover;
+background-repeat:no-repeat;
+color: white;
+display: flex;
+}
+
+#products-box-basket{
+width: 1100px;
+max-height: 106vh;
+overflow-y: scroll;
+}
+
+/* MAISON LISTE */
+
+#panierList{
+margin: 3% 0% 0% 28%;
+width: 81%;
+height: 388px;
+background: #484861;
+font-size: 16px;
+text-align: center;
+border-radius: 3px black solid;
+overflow-y: scroll;
+overflow-x: visible;
+border-radius: 0.3em;
+}
+
+
+#houseInBasket{
+width: 95%;
+height: 45%;
+margin:2%;
+background-color: chocolate;
+border-radius: 3px black solid;
+border-radius: 0.3em;
+}
+
+
+/* VALIDATION PANIER */
+
+#ValidationAchat{
+margin-top: 2%;
+margin-left: 6%;
+width: 25%;
+height: 1000px;
+background-color: rgb(135, 183, 222);
+border-radius: 3px black solid;
+border-radius: 0.3em;
+color:black;
+font-size: x-large;
+}
+
+.titrePanier{
+margin-left: 40%;
+margin-top: 2%;
+margin-bottom: -2%;
+text-align: center;
+font-size: xx-large;
+color: rgb(219, 219, 84);
+}
+
+#infoProduct{
+margin: 2% auto;
+width: 95%;
+height: 60%;
+border: 2px black solid;
+border-radius:0.3em;
+background-color: wheat;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+}
+
+#infoGeneral{
+width: 95%;
+height: 20%;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color:rgb(50, 182, 205) ;
+
+}
+
+#infoTechnique{
+width: 95%;
+height: 35%;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color: rgb(51, 83, 153);
+}
+
+#option{
+width: 95%;
+height: 35% ;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color: rgb(200, 255, 47);
+}
+
+#optionDiv{
+font-size: large;
+margin: 1.5% auto;
+width: 95%;
+border: 2px black solid;
+border-radius: 0.3em;
+background-color: rgb(255, 234, 47);
+}
+
+#validationBasket{
+margin: 2% auto;
+width: 95%;
+height: 35%;
+border: 2px black solid;
+border-radius:0.3em;
+background-color: rgba(243, 122, 122, 0.835);
+}
+
+.product-infos-basket
+{
+height: 90%;
+padding-left:1em;
+margin-left:1em;
+margin-top: 15px;
+color:#e7e7e7;
+width:191px;
+}
+
+.removeArticle{
+padding:3%;
+font-size: x-large;
+border-radius: 0.3em;
+text-align: center;
+}
+
+#InfoAvantValidation{
+margin:2% auto;
+width: 95%;
+height: 45%;
+background-color: rgb(238, 255, 0);
+text-align: center;
+}
+
+#ValidationAchatOk{
+margin:2% auto;
+width: 95%;
+height: 45%;
+background-color: red;
+text-align: center;	
+}
+
+#product-bought{
+background: #484848d2;
+font-size: x-large;
+padding: 5.6em 0px;
+width: 640px;
+text-align: center;
+border-radius: 0.3em;
+border: 4px black solid;
+color: white;
+margin-top: -0.05em;
+margin-left: -26.81em;
+margin-right: -1.1em;
+}
+
+#aucunAchat{
+margin: 15% auto;
+font-size: xx-large;
+}

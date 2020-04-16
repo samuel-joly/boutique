@@ -4,6 +4,8 @@
 	<head>
 		<title>Boutique</title>
 		<link rel='stylesheet' type='text/css' href="CSS/stylesheet.css" />		
+		<link rel="stylesheet" type="text/css" href="CSS/products.css">
+		<link rel="stylesheet" type="text/css" href="CSS/filter.css">
 		<link rel="stylesheet" type="text/css" href="CSS/boot.css"/>
 		<meta charset='UTF-8'>
 	</head>

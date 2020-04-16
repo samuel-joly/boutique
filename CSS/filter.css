@@ -1,0 +1,175 @@
+
+/*----------------------FILTER------------------------*/
+#filter
+{
+	margin-top:6em;
+	margin-left:4em;
+	margin-right:-12em;
+	color:white;
+	background:#2f2f2f;
+	border-radius:3px;
+	height:fit-content;
+	padding:1.2em;	
+	width:300px;
+}
+
+.filter-input-zone
+{
+	margin-top:10px;
+	margin-bottom:10px;
+	width:80%;
+	justify-self:center;
+}
+
+.filter-input-zone input
+{
+	background-color:#e7e7e7;
+	border:0px;
+	border-radius:3px;
+	margin-left:2px;
+	margin-right:2px;
+	width:70px;
+	color:black;
+}
+
+.filter-separator
+{
+	width:100%;
+	display:flex;
+	justify-content:center;
+	margin:0px;
+	color:black;
+	font-size:1.3em;
+	font-weight:bold;
+	margin-top:0.7em;
+}
+
+.filter-separator::after
+{
+	content:"";
+	width:100%;
+	height:1px;
+	background:black;
+	align-self:center;
+	margin-top:0.1em;
+}
+
+#filter-price
+{
+	width:100%;
+}	
+
+#filter-title
+{
+	text-align:center;
+	border:2px solid white;
+	margin:auto;
+	margin-top:0;
+	margin-bottom:0;
+	width:fit-content;
+	padding:0.6em;
+	padding-top:0em;
+	padding-bottom:0;
+}
+
+
+.filter-tag
+{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	max-width:95%;
+	overflow-y:scroll;
+	max-height:150px;
+	background:#272727;
+}
+
+.cat_tag
+{
+	font-size:1.2em;
+	width:fit-content;
+	display:flex;
+	justify-content:space-between;
+	padding:0.1em;
+	background:#2f2f2f;
+	border-radius:3px;
+	margin:3px;
+	transition:background 0.2s ease;
+}
+
+.cat_tag:hover
+{
+	background:#4c4b4b;
+	cursor:pointer;
+
+}
+
+.cat_tag>*:hover
+{
+	cursor:pointer;
+}
+.cat_tag input
+{
+	height:14px;
+	width:14px;
+	align-self:center;
+}
+
+
+.filter-tag::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.filter-tag::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+.filter-tag::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
+#filter-submit
+{
+	width:7em;
+	color:white;
+	height:3em;
+	background:#484848;
+	border:0px;
+	text-decoration:underline;
+	transition:all 0.2s ease;
+	margin:1em;
+}
+
+
+#filter-submit:hover, #filter-reset:hover
+{
+	color:black;
+	cursor:pointer;
+	background:#E7E7E7;
+}
+
+#filter-search input
+{
+	width:13em;
+}
+
+#filter-reset
+{
+	width:5em;
+	color:white;
+	padding:0.6em;
+	padding-top:0.8em;
+	padding-bottom:0.8em;
+	background:#484848;
+	border:0px;
+	text-decoration:underline;
+	transition:all 0.2s ease;
+	margin:1em;
+	text-align:center;
+	font-size:1em;
+}
+
+
