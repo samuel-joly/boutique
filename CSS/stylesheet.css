@@ -441,6 +441,11 @@ main
 	cursor:pointer;
 }
 
+#sub-img-container
+{
+	height:5em;
+}
+
 #image-container span
 {
 	position:relative;
@@ -472,6 +477,7 @@ main
 {
 	margin:0px;
 	width:5em;
+	height:5em;
 	border-radius:50%;
 }
 
