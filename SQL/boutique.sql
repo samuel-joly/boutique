@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 06, 2020 at 10:10 AM
+-- Generation Time: Apr 16, 2020 at 11:08 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -74,7 +74,15 @@ CREATE TABLE IF NOT EXISTS `bought` (
   `date` timestamp NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bought`
+--
+
+INSERT INTO `bought` (`id`, `id_user`, `id_product`, `date`, `quantity`) VALUES
+(1, 4, 1, '2020-03-23 05:11:10', 1),
+(2, 4, 2, '2020-02-19 12:00:24', 1);
 
 -- --------------------------------------------------------
 
@@ -134,11 +142,20 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_creator` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
+  `id_agent` int(11) NOT NULL,
   `date` int(11) NOT NULL,
   `comment` text NOT NULL,
+  `id_product` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `id_creator`, `id_agent`, `date`, `comment`, `id_product`) VALUES
+(18, 4, 1, 20200413, 'Medium quality house and service, 2 stars', 1),
+(19, 4, 1, 20200413, 'Top quality house and service ! Thank you !!! 5 Stars', 2);
 
 -- --------------------------------------------------------
 
@@ -180,10 +197,21 @@ INSERT INTO `products` (`id`, `price`, `title`, `description`, `image`, `size`, 
 
 DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE IF NOT EXISTS `ratings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_agent` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  `id_creator` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `value` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `id_agent`, `value`, `id_creator`, `id_product`) VALUES
+(16, 1, 5, 4, 2),
+(15, 1, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `avatar` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -263,7 +291,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `avatar`) VALUES
 (1, 'azefortwo', 'samueljoly0@gmail.com', '0', 'default.jpg'),
 (2, 'admien', 'a@a.a', '$2y$10$t9AECZ/p/1qSLJZc7.vPxeJTz9G7tHEJxHRXkh.oSZhN1wnki9ive', 'default.jpg'),
-(3, 'plate', 'Samueljoly0@gmail.com', '$2y$10$t2ZYVfdxtxtMY2v7uA3reeQHYWDJjdBRwkc1beDCchQCAUaR8mUiO', 'default.jpg');
+(3, 'plate', 'Samueljoly0@gmail.com', '$2y$10$t2ZYVfdxtxtMY2v7uA3reeQHYWDJjdBRwkc1beDCchQCAUaR8mUiO', 'default.jpg'),
+(4, 'admin', 'admin@admin.com', '$2y$10$vEdWjfNDAy2.ZbzLPdcn9ePXxT4900dyiSjP4FEse5wiAlKOuNH32', '4.png');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
