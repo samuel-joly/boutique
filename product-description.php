@@ -17,41 +17,42 @@
 
         <main class='flexr just-center align-center'>
 
-                    <?php 
+            <?php 
 
-                    // requete INFO GENERAL MAISON
-                    $connexion =mysqli_connect("localhost","root","","boutique");
-                    $requete="SELECT image as img,title as titre,description as descr,price as prix,users.name as nom_utilisateurs,size as taille,location,orientation,staff, cost,id_agent,max_quantity FROM products INNER JOIN agents ON products.id_agent=agents.id INNER JOIN users ON agents.id_user=users.id where products.id='".$_GET['id']."'";
-                    $query=mysqli_query($connexion,$requete);
-                    $resultat=mysqli_fetch_assoc($query);
+            // requete INFO GENERAL MAISON
+            $connexion =mysqli_connect("localhost","root","","boutique");
+            $requete="SELECT image as img,title as titre,description as descr,price as prix,users.name as nom_utilisateurs,size as taille,location,orientation,staff, cost,id_agent,max_quantity FROM products INNER JOIN agents ON products.id_agent=agents.id INNER JOIN users ON agents.id_user=users.id where products.id='".$_GET['id']."'";
+            $query=mysqli_query($connexion,$requete);
+            $resultat=mysqli_fetch_assoc($query);
 
-                    // requete TAG
-                    $nameCat=$_GET['cat'];
-                    $requete2="SELECT name FROM `sub-category` where id_category='".$nameCat."'";
-                    $query2= mysqli_query($connexion,$requete2);
-                    $resultat2=mysqli_fetch_all($query2);
-                    $i=0;
+            // requete TAG
+            $nameCat=$_GET['cat'];
+            $requete2="SELECT name FROM `sub-category` where id_category='".$nameCat."'";
+            $query2= mysqli_query($connexion,$requete2);
+            $resultat2=mysqli_fetch_all($query2);
+            $i=0;
+            
 
-                    // requete CATEGORIE
-                    $requete3="SELECT name FROM category where id='".$nameCat."'";
-                    $query3= mysqli_query($connexion,$requete3);
-                    $resultat3=mysqli_fetch_row($query3);
-                    $nameCategory=$resultat3[0];
+            // requete CATEGORIE
+            $requete3="SELECT name FROM category where id='".$nameCat."'";
+            $query3= mysqli_query($connexion,$requete3);
+            $resultat3=mysqli_fetch_row($query3);
+            $nameCategory=$resultat3[0];
 
-                    $id_product=$_GET['id'];
-                    $image=$resultat['img'];
-                    $title=$resultat['titre'];
-                    $description=$resultat['descr'];
-                    $price=$resultat['prix'];
-                    $name=$resultat['nom_utilisateurs'];
-                    $taille=$resultat['taille'];
-                    $location=$resultat['location'];
-                    $orientation=$resultat['orientation'];
-                    $staff=$resultat['staff'];
-                    $cost=$resultat['cost'];
-                    $idAgent=$resultat['id_agent'];
-                    $max_quantity=$resultat['max_quantity'];
-                    ?>
+            $id_product=$_GET['id'];
+            $image=$resultat['img'];
+            $title=$resultat['titre'];
+            $description=$resultat['descr'];
+            $price=$resultat['prix'];
+            $name=$resultat['nom_utilisateurs'];
+            $taille=$resultat['taille'];
+            $location=$resultat['location'];
+            $orientation=$resultat['orientation'];
+            $staff=$resultat['staff'];
+            $cost=$resultat['cost'];
+            $idAgent=$resultat['id_agent'];
+            $max_quantity=$resultat['max_quantity'];
+            ?>
             
             <section id="imgDescr"  class='flexc just-between align-center'>
 
@@ -59,7 +60,8 @@
                 </div>
 
                 <div id="descr-product">
-                    <article id="titre-product-description"><?php echo $title; ?></article>
+                    <article id="titre-product-description"><?php echo $title; ?>
+                    </article>
                     <article id="description-product-description"> <?php echo $description; ?>
                     </article>
                     
@@ -133,70 +135,82 @@
                     <?php $id=$_GET['id']; ?>
 
                     <form method="POST">
-                        <!-- <a href="cart.php?id=<?php echo $id?>"> -->
                             <article class='addcartgoback-inside'>
                                 <input type="submit" name="valider" class="addcartgoback-insideBis" value="Add to Cart"><br>
                             </article>
-                        <!-- </a> -->
                     </form>
 
-                    <!-- <article class='addcartgoback-inside'>Add to Cart</article></a><br> -->
                     <a href="product.php?category=<?php echo $nameCat;?>"><article class="addcartgoback-inside">Go Back</article></a>
                 </div>
             </section>
         
         </main>
 
-        <!-- WARNING           WARNING               WARNING
-        PROBLEME A CORRIGER, L'INSERT DANS LA BASE DE DONNEE SE FAIT DES QUE L'ON CLIQUE SUR ADD TO CART, ET NON LORS DE LA CONFIRMATION DE L'ADD TO CART -->
 
         <?php
         $connexion= mysqli_connect("localhost","root","","boutique");
         $requete= "SELECT * FROM basket where id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
         $query= mysqli_query($connexion,$requete);
+        $requeteBought= "SELECT * FROM bought where id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
+        $queryB= mysqli_query($connexion,$requeteBought);
+        $resultatB=mysqli_fetch_all($queryB);
         $resultatVerif=mysqli_fetch_all($query);
         // var_dump($resultatVerif);
 
-            if(isset($_POST['valider']) && $_POST['valider']=="Add to Cart"){
-                echo $_SESSION['login'].'</br>';
-                echo $_SESSION['id'].'</br>';
-                echo $id_product.'</br>';
+        
+        if(isset($_POST['valider']) && $_POST['valider']=="Add to Cart"){
+            echo $_SESSION['login'].'</br>';
+            echo $_SESSION['id'].'</br>';
+            echo $id_product.'</br>';
+            
+            if(count($resultatB)<$max_quantity){
 
                 // EVITE D'ENVOYER 2 FOIS LA MEME MAISON DANS LA PAGE PANIER
                 if(empty($resultatVerif)){
                     ?>
                         <div id="validationPanier">
-
-                            Put in your Cart ? <form method='POST'><input type='submit' name='valider2' class="addcartgoback-insideBis" value='Yes'><br>or </br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
-                    
+                            Put in your Cart ? 
+                            <form method="POST">
+                                <input type='submit' name='validerReel' class="addcartgoback-insideBis" value='Yes'>
+                            </form>or </br>
+                            <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
                         </div>
-                    <?php
 
-                    if(isset($_POST['valider'])){
-                        $connexion= mysqli_connect("localhost","root","","boutique");
-                        $requeteInsert= "INSERT INTO `basket`(`id_user`, `id_product`, `quantity`) VALUES ('".$_SESSION['id']."','".$id_product."',1)";
-                        $query=mysqli_query($connexion,$requeteInsert);
-                        echo $requeteInsert;
-                    }
+                    <?php
                 }
                 
                 else{
                     ?>
                         <div id="validationPanier">
-                            You have <b>already added</b> this property to your basket. </br> To validate your purchase go on the page <a href='cart.php'>Cart<a> </br>or<br><a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
-                    
+                            You have <b>already added</b> this property to your basket. </br> To validate your purchase <b>go on the page <a href='cart.php'>Cart</b><a> </br>or<br>
+                            <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                         </div>
                     <?php
-                };
+                }
             }
+            else{  
+                ?>
+                <div id="validationPanier">
+                    You have reached the maximum purchase number for this product (<?php echo $max_quantity ?>) </br><br>
+                    <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
+                </div>
+            <?php
+
+            }
+        }
+
+        if(isset($_POST['validerReel'])){
+            $connexion= mysqli_connect("localhost","root","","boutique");
+            $requeteInsert= "INSERT INTO `basket`(`id_user`, `id_product`, `quantity`) VALUES ('".$_SESSION['id']."','".$id_product."',1)";
+            $query=mysqli_query($connexion,$requeteInsert);
+            echo $requeteInsert;
+        }
         ?>
-
-
-
 
         <footer>
             <?php include("footer.php"); ?>
         </footer>
+
     </body>
 </html>
 
