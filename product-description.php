@@ -179,7 +179,7 @@
                 else{  
                     ?>
                         <div id="validationPanier">
-                            You have reached the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
+                            You have <b>reached</b> the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
                             <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                         </div>
                     <?php
@@ -190,7 +190,7 @@
             else{  
                 ?>
                     <div id="validationPanier">
-                        You have reached the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
+                        You have <b>bought</b> the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
                         <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                     </div>
                 <?php

@@ -59,7 +59,7 @@
             // SUPPRESION DES ARTICLES DU PANIER LORS DE L'ACHAT + INSERTION DES DONNEES DU PANIER DANS BOUGHT
             if(isset($_POST['acheter'])){
                     ?>
-                        <div id="validationPanier">
+                        <div id="validationPanierbis">
                             Buy product(s)
                             <form method="POST">
                                 <div id="formulairePayement">                            
