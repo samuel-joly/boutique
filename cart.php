@@ -62,7 +62,17 @@
                         <div id="validationPanier">
                             Buy product(s)
                             <form method="POST">
-                                <input type='submit' name='validerReel' class="addcartgoback-insideBis" value='Yes'>
+                                <div id="formulairePayement">                            
+                                    <input id="inputPayement" type="text" name="Name" placeholder="Name">
+                                    <input id="inputPayement" type="text" name="LastName" placeholder="Last name">
+                                    <input id="inputPayement" type="text" name="Adress" placeholder="Adress">
+                                    <input id="inputPayement" type="text" name="Tel" placeholder="Tel">
+                                    <input id="inputPayement" type="text" name="Email" placeholder="Email">
+                                    <input id="inputPayement" type="text" name="Codecarte1" placeholder="code1">
+                                    <input id="inputPayement" type="text" name="Codecarte2" placeholder="code2">
+                                    <input id="inputPayement" type="text" name="Codecarte3" placeholder="code3"></br>
+                                    <input id="inputPayement" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
+                                </div>
                             </form>or </br>
                             <a href='cart.php'>Come Back</a> 
                         </div>
@@ -202,7 +212,7 @@
                         $requeteMaxQuantityGroup="SELECT SUM(quantity) FROM basket WHERE id_user='".$_SESSION['id']."' GROUP BY id_product";
                         $queryMaxQuantityGroup=mysqli_query($connexion,$requeteMaxQuantityGroup);
                         $resultatMaxQuantityGroup=mysqli_fetch_all($queryMaxQuantityGroup);
-                                            
+
                         
                         $requeteInfo="SELECT id_product, quantity, max_quantity,price as totalprice,title,id_agent FROM basket INNER JOIN products On basket.id_product=products.id WHERE id_user='".$_SESSION['id']."'";
                         $queryInfo=mysqli_query($connexion,$requeteInfo);
@@ -246,11 +256,8 @@
                 <div id="validationBasket">
                     <article id="InfoAvantValidation">
                     <?php for($i=0;$i<count($resultatInfo); $i++){
-
                                     // echo $requeteMaxQuantityGroup."</br>";
                                     echo $resultatInfo[$i][4]." ".$resultatInfo[$i][3]."$"." x".$resultatInfo[$i][1]."</br>";
-                                
-                            
 
                     } ?>
                     </article>

@@ -965,21 +965,23 @@ text-decoration: none;
 }
 
 #validationPanier input{
-width: 13%;
+text-align: center;
+width: 50%;
 margin: 1% auto 1%;
 }
 
 #validationPanier{
-background-color: rgba(255, 169, 71, 0.959);
+background-color: rgba(255, 169, 71, 0.808);
 border: 2px black solid;
-width: 47.5%;
+width: 40%;
 padding: 2%;
 text-align: center;
 font-size: 2vw;
 border-radius: 0.3em;
-margin: -14% 20%;
+margin: 0.3% 22.7%;
 position: absolute;
 }
+
 
 
 
@@ -1179,4 +1181,15 @@ font-style: bolder;
 font-size: 34px;
 border-radius: 0.3em;
 text-align: center;
+}
+
+#formulairePayement{
+display: flex;
+flex-direction: column;
+}
+
+#inputPayement{
+width: 100%;
+font-size: xx-large;
+
 }
