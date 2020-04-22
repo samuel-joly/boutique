@@ -151,22 +151,19 @@
         $connexion= mysqli_connect("localhost","root","","boutique");
         $requete= "SELECT * FROM basket where id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
         $query= mysqli_query($connexion,$requete);
+        $resultatVerif=mysqli_fetch_all($query);
+
         $requeteBought= "SELECT * FROM bought where id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
         $queryB= mysqli_query($connexion,$requeteBought);
         $resultatB=mysqli_fetch_all($queryB);
-        $resultatVerif=mysqli_fetch_all($query);
-        // var_dump($resultatVerif);
-
         
         if(isset($_POST['valider']) && $_POST['valider']=="Add to Cart"){
-            echo $_SESSION['login'].'</br>';
-            echo $_SESSION['id'].'</br>';
-            echo $id_product.'</br>';
             
             if(count($resultatB)<$max_quantity){
 
                 // EVITE D'ENVOYER 2 FOIS LA MEME MAISON DANS LA PAGE PANIER
-                if(empty($resultatVerif)){
+
+                    if(count($resultatVerif)<$max_quantity AND count($resultatB)<$max_quantity AND (count($resultatVerif)+count($resultatB))<$max_quantity){
                     ?>
                         <div id="validationPanier">
                             Put in your Cart ? 
@@ -177,26 +174,29 @@
                         </div>
 
                     <?php
-                }
-                
-                else{
+                    }
+
+                else{  
                     ?>
                         <div id="validationPanier">
-                            You have <b>already added</b> this property to your basket. </br> To validate your purchase <b>go on the page <a href='cart.php'>Cart</b><a> </br>or<br>
+                            You have reached the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
                             <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
                         </div>
                     <?php
-                }
+        
+                    }
+    
             }
             else{  
                 ?>
-                <div id="validationPanier">
-                    You have reached the maximum purchase number for this product (<?php echo $max_quantity ?>) </br><br>
-                    <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
-                </div>
-            <?php
+                    <div id="validationPanier">
+                        You have reached the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
+                        <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
+                    </div>
+                <?php
+    
+                }
 
-            }
         }
 
         if(isset($_POST['validerReel'])){

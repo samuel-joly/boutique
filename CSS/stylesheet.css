@@ -1140,6 +1140,10 @@ width: 95%;
 height: 45%;
 background-color: red;
 text-align: center;	
+display: flex;
+flex-direction: column;
+font-size: xx-large;
+justify-content: space-evenly;
 }
 
 #product-bought{
@@ -1170,7 +1174,9 @@ font-size: xx-large;
 
 #acheter{
 padding:3%;
-font-size: xx-large;
+width: 30%;
+font-style: bolder;
+font-size: 34px;
 border-radius: 0.3em;
 text-align: center;
 }

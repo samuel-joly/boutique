@@ -24,7 +24,7 @@
 
             // FONCTION PERMETTANT SOIT DELETE ALL SOIT DELETE UN ARTICLE
             function delete($requeteDelete){
-                $id_product=$_POST['id_product'];
+                $id_product=$_POST['id_basket'];
                 $connexion=mysqli_connect("localhost","root","","boutique");
                 $requete=$requeteDelete;
                 $query=mysqli_query($connexion,$requete);
@@ -51,8 +51,9 @@
             }
 
             if(isset($_POST['removeArticle'])){
-                $id_product=$_POST['id_product'];
-                $deleteOne="DELETE FROM basket WHERE id_product='".$id_product."' AND id_user='".$_SESSION['id']."' ";
+                $id_basket=$_POST['id_basket'];
+                echo $id_basket;
+                $deleteOne="DELETE FROM basket WHERE id='".$id_basket."' AND id_user='".$_SESSION['id']."' ";
                 delete($deleteOne);
             }
             // SUPPRESION DES ARTICLES DU PANIER LORS DE L'ACHAT + INSERTION DES DONNEES DU PANIER DANS BOUGHT
@@ -75,9 +76,13 @@
                 $connexion=mysqli_connect("localhost","root","","boutique");
                 $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
                 $query=mysqli_query($connexion,$requete);
-                $resultat=mysqli_fetch_all($query);
-                InsertAndDelete($resultat,$connexion);
+                $resultatReel=mysqli_fetch_all($query);
+
+                InsertAndDelete($resultatReel,$connexion);
+
+
                 delete($deleteAll);
+                
             }
             ?>
 
@@ -94,45 +99,52 @@
             ?>
             
             <section class="flexc">
-                <div class="titrePanier">Cart (<?php if(isset($products)){ echo count($products);} else{echo 0;} ?>)</div>
-                <section id="panierList" class='flexc just-between align-center'>
+
+                <div class="titrePanier">Cart (<?php if(isset($products)){ echo count($products);} else{echo 0;} ?>)
+                </div>
+
+            <section id="panierList" class='flexc just-between align-center'>
                 
-                    <div id='products-box-basket' class='flexc just-between align-center'>
+                <div id='products-box-basket' class='flexc just-between align-center'>
 
-                        <!-- AFFICHAGE PRODUIT MIS AU PANIER -->
+                    <!-- AFFICHAGE PRODUIT MIS AU PANIER -->
 
-                        <?php
-                            
+                    <?php
+                    $connexion=mysqli_connect("localhost","root","","boutique");
+                    $requetebis="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
+                    $querybis=mysqli_query($connexion,$requetebis);
+                    $resultatReelbis=mysqli_fetch_all($querybis);
+                        
 
-                            if(empty($products)){
-                                ?>    <div id="aucunAchat">Your cart is empty</div> <?php
-                                }
+                        if(empty($products)){
+                            ?>    <div id="aucunAchat">Your cart is empty</div> <?php
+                            }
+                            $i=0;
+                        foreach($products as $product){ 
+                        ?>
+                        <div class='flexr just-between product-zone'>
 
-                            foreach($products as $product){ 
-                            ?>
-                            <div class='flexr just-between product-zone'>
-
-                                <div class='product-box flexr just-between align-center center' 
-                                    style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
-                                </div>
-
-                                <div class='product-infos-basket flexc just-evenly align-start'>    
-                                    <p>Size: <?=$product["size"]?></p>
-                                    <p>Location: <?=$product["location"]?></p>
-                                    <p>Orientation: <?=$product["orientation"]?></p>
-                                    <p>Staff: <?=$product["staff"]?></p>
-                                    <p>Cost/Year: <?=$product["cost"]?>$</p>
-
-                                    <form method="POST">
-                                        <input type="hidden" name="id_product" value="<?php echo $product['id_prod'] ;?>">
-                                        <input type="submit" name="removeArticle" class="removeArticle" value="Remove">
-                                    </form>
-
-                                </div>
+                            <div class='product-box flexr just-between align-center center' 
+                                style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
                             </div>
-                            <?php 
-                            } ?>
-                    </div>	
+
+                            <div class='product-infos-basket flexc just-evenly align-start'>    
+                                <p>Size: <?=$product["size"]?></p>
+                                <p>Location: <?=$product["location"]?></p>
+                                <p>Orientation: <?=$product["orientation"]?></p>
+                                <p>Staff: <?=$product["staff"]?></p>
+                                <p>Cost/Year: <?=$product["cost"]?>$</p>
+
+                                <form method="POST">
+                                    <input type="hidden" name="id_basket" value="<?php echo $resultatReelbis[$i][0]; $i++ ;?>">
+                                    <input type="submit" name="removeArticle" class="removeArticle" value="Remove">
+                                </form>
+
+                            </div>
+                        </div>
+                        <?php 
+                        } ?>
+                </div>	
 
                 </section>
 
@@ -186,13 +198,17 @@
                         $requetePrice="SELECT SUM(price) as totalprice FROM products INNER JOIN basket On products.id=basket.id_product WHERE id_user='".$_SESSION['id']."'";
                         $query=mysqli_query($connexion,$requetePrice);
                         $resultatPrice=mysqli_fetch_all($query);
-                        // echo $requetePriceTotal;
-                        // var_dump($resultatPriceTotal);
 
+                        $requeteMaxQuantityGroup="SELECT SUM(quantity) FROM basket WHERE id_user='".$_SESSION['id']."' GROUP BY id_product";
+                        $queryMaxQuantityGroup=mysqli_query($connexion,$requeteMaxQuantityGroup);
+                        $resultatMaxQuantityGroup=mysqli_fetch_all($queryMaxQuantityGroup);
+                                            
+                        
                         $requeteInfo="SELECT id_product, quantity, max_quantity,price as totalprice,title,id_agent FROM basket INNER JOIN products On basket.id_product=products.id WHERE id_user='".$_SESSION['id']."'";
                         $queryInfo=mysqli_query($connexion,$requeteInfo);
                         $resultatInfo=mysqli_fetch_all($queryInfo);
-
+                        // var_dump($resultatInfo);
+                        // echo ($requeteInfo);
                     ?>
 
                 <div id="infoProduct">
@@ -229,23 +245,29 @@
             
                 <div id="validationBasket">
                     <article id="InfoAvantValidation">
-                    <?php foreach($resultatInfo as $price){
-                        echo $price[4]." ";
-                        echo $price[3]."$"." x".$price[1]."</br>";
+                    <?php for($i=0;$i<count($resultatInfo); $i++){
+
+                                    // echo $requeteMaxQuantityGroup."</br>";
+                                    echo $resultatInfo[$i][4]." ".$resultatInfo[$i][3]."$"." x".$resultatInfo[$i][1]."</br>";
+                                
+                            
+
                     } ?>
                     </article>
                     <article id="ValidationAchatOk">
                             
+                        <div id="affichagePrix">
                             <?php
-                          
-                          echo "Prix total = ".$resultatPrice[0][0]." $";
-
+                                echo "Prix total = ".$resultatPrice[0][0]." $";
                             ?>
+                        </div>
 
-                        <form method="POST">
-                            <input type="hidden" name="achat" value="acheter">
-                            <input type="submit" name="acheter" id="acheter" value="Buy">
-                        </form>
+                        <div id="byuBouton">
+                            <form method="POST">
+                                <input type="submit" name="acheter" id="acheter" value="Buy">
+                            </form>
+                        </div>
+
                     </article>
                 </div>
                 
@@ -254,9 +276,9 @@
         </main>
 
             </br></br></br>
-        <footer>
+        <!-- <footer>
             <?php include("footer.php"); ?>
-        </footer>
+        </footer> -->
 
     </body>
 </html>
