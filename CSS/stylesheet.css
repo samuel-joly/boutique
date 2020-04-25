@@ -56,7 +56,7 @@ body::-webkit-scrollbar-thumb {
 
 .alert-body
 {
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,0.2);
 	position:absolute;
 	top:0px;
 	left:0px;
@@ -64,22 +64,25 @@ body::-webkit-scrollbar-thumb {
 	height:100%;
 	display:flex;
 	cursor:default;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	z-index:999;
 }
 
 .alert-container
 {
-	background:rgba(255,255,255,0.8);
+	background:white;
 	width:40%;
 	align-self:center;
 	justify-self:center;
-	border-radius:5px;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;
 	position:absolute;
-	z-index:1000;
 	padding:1em;
+	z-index:1000;
 }
 
 #profil-rate-form

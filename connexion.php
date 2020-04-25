@@ -53,11 +53,13 @@
 		if($login != "" && $password != "")
 		{
 			$usr = $stmt->query("SELECT * FROM users WHERE name = '".$login."'")->fetch(PDO::FETCH_ASSOC);
+			$admin = $stmt->query("SELECT * FROM users WHERE admin=1 AND id=".$usr["id"])->fetch(PDO::FETCH_ASSOC);
 			if(!empty($usr))
 			{
 				if(password_verify($password, $usr["password"]))
 				{
 					$_SESSION["id"] = $usr["id"];
+					if(!empty($admin)) { $_SESSION["admin"] = 1; }
 					header("location:index.php");
 				}
 				else

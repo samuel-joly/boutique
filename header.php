@@ -35,7 +35,11 @@
 		{	?>	
 			<a href="profil.php" class="header-link" id="profil-link">Profil</a>
 			<a href="index.php?deco=true" class="header-link">Disconnect</a>
-	<?php 	}
+			<?php if(isset($_SESSION["admin"]))
+			{ ?>
+				<a href="admin.php" class='header-link'>Admin</a>	
+	<?php	 	}
+	 	}
 		else
 		{ ?>
 			<a href="inscription.php" class="header-link" id="profil-link">Sign up</a>

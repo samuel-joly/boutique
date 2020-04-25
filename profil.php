@@ -126,32 +126,32 @@
 					    foreach($bought as $product)
 					    {
 						    if($product["id"] == $_GET["id_prod"])
-							{
-								$bought = $product;
-								break;
-							}
-						}
+						    {
+							    $bought = $product;
+							    break;
+						    }
+					    }
 						echo "<h1> You rated <u>".$bought["agent_name"]."</u> to ".$_GET["rate"]."/5 for ".$bought["title"]."</h2>";
 						echo "<p>For submitting your rating, please leave a comment:</p>";
 						echo "<form action='profil.php??show=bought&&rate=".$_GET["rate"]."&&id_agent=".$_GET["id_agent"]."&&id_prod=".$_GET["id_prod"]."' method='post' id='profil-rate-form'>
 							<textarea name='comment' cols='80' rows='10' maxlength='255'></textarea>
 							<input type='submit' value='envoyer' name='profil-comment-input'/>
 							</form>";
-						echo "</div>";
+				    echo "</div>";
 			    }
 
-			    $link = $_SERVER["HTTP_REFERER"];
 			?>
 			
-			<form action='<?= $link ?>' enctype='multipart/form-data' method='POST' id='profil-container' class='flexc just-around'>
+			<form action='profil.php' enctype='multipart/form-data' method='POST' id='profil-container' class='flexc just-around'>
 				<h1 class='center'><u><?=$usr["name"]?></u></h1>
 				<label for='avatar-input' id='image-container'>
-					<div id='sub-img-container'>
+					<label for='image' id='sub-img-container'>
 						<img src='Media/Images/Avatars/<?=$usr["avatar"]?>' alt='Img not found' id='profil-image'/>
 						<span>
 							<p>Click to change</p>
 						</span>
-					</div>
+						<input type='file' name='image'/>
+					</label>
 					<input type='file' name='avatar' id='avatar-input'/>
 				</label>
 

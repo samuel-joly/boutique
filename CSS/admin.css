@@ -1,0 +1,450 @@
+b
+{
+	color:#35d8c9;
+}
+.input-admin
+{
+	display:none;
+}
+.admin-top
+{
+	transition:all 0.4s ease;
+	align-self:center;
+	background:#ffffff;
+	padding:0.3em;
+	width:51vw;
+	text-align:left;
+	margin:0.8em;
+}
+
+.admin-input
+{
+	border:2px solid white;
+	padding:0.3em;
+	color:white;
+	transition:all 0.3s ease;
+	margin:0.3em;
+	background:#484747;
+}
+
+.admin-input:hover
+{
+	color:black;
+	background:#e5e5e5;
+}
+.admin-top>input:checked~.admin-sub 
+{
+	height:10em;
+	overflow-y:scroll;
+}
+.admin-top>h1
+{
+	margin:0;
+}
+
+.admin-top>h1>p
+{
+	margin:0px;
+	align-self:center;
+	width:1.3em;
+	height:1.3em;
+	font-size:0.8em;
+	text-align:center;
+}
+
+.admin-top>h1>p:hover
+{
+	background:#5d5d5d;
+}
+
+.admin-top:hover
+{
+	cursor:pointer;
+}
+
+.admin-sub
+{
+	display:flex;
+	max-width:99%;
+	height:0em;
+	border-radius:1px;
+	background:#d8d8d8;
+	overflow:hidden;
+	flex-wrap:wrap;
+	cursor:default;
+	transition:all 0.3s ease;
+}
+
+.admin-sub::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+.admin-sub::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+.admin-sub::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
+.admin-sub p
+{
+	margin:0;
+}
+.admin-top>input:checked~h1>p
+{
+	transform:rotateX(180deg);
+}
+/*--------------ADMIN PRODUCT----------------*/
+#admin-products
+{
+	margin-top:15em;
+}
+
+#admin-prod-desc:checked~.admin-sub
+{
+	height:10.4em;
+}
+
+#admin-product-bought-desc
+{
+	height:4em;
+}
+.admin-product-desc
+{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	
+	border:2px solid white;
+	padding:0.2em;
+	height:7em;
+	margin:0.4em;
+}
+
+.admin-product-desc>*
+{
+	margin:0;
+}
+.admin-product-desc h1
+{
+	font-size:1em;
+	margin:0;
+}
+.admin-product-desc span
+{
+	margin:auto;
+	margin-top:0.2em;
+	margin-bottom:0px;
+}
+
+.info-admin-prod p
+{
+	font-size:1.3em;
+	margin:0;	
+}
+.admin-info-users p
+{
+	font-size:1.3em;
+	margin:0;
+}
+.add-product
+{
+	height:0.6em;
+	text-align:center;
+	padding:0.6em;
+	background:#5d5d5d;
+	border-radius:2px;
+	border:1px solid white;
+	transition:all 0.2s ease;
+	font-size:0.9em;
+	text-decoration:none;
+	color:#35d8c9;
+	font-weight:bold;
+	text-align:center;
+	margin:0.6em;
+	justify-self:flex-end;
+	align-self:flex-end;
+	display:flex;
+	align-items:center;
+	
+}
+
+.add-product:hover
+{
+	background:#484848;
+}
+
+/*--------------ADMIN SALES------------------*/
+#admin-bought-desc:checked~.admin-sub
+{
+	height:10em;
+}
+
+/*-------------ADMIN AGENTS------------------*/
+#admin-agent-desc:checked~.admin-sub
+{
+	height:8em;
+}
+
+.admin-agent-desc
+{
+	display:flex;
+	flex-direction:column;
+	height:fit-content;
+	width:12em;
+	margin:0.4em;
+	background:#5d5d5d;
+	padding:0.5em;
+	border-radius:5px;
+}
+
+.admin-agent-desc a
+{
+	color:white;
+	padding:0.5em;
+	background:#5d5d5d;
+	border:2px solid white;
+	width:fit-content;
+}
+
+.admin-agent-desc span,.admin-agent-desc h1
+{
+	margin:0px;
+}
+.admin-agent-avatar
+{
+	width:3em;
+	border-radius:50%;
+}
+
+/*--------------ADMIN MANAGE WINDOW-------------*/
+#admin-product-image img
+{
+	width:100%;
+}
+
+.admin-alert
+{
+	margin:auto;
+	margin-top:2em;
+	background:white;
+}
+#admin-product-image
+{
+	max-height:5em;
+	overflow-x:hidden;
+}
+
+
+#admin-product-image:hover>#image-overlay
+{
+	opacity:1;
+}
+
+#admin-product-image input
+{
+	display:none;
+}
+
+#image-overlay
+{
+	transition:all 0.2s ease;
+	opacity:0;
+	font-size:2em;
+	color:black;
+	font-weight:bold;
+	cursor:pointer;
+	text-align:center;
+	width:20em;
+	height:100%;
+	position:relative;
+	top:-8em;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	margin:auto;
+}
+
+#image-overlay p
+{
+	border:2px solid white;
+	background:#848484;
+	padding:0.1em;
+	transition:all 0.3s ease;
+	margin:auto;
+	align-self:center;
+	justify-self:center;
+}
+
+#image-overlay p:hover
+{
+	background:#3d3d3d;
+}
+.double-input
+{
+	width:90%;
+	margin-top:-5em;
+}
+#triple-input
+{
+	margin:0;
+}
+.admin-manage-input
+{
+	width:fit-content;
+}
+
+.admin-manage-input input
+{
+	background:#d8d6d6;
+	margin-left:0.5em;
+}
+
+#admin-product-desc
+{
+	background:#d8d6d6;
+	border-radius:3px;
+	margin-left:0.2em;
+	resize:none;
+	font-size:1.2em;
+}
+
+#admin-product-desc:focus
+{
+	outline:none;
+}
+
+#admin-product-desc::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#admin-product-desc::-webkit-scrollbar-track {
+  background: #e7e7e7;
+}
+
+/* Handle */
+#admin-product-desc::-webkit-scrollbar-thumb {
+  background: #484848;
+  border-radius:2px;
+}
+
+
+#product-infos
+{
+	margin-top:-5.2em;
+	width:100%;
+}
+
+.input-little
+{
+	justify-self:center;
+	justify-content:space-between;
+}
+.input-little input
+{
+	border-radius:5px;
+	width:5em;
+}
+.input-little select
+{
+	border-radius:5px;
+	width:5em;
+	height:2.5em;
+	background:#d8d6d6;
+}
+.input-little select:focus
+{
+	outline:none;
+}
+
+.input-little span
+{
+	margin:0.2em;
+}
+.admin-product-cat-zone
+{
+	width:50%;
+}
+
+.admin-product-cat-zone h1
+{
+	margin:0;
+}
+
+.admin-product-category
+{
+	border-radius:5px;
+	background:#D8D6D6;
+	padding:0.3em;
+	max-height:4.3em;
+	max-width:90%;
+	overflow-y:scroll;
+	margin:0.2em;
+}
+
+.admin-product-category::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.admin-product-category::-webkit-scrollbar-track {
+  background: #e7e7e7;
+}
+
+/* Handle */
+.admin-product-category::-webkit-scrollbar-thumb {
+  background: #484848;
+  border-radius:2px;
+}
+
+.cats-zone
+{
+	width:98%;
+}
+.cat-input
+{
+	color:white;
+	display:flex;
+	padding:0.3em;
+	background:#484848;
+	border-radius:3px;
+	transition:all 0.2s ease;
+	margin:0.1em;
+}
+
+.cat-input:hover
+{
+	background:#828080;
+	cursor:pointer;
+}
+
+.cat-input input:hover
+{
+	outline:none;
+	cursor:pointer;
+}
+ input[type='submit']
+ {
+	position:relative;
+ 	font-size:0.9em;
+	height:2em;
+	padding:0.1em;
+	text-align:center;
+ }
+
+
+ input[type='submit']:hover
+ {
+	cursor:pointer;
+ }
+ 
+ #return-product
+ {
+	height:0.7em;
+	font-weight:bold;
+ }

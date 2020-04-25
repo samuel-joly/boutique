@@ -163,6 +163,8 @@
 	max-height:70vh;
 	flex-wrap:wrap;
 	margin-right:3em;
+	display:flex;
+	flex-direction:column;
 }
 
 #bought-zone::-webkit-scrollbar {
