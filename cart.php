@@ -68,6 +68,7 @@
                                     <input id="inputPayement" type="text" name="Adress" placeholder="Adress">
                                     <input id="inputPayement" type="text" name="Tel" placeholder="Tel">
                                     <input id="inputPayement" type="text" name="Email" placeholder="Email">
+                                    <br>
                                     <input id="inputPayement" type="text" name="Codecarte1" placeholder="code1">
                                     <input id="inputPayement" type="text" name="Codecarte2" placeholder="code2">
                                     <input id="inputPayement" type="text" name="Codecarte3" placeholder="code3"></br>
@@ -132,7 +133,7 @@
                             $i=0;
                         foreach($products as $product){ 
                         ?>
-                        <div class='flexr just-between product-zone'>
+                        <div class='flexr just-between product-zone-cart'>
 
                             <div class='product-box flexr just-between align-center center' 
                                 style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
@@ -222,14 +223,10 @@
                     ?>
 
                 <div id="infoProduct">
-                    <article id="infoGeneral">
-                        Info general sur le/les biens
-                    </article>
                     <article id="infoTechnique">
                         Info technique sur le/les biens
                     </article>
                     <article id="option">
-                        Les options proposées sur le/les biens <br>
                         <div id="optionDiv">
                             Option 1 :
                             <label for="ouiOption1">Oui</label><input type="radio">
@@ -237,16 +234,6 @@
                         </div>
                         <div id="optionDiv">
                             Option 2 :
-                            <label>Oui</label><input type="radio"></input>
-                            <label>Non</label><input type="radio"></input><br>
-                        </div>
-                        <div id="optionDiv">
-                            Option 3 :
-                            <label>Oui</label><input type="radio"></input>
-                            <label>Non</label><input type="radio"></input><br>
-                        </div>
-                        <div id="optionDiv">
-                            Option 4 :
                             <label>Oui</label><input type="radio"></input>
                             <label>Non</label><input type="radio"></input><br>
                         </div>
@@ -283,9 +270,9 @@
         </main>
 
             </br></br></br>
-        <!-- <footer>
+        <footer>
             <?php include("footer.php"); ?>
-        </footer> -->
+        </footer>
 
     </body>
 </html>

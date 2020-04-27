@@ -102,7 +102,7 @@ header a
 .header-cat
 {
 	position:relative;
-	max-width:120px;
+	max-width: 117px;
 }
 
 .header-cat a
@@ -995,7 +995,7 @@ padding: 2%;
 text-align: center;
 font-size: 2vw;
 border-radius: 0.3em;
-margin: 0.3% 22.7%;
+margin: 0.3% 23.5%;
 position: absolute;
 }
 	
@@ -1011,6 +1011,13 @@ position: absolute;
 
 /*---------------------------- PAGE PANIER -------------------------------- */
 
+
+.product-zone-cart
+{
+	margin: 2em;
+	width: 640px;
+}
+
 #cart-body{
 background:url("../media/images/bg.jpg");
 background-size:cover;
@@ -1020,7 +1027,7 @@ display: flex;
 }
 
 #products-box-basket{
-width: 1100px;
+width: 900px;
 max-height: 106vh;
 overflow-y: scroll;
 }
@@ -1028,7 +1035,7 @@ overflow-y: scroll;
 /* MAISON LISTE */
 
 #panierList{
-margin: 3% 0% 0% 28%;
+margin: 3% 0% 0% 32%;
 width: 81%;
 height: 388px;
 background: #484861;
@@ -1055,18 +1062,21 @@ border-radius: 0.3em;
 
 #ValidationAchat{
 margin-top: 2%;
-margin-left: 6%;
+margin-left: 8%;
 width: 25%;
-height: 1000px;
-background-color: rgb(135, 183, 222);
+height: 900px;
+background: #484861;
 border-radius: 3px black solid;
 border-radius: 0.3em;
 color:black;
 font-size: x-large;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
 }
 
 .titrePanier{
-margin-left: 40%;
+margin-left: 46%;
 margin-top: 2%;
 margin-bottom: -2%;
 text-align: center;
@@ -1077,7 +1087,7 @@ color: rgb(219, 219, 84);
 #infoProduct{
 margin: 2% auto;
 width: 95%;
-height: 60%;
+height: 40%;
 border: 2px black solid;
 border-radius:0.3em;
 background-color: wheat;
@@ -1098,7 +1108,7 @@ background-color:rgb(50, 182, 205) ;
 
 #infoTechnique{
 width: 95%;
-height: 35%;
+height: 55%;
 border: 2px black solid;
 border-radius: 0.3em;
 background-color: rgb(51, 83, 153);
@@ -1106,7 +1116,7 @@ background-color: rgb(51, 83, 153);
 
 #option{
 width: 95%;
-height: 35% ;
+height: 19% ;
 border: 2px black solid;
 border-radius: 0.3em;
 background-color: rgb(200, 255, 47);
@@ -1124,7 +1134,7 @@ background-color: rgb(255, 234, 47);
 #validationBasket{
 margin: 2% auto;
 width: 95%;
-height: 35%;
+height: 37%;
 border: 2px black solid;
 border-radius:0.3em;
 background-color: rgba(243, 122, 122, 0.835);
@@ -1179,7 +1189,7 @@ color: white;
 font-style: italic;
 margin-top: -0.05em;
 margin-left: -26.81em;
-margin-right: -1.1em;
+margin-right: -0.1em;
 opacity: 1;
 }
 
@@ -1189,7 +1199,7 @@ color:rgba(190, 190, 114, 0);
 }
 
 #aucunAchat{
-margin: 15% auto;
+margin: 19% auto;
 font-size: xx-large;
 }
 
@@ -1204,7 +1214,10 @@ text-align: center;
 
 #formulairePayement{
 display: flex;
+border-radius: 0.3em;
 flex-direction: column;
+padding:2%;
+background-color: rgba(20, 163, 220, 0.815);
 }
 
 #inputPayement{
