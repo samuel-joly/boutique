@@ -59,6 +59,7 @@
             }
             // SUPPRESION DES ARTICLES DU PANIER LORS DE L'ACHAT + INSERTION DES DONNEES DU PANIER DANS BOUGHT
             if(isset($_POST['acheter'])){
+                if(!empty($product)){
                     ?>
                         <div id="validationPanierbis">
                             Buy product(s)
@@ -79,22 +80,27 @@
                             <a href='cart.php'>Come Back</a> 
                         </div>
                     <?php 
-                if(!empty($resultat)){
-
+                     }
+                else{
+                    ?>
+                        <div id="validationPanierbis2">
+                            You cart is empty... <br><br>
+                            <a href='cart.php'>Come Back</a> 
+                        </div>
+                    <?php
                 }
+
             }
             
             if(isset($_POST['validerReel'])){
-                $connexion=mysqli_connect("localhost","root","","boutique");
-                $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
-                $query=mysqli_query($connexion,$requete);
-                $resultatReel=mysqli_fetch_all($query);
 
-                InsertAndDelete($resultatReel,$connexion);
+                    $connexion=mysqli_connect("localhost","root","","boutique");
+                    $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
+                    $query=mysqli_query($connexion,$requete);
+                    $resultatReel=mysqli_fetch_all($query);
 
-
-                delete($deleteAll);
-                
+                    InsertAndDelete($resultatReel,$connexion);
+                    delete($deleteAll);              
             }
             ?>
 
