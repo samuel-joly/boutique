@@ -57,9 +57,17 @@
                 $deleteOne="DELETE FROM basket WHERE id='".$id_basket."' AND id_user='".$_SESSION['id']."' ";
                 delete($deleteOne);
             }
+            
+            $query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost , staff, location, orientation, basket.id as id_basket FROM products
+            INNER JOIN agents ON products.id_agent = agents.id
+            INNER JOIN users ON agents.id_user = users.id
+            INNER JOIN basket ON products.id = basket.id_product
+            WHERE basket.id_user='".$_SESSION['id']."'";
+            $products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
+        
             // SUPPRESION DES ARTICLES DU PANIER LORS DE L'ACHAT + INSERTION DES DONNEES DU PANIER DANS BOUGHT
             if(isset($_POST['acheter'])){
-                if(!empty($product)){
+                if(!empty($products)){
                     ?>
                         <div id="validationPanierbis">
                             Buy product(s)
@@ -107,14 +115,7 @@
 
         <main class='flexr just-center align-center'>
 
-            <?php 
-                $query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost , staff, location, orientation, basket.id as id_basket FROM products
-                INNER JOIN agents ON products.id_agent = agents.id
-                INNER JOIN users ON agents.id_user = users.id
-                INNER JOIN basket ON products.id = basket.id_product
-                WHERE basket.id_user='".$_SESSION['id']."'";
-                $products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
-            ?>
+
             
             <section class="flexc">
 
