@@ -70,7 +70,7 @@
                 if(!empty($products)){
                     ?>
                         <div id="validationPanierbis">
-                            Buy product(s)
+                            Buy product(s) <br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
                                     <input id="inputPayement" type="text" name="Name" placeholder="Name">
