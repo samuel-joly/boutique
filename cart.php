@@ -260,7 +260,13 @@
                                     echo "</br>";
                                 }
                                 echo "</br>";
-                                ?><div id="totalPrice"><?php echo "Total Price : </br> "; affichagePrix($resultatPrice[0][0]);?></div> <?php
+                                ?><div id="totalPrice"><?php echo "Total Price : </br> ";
+                                if(!empty($resultatInfo)){
+                                    affichagePrix($resultatPrice[0][0]);} 
+                                else{
+                                    echo "0 $</br>";
+                                }
+                                ?></div> <?php
                                  ?>
                                 
                     </article>
