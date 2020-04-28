@@ -14,6 +14,7 @@
             
             <?php
              include("header.php");
+             include("functionPrix.php")
             ?> 
         </header>   
         
@@ -144,7 +145,7 @@
                                 <p>Location: <?=$product["location"]?></p>
                                 <p>Orientation: <?=$product["orientation"]?></p>
                                 <p>Staff: <?=$product["staff"]?></p>
-                                <p>Cost/Year: <?=$product["cost"]?>$</p>
+                                <p>Cost/Year: <?php affichagePrix($product["cost"])?></p>
 
                                 <form method="POST">
                                     <input type="hidden" name="id_basket" value="<?php echo $resultatReelbis[$i][0]; $i++ ;?>">
@@ -202,6 +203,8 @@
 
             </section>
 
+            <!-- SECTION DIV DROITE INFO ACHAT ET ACHAT -->
+
             <section id="ValidationAchat">
 
                     <?php 
@@ -225,6 +228,8 @@
                 <div id="infoProduct">
                     <article id="infoTechnique">
                         Info technique sur le/les biens
+                        <!-- HERE -->
+
                     </article>
                     <article id="option">
                         <div id="optionDiv">
@@ -243,27 +248,37 @@
                 <div id="validationBasket">
                     <article id="InfoAvantValidation">
                     <?php for($i=0;$i<count($resultatInfo); $i++){
-                                    // echo $requeteMaxQuantityGroup."</br>";
-                                    echo $resultatInfo[$i][4]." ".$resultatInfo[$i][3]."$"." x".$resultatInfo[$i][1]."</br>";
-
-                    } ?>
-                    </article>
-                    <article id="ValidationAchatOk">
-                            
-                        <div id="affichagePrix">
-                            <?php
-                                echo "Prix total = ".$resultatPrice[0][0]." $";
-                            ?>
-                        </div>
-
-                        <div id="byuBouton">
-                            <form method="POST">
-                                <input type="submit" name="acheter" id="acheter" value="Buy">
-                            </form>
-                        </div>
-
+                                    if($resultatInfo>1 && $i!=0){
+                                        echo "+</br>";
+                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                    }
+                                    else
+                                    {
+                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                    }
+                                    
+                                    echo "</br>";
+                                }
+                                echo "</br>";
+                                ?><div id="totalPrice"><?php echo "Total Price : </br> "; affichagePrix($resultatPrice[0][0]);?></div> <?php
+                                 ?>
+                                
                     </article>
                 </div>
+                        <article id="ValidationAchatOk">
+                                
+                            <div id="affichagePrix">
+                                <?php
+                                ?>
+                            </div>
+    
+                            <div id="byuBouton">
+                                <form method="POST">
+                                    <input type="submit" name="acheter" id="acheter" value="Buy product(s)">
+                                </form>
+                            </div>
+    
+                        </article>
                 
             </section>
 
