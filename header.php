@@ -2,6 +2,7 @@
 	<?php 	session_start(); 
 	$stmt = new PDO("mysql:host=localhost;dbname=boutique","root","");
 	$category = $stmt->query("SELECT * FROM category")->fetchAll(PDO::FETCH_ASSOC);
+	include 'function.php';
 	?>
 
 

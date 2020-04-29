@@ -244,7 +244,8 @@ footer
 
 .footer-container
 {
-	width:80%;
+	max-width:10em;
+	max-height:6em;
 	font-size:1.2em;
 	color:white;
 	text-align:center;
@@ -252,17 +253,20 @@ footer
 	display:flex;
 	flex-direction:column;
 	align-self:center;
+	justify-content:center;
+	flex-wrap:wrap;
 }
 
 footer a
 {
 	color:white;
-	transition:font-size 0.2s ease;
+	transition:all 0.2s ease;
+	margin:0.2em;
 }
 
 footer a:hover
 {
-	font-size:1.2em;
+	color:#35d8c9;
 }
 
 

@@ -1,31 +1,56 @@
 <?php
 	$product = $stmt->query("SELECT products.title, products.price, users.name, products.image , products.description,
 				products.orientation, products.staff, products.size, products.cost, products.location, 
-				products.id_agent as id_agent
+				products.id_agent as id_agent, products.max_quantity
 				FROM products 
-				INNER JOIN agents ON products.id_agent = agents.id
-				INNER JOIN users ON agents.id_user = users.id
+				LEFT JOIN agents ON products.id_agent = agents.id
+				LEFT JOIN users ON agents.id_user = users.id
 				WHERE products.id=".$_GET["change_product"])->fetch(PDO::FETCH_ASSOC);
 
 	$product_cats = $stmt->query("SELECT category.name, category.id
 				FROM `category-tag`
 				INNER JOIN category ON `category-tag`.id_category = category.id
-				WHERE `category-tag`.id_product =".$_GET["change_product"])->fetchAll(PDO::FETCH_ASSOC);
-	
+				WHERE `category-tag`.id_product =".$_GET["change_product"]."
+				GROUP BY category.name")->fetchAll(PDO::FETCH_ASSOC);
 	$cats = $stmt->query("SELECT category.name, category.id , `category-tag`.id_product AS id_prod FROM category 
 				LEFT JOIN `category-tag` ON category.id = `category-tag`.id_category 
 				GROUP BY category.name")->fetchAll(PDO::FETCH_ASSOC);
+
+	$product_cats = $stmt->query("SELECT `category`.name, `category`.id, `category-tag`.id_product AS id_prod FROM `category`
+					LEFT JOIN `category-tag` ON `category`.id = `category-tag`.`id_category` 
+					WHERE `category-tag`.`id_product` = ".$_GET["change_product"])->fetchAll(PDO::FETCH_ASSOC);
 
 	$sub_cats = $stmt->query("SELECT `sub-category`.name, `sub-category`.id , `sub-category-tag`.id_product AS id_prod FROM `sub-category` 
 				LEFT JOIN `sub-category-tag` ON `sub-category`.id = `sub-category-tag`.`id_sub-category` 
 				GROUP BY `sub-category`.name")->fetchAll(PDO::FETCH_ASSOC);
 
+	
 	$product_sub_cats = $stmt->query("SELECT `sub-category`.name, `sub-category`.id, `sub-category-tag`.id_product AS id_prod FROM `sub-category`
 					LEFT JOIN `sub-category-tag` ON `sub-category`.id = `sub-category-tag`.`id_sub-category` 
-					WHERE `sub-category-tag`.`id_product` = ".$_GET["change_product"])->fetchAll(PDO::FETCH_ASSOC);
+					WHERE `sub-category-tag`.`id_product` = ".$_GET["change_product"]." 
+					GROUP BY `sub-category`.name")->fetchAll(PDO::FETCH_ASSOC);
 
 	    if(isset($_POST["submit-change-product"]))
 	    {
+	    	if(isset($_FILES["admin-image-product"]))
+		{
+		    if(checkImage($_FILES["admin-image-product"]))
+		    {
+			$image = 'Media/Images/products/'.$_GET["change_product"].".".pathinfo($_FILES["admin-image-product"]["name"], PATHINFO_EXTENSION);
+			foreach(scandir('Media/Images/products/') as $img)
+			{
+				if(pathinfo($img, PATHINFO_FILENAME) == pathinfo($image, PATHINFO_FILENAME))
+				{
+					unset($image);
+					$image = 'Media/Images/products/'.$_GET["change_product"].".".pathinfo($_FILES["admin-image-product"]["name"], PATHINFO_EXTENSION);
+					break;
+				}
+			}
+			move_uploaded_file($_FILES["admin-image-product"]["tmp_name"], $image );		
+			$stmt->prepare("UPDATE products SET image='$image' WHERE id=".$_GET["change_product"])->execute();
+		    }
+
+		}
 		    foreach($_POST as $input=>$value)
 		    {
 			    switch($input)
@@ -164,6 +189,7 @@
 
 <div class='alert-container admin-alert'>
 	
+
 	<form action='admin.php?change_product=<?= $_GET["change_product"] ?>' method='post' id='admin-product-form' enctype='multipart/form-data'>
 		<label for='admin-image-product' id='admin-product-image'>
 			<img src='<?= $product["image"] ?>'/>
@@ -213,14 +239,21 @@
 				    <label for='location'>Area</label>
 				    <input type='text' value='<?= $product["location"] ?>' name='location'/>
 				</span>
+
+				<span>
+				    <label for='quantity'>Quantity</label>
+				    <input type='text' name='quantity' value='<?= $product["max_quantity"]?>'/>
+				</span>
+				
 			</div>
+
 
 			<div class='input-zone admin-manage-input flexr just-center align-center input-little'>
 				<span>
 				    <label for='orientation'>Face</label>
 				    <input type='text' name='orientation' value='<?= $product["orientation"]?>'/>
 				</span>
-				
+
 				<span>
 				    <label for='agent'>Agent</label>
 				    <select name='agent'>
@@ -248,20 +281,24 @@
 			    <h1>Category</h1>
 			    <div class='flexr just-start wrap align-start admin-product-category'>
 				    <?php
-					    $selected = "";
+					    $filter = [];
+					    foreach($product_cats as $cat)
+					    {
+						    echo "
+						    <label for='".$cat["name"]."'class='cat-input'>".$cat["name"]." 
+						    <input type='checkbox' name='sub_category[]' value='".$cat["id"]."' id='".$cat["name"]."'
+						      checked/></label>";
+						     array_push($filter,$cat["name"]);
+					    }
 					    foreach($cats as $category)
 					    {
-						    if($category["id_prod"] == $_GET["change_product"])
+						    if(!in_array($category["name"], $filter))
 						    {
-							    $selected = "checked";
+							    echo "
+							    <label for='".$category["name"]."'class='cat-input'>".$category["name"]." 
+							    <input type='checkbox' name='category[]' value='".$category["id"]."' id='".$category["name"]."'
+							     /></label>";
 						    }
-						    
-						    echo "
-						    <label for='".$category["name"]."'class='cat-input'>".$category["name"]." 
-						    <input type='checkbox' name='category[]' value='".$category["id"]."' id='".$category["name"]."'
-						     ".$selected."/></label>";
-						     $selected = "";
-						    
 					    }
 				    ?>
 			    </div>
@@ -271,7 +308,6 @@
 			    <h1>Sub-category</h1>
 			    <div class='flexr just-start wrap align-start admin-product-category'>
 				    <?php
-					    $selected = "";
 					    $filter = [];
 					    foreach($product_sub_cats as $sub_cat)
 					    {
@@ -289,10 +325,9 @@
 							echo "
 							<label for='".$category["name"]."'class='cat-input'>".$category["name"]." 
 							<input type='checkbox' name='sub_category[]' value='".$category["id"]."' id='".$category["name"]."'
-							  ".$selected."/></label>";
+							  /></label>";
 							 array_push($filter,$category["name"]);
 						    }
-						    $selected = "";
 					    }
 				    ?>
 			    </div>
@@ -302,8 +337,8 @@
 	    </div>
 
 	    <div class='flexr just-center align-center'>
-		<input type='submit' name='submit-change-product' value='Save change' class='add-product'/>
-		<a href='admin.php' class='add-product' id='return-product'>Return</a>
+		<input type='submit' name='submit-change-product' value='Save change' class='admin-input'/>
+		<a href='admin.php' class='admin-remove' >Return</a>
 	    </div>
 
 	</form>

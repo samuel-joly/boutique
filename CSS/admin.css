@@ -17,21 +17,29 @@ b
 	margin:0.8em;
 }
 
-.admin-input
+.admin-input, .admin-remove
 {
-	border:2px solid white;
 	padding:0.3em;
 	color:white;
 	transition:all 0.3s ease;
 	margin:0.3em;
 	background:#484747;
+	text-decoration:none;
+	font-weight:bold;
 }
 
 .admin-input:hover
 {
 	color:black;
-	background:#e5e5e5;
+	background:#3bccad;
 }
+
+.admin-remove:hover
+{
+	color:black;
+	background:#ff6464;
+}
+
 .admin-top>input:checked~.admin-sub 
 {
 	height:10em;
@@ -161,7 +169,7 @@ b
 	transition:all 0.2s ease;
 	font-size:0.9em;
 	text-decoration:none;
-	color:#35d8c9;
+	color:white;
 	font-weight:bold;
 	text-align:center;
 	margin:0.6em;
@@ -174,7 +182,8 @@ b
 
 .add-product:hover
 {
-	background:#484848;
+	background:#35d8c9;
+	color:black;
 }
 
 /*--------------ADMIN SALES------------------*/
@@ -344,6 +353,7 @@ b
 {
 	justify-self:center;
 	justify-content:space-between;
+	margin:0;
 }
 .input-little input
 {
@@ -443,8 +453,135 @@ b
 	cursor:pointer;
  }
  
- #return-product
- {
-	height:0.7em;
+
+#admin-manage-category div, #admin-manage-sub_category div
+{
+	min-height:fit-content;
+}
+
+.alert-container .cat-input
+{
+	height:1.2em;
+}
+
+#manage-category
+{
+	margin-top:17em;
+}
+
+.alert-container form
+{
+	width:100%;
+}
+
+
+.alert-container form input[type='text']
+{
+	width:85%;
+	height:1.7em;
+}
+
+#admin-manage-category form input[type="text"]
+{
+	width:82%;
+}
+
+
+#admin-manage-sub_category form input[type='text']
+{
+	width:40%;
+}
+
+#admin-manage-sub_category form select
+{
+	height:2.2em;
+}
+
+.alert-container form input[type='submit']
+{
+	border:0px;
+	color:white;
+	transition:all 0.3s ease;
+	height:1.8em;
+}
+
+
+.alert-container form input[type='submit']:hover
+{
+	background:#35d8c9;
+	color:black;
+}
+
+#admin-manage-sub_category a,#admin-manage-category a
+{
+	text-decoration:none;
+	color:red;
+	margin-left:0.3em;
 	font-weight:bold;
- }
+	transition:all 0.3s ease;
+	text-align:center;
+}
+
+
+#admin-manage-sub_category a:hover,#admin-manage-category a:hover
+{
+	cursor:pointer;
+	font-size:1.2em;
+}
+
+#admin-profile
+{
+	width:fit-content;
+}
+
+
+#admin-profile>form
+{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+}
+
+
+
+#admin-user-image
+{
+	border-radius:50%;
+	width:5em;
+}
+
+.managed_product
+{
+	border:2px solid grey;
+	padding:0.3em;
+	min-width:5em;
+	margin:0.3em;
+}
+
+.managed_product h1
+{
+	font-size:0.9em;
+}
+
+#managed_product_info
+{
+	width:100%;
+	height:7em;
+	overflow-y:scroll;	
+}
+
+
+#managed_product_info::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+:#managed_product_info:-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+#managed_product_info::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
