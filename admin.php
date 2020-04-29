@@ -24,8 +24,8 @@
 				$products = $stmt->query("SELECT products.id AS id , products.price AS price , products.title AS title,
 							users.name AS agent_name   , agents.id AS agent_id   
 							FROM products
-							INNER JOIN agents ON products.id_agent = agents.id
-							INNER JOIN users ON agents.id_user = users.id
+							LEFT JOIN agents ON products.id_agent = agents.id
+							LEFT JOIN users ON agents.id_user = users.id
 							WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product = products.id)")->fetchAll(PDO::FETCH_ASSOC);
 				
 
@@ -33,7 +33,7 @@
 				$agents = $stmt->query("SELECT users.name, users.id, SUM(products.price) AS price, users.avatar AS avatar 
 							FROM agents 
 							INNER JOIN users ON agents.id_user = users.id 
-							INNER JOIN products ON agents.id = products.id_agent 
+							LEFT JOIN products ON agents.id = products.id_agent 
 							GROUP BY users.name")->fetchAll(PDO::FETCH_ASSOC);
 				$boughts = $stmt->query("SELECT products.id AS id , products.price AS price , products.title AS title, bought.date AS date, users.name as acheteur
 							FROM bought 
@@ -54,6 +54,30 @@
 				{
 				    include("admin_product.php");
 				}
+
+				if(isset($_GET["add_product"]))
+				{
+					include("admin_add_product.php");
+				}
+
+				if(isset($_GET["del_product"]))
+				{
+					$stmt->query("DELETE FROM products WHERE id=".$_GET["del_product"]);
+					header('location:admin.php');
+				}
+				if(isset($_GET["category"]))
+				{
+					include("manage_category.php");
+				}
+				if(isset($_GET["agent_delete"]))
+				{
+					$stmt->query("DELETE FROM agents WHERE id=".$_GET["agent_delete"]);
+					header('location:admin.php');
+				}
+				if(isset($_GET["profil"]))
+				{
+					include("admin_profil.php");
+				}
 		?>
 
 			<label for='admin-prod-desc' id='admin-products' class='admin-top flexc just-start align-start center'>
@@ -65,27 +89,27 @@
 						{
 							echo "
 							<div class='admin-product-desc'>
-								<span class='flexr just-start align-center'>
+								<span class='flexc just-center align-center'>
 									<h1 class='admin-product-name'>".$product["title"]."</h1>
 									<p><u>".$product["price"]."$</u></p>
 								</span>
 								<p>Managed by <i>".$product["agent_name"]."</i></p>
 								<span class='flexr just-start align-start center'>
 									<a href='admin.php?change_product=".$product["id"]."'class='admin-input'>Modify</a>
-									<a href='admin.php?del_product=".$product["id"]."'class='admin-input'>Delete</a>
+									<a href='admin.php?del_product=".$product["id"]."'class='admin-remove'>Delete</a>
 								</span>
 							</div>";
 						}
 						
 					?>
 				</div>
-				<?php
-				echo "<div  class='info-admin-prod flexr just-between align-center'><p>Total of<b> ".$total_product["total_product"]." products </b>worth of <b>".$total_product["total_price"]."$</b></p>";
-				echo "<span class='flexr just-end '>
+				<div  class='info-admin-prod flexr just-between align-center'>
+					<p>Total of<b> <?=$total_product["total_product"]?> products </b>worth of <b><?=$total_product["total_price"]?>$</b></p>
+					<span class='flexr just-end '>
 						<a href='admin.php?add_product=true' class='add-product'>Add product</a>
 						<a href='admin.php?category=true' class='add-product'>Manage category</a>
-					    </span>
-				</div>"; ?>
+				        </span>
+				</div>
 			</label>			
 
 			<label for='admin-bought-desc' id='admin-bought' class='admin-top flexc just-start align-start center'>
@@ -124,8 +148,8 @@
 									<img src='Media/Images/Avatars/".$agent["avatar"]."' class='admin-agent-avatar'/>
 								</span>
 								<span class='flexr just-between align-start center'>
-									<a href='admin.php?agent_profit=".$agent["id"]."' class='admin-input'>See Infos</a>
-									<a href='admin..php?agent_delete=".$agent["id"]."' class='admin-input'>Delete</a>
+									<a href='admin.php?profil=".$agent["id"]."' class='admin-input'>See Infos</a>
+									<a href='admin.php?agent_delete=".$agent["id"]."' class='admin-remove'>Delete</a>
 								</span>
 							</div>";
 							$count++;
@@ -135,10 +159,10 @@
 				</div>
 				<?php 
 				
-				echo "<div class='admin-info-prod admin-info-users flexr just-between align-center'><p>Total of <b>".$count." agents</b> managing <b>".$total_product["total_product"]." products</b>.</p>";
-				echo "<span class='flexr just-end align-center'>
-					    <a href='admin.php?add_agent=true' class='add-product'>Add agent</a>
-					</span></div>"; ?>	
+				echo "<div class='admin-info-prod admin-info-users flexr just-between align-center'>
+					<p>Total of <b>".$count." agents</b> managing <b>".$total_product["total_product"]." products</b>.</p>
+				</div>";
+				?>
 			</label>
 
 			<label for='admin-user-desc' id='admin-user' class='admin-top flexc just-start align-start center'>
@@ -156,8 +180,8 @@
 									<img src='Media/Images/Avatars/".$user["avatar"]."' class='admin-agent-avatar'/>
 								</span>
 								<span class='flexr just-between align-start center'>
-									<a href='admin.php?user_profil=".$user["id"]."' class='admin-input'>See Infos</a>
-									<a href='admin..php?user_delete=".$user["id"]."' class='admin-input'>Delete</a>
+									<a href='admin.php?profil=".$user["id"]."' class='admin-input'>See Infos</a>
+									<a href='admin.php?user_delete=".$user["id"]."' class='admin-remove'>Delete</a>
 								</span>
 							</div>";
 							$count ++;
@@ -167,9 +191,7 @@
 				</div>
 				<?php 
 				echo "<div class='admin-info-prod admin-info-users flexr just-between align-center'><p>Total of <b>".$count." users</b>.</p>";
-				echo "<span class='flexr just-end align-center'>
-					    <a href='admin.php?add_user=true' class='add-product'>Add user</a>
-					</span></div>"; ?>	
+				echo "</div>"; ?>	
 			</label>
 		</main>
 
