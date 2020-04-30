@@ -33,7 +33,7 @@
 				{
 					$query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost , staff, location, orientation FROM products
 						INNER JOIN agents ON products.id_agent = agents.id
-						INNER JOIN users ON agents.id_user = users.id ";
+						INNER JOIN users ON agents.id_user = users.id WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)";
 				}
 				else
 				{
