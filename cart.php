@@ -2,9 +2,9 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Panier</title>
         <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="CSS/panier.css">
         <link rel="stylesheet" type="text/css" href="CSS/boot.css">
     </head>
 
@@ -73,15 +73,18 @@
                             Buy product(s) <br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
-                                    <input id="inputPayement" type="text" name="Name" placeholder="Name">
-                                    <input id="inputPayement" type="text" name="LastName" placeholder="Last name">
-                                    <input id="inputPayement" type="text" name="Adress" placeholder="Adress">
-                                    <input id="inputPayement" type="text" name="Tel" placeholder="Tel">
-                                    <input id="inputPayement" type="text" name="Email" placeholder="Email">
+                                    <input id="inputPayement" type="text" required name="Name" placeholder="Name">
+                                    <input id="inputPayement" type="text" required name="LastName" placeholder="Last name">
+                                    <input id="inputPayement" type="text"  required name="Adress" placeholder="Adress">
+                                    <input id="inputPayement" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
+                                    <input id="inputPayement" type="email" required name="Email" placeholder="Email">
                                     <br>
-                                    <input id="inputPayement" type="text" name="Codecarte1" placeholder="code1">
-                                    <input id="inputPayement" type="text" name="Codecarte2" placeholder="code2">
-                                    <input id="inputPayement" type="text" name="Codecarte3" placeholder="code3"></br>
+                                    <input id="inputPayement" type="text" minlength="16" required maxlength="16" name="Codecarte1" placeholder="Card number">
+                                    <div id="flexrow">
+                                        <input type="number" name="trip-start" value="01" min="01" required max="12">
+                                        <input type="number" name="trip-start1" value="2020" min="2020" required max="2030">
+                                    </div>
+                                    <input id="inputPayement" type="text" minlength="3" maxlength="3" required name="Codecarte3" placeholder="Visual cryptogram"></br>
                                     <input id="inputPayement" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
                                 </div>
                             </form>or </br>
@@ -102,13 +105,24 @@
             
             if(isset($_POST['validerReel'])){
 
+                if(isset($_POST['Name']) && isset($_POST['LastName']) && isset($_POST['Adress']) && isset($_POST['Tel']) && isset($_POST['Email']) && isset($_POST['Codecarte1']) && isset($_POST['trip-start']) && isset($_POST['trip-start1']) && isset($_POST['Codecarte3']) && isset($_POST['Name'])){
+
                     $connexion=mysqli_connect("localhost","root","","boutique");
                     $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
                     $query=mysqli_query($connexion,$requete);
                     $resultatReel=mysqli_fetch_all($query);
 
                     InsertAndDelete($resultatReel,$connexion);
-                    delete($deleteAll);              
+                    delete($deleteAll);  
+
+                    // Si le site était réellement fonctionnelle on proposerait de sauvegarder les informations si l'utilisateur en avait envie, et on crypterai le tout pour proteger les informations confidentielle de l'utilisateur et l'on enverrai cela dans la bdd.
+                    // On pourrait également faire une facture, que l'on renverrai sur l'addresse mail que l'utilisateur aurait laissé
+                    // Le débit se ferait après vérifications des informations et questionnement de la banque pour savoir si cette achat peux se faire
+                    // Après toute ces vérifications et action, l'utilisateur aura acheter le produit, et il en sera informé (fenêtre de confirmation, facture envoyer sur son email etc...)
+                } 
+                else{
+                    echo "Please fill in all the necessary information</br>";
+                }          
             }
             ?>
 
@@ -234,21 +248,39 @@
 
                 <div id="infoProduct">
                     <article id="infoTechnique">
-                        Info technique sur le/les biens
-                        <!-- HERE -->
-
+                    <div id="nbcart">
+                        Number of Product in your cart : <?php if(isset($products)){ echo count($products);} else{echo 0;} ?> <br>
+                    </div>
+                    <div id="nbbought">
+                        Number of Product Purchased : <?php if(isset($_SESSION['nb_prod_achete'])){echo $_SESSION['nb_prod_achete'];} else{echo 0;} ?>
+                    </div>
                     </article>
+
+                    <?php if(!empty($resultatInfo)){
+                        $requeteInfo="SELECT DISTINCT id_product, quantity, max_quantity,price as totalprice,title,id_agent FROM basket INNER JOIN products On basket.id_product=products.id WHERE id_user='".$_SESSION['id']."'";
+                        $queryInfo=mysqli_query($connexion,$requeteInfo);
+                        $resultatInfo=mysqli_fetch_all($queryInfo);
+                        ?>
                     <article id="option">
+                        <?php
+
+                        $j=1;
+                    for($i=0;$i<count($resultatInfo); $i++){
+                        $connexion=mysqli_connect("localhost","root","","boutique");
+                        $requeteInfoAgent="SELECT name,email,avatar,title FROM users INNER JOIN products ON users.id='".$resultatInfo[$i][5]."'";
+                        // echo $requeteInfoAgent;
+                        $queryInfoAgent=mysqli_query($connexion,$requeteInfoAgent);
+                        $resultatInfoAgent=mysqli_fetch_all($queryInfoAgent);
+                        // var_dump($resultatInfoAgent);
+                            // var_dump($resultatInfo);
+                        ?>
                         <div id="optionDiv">
-                            Option 1 :
-                            <label for="ouiOption1">Oui</label><input type="radio">
-                            <label for="nonOption1">Non</label><input type="radio"><br>
+                            <div id=alignTextProducts><?php echo "Contact Agent (".ucfirst($resultatInfoAgent[$i][3]); ?>)<br></div>
+                            <div id="infoAgent"><?php echo "Name : ".ucfirst($resultatInfoAgent[$i][0]); ?><br>
+                                <?php echo "Email : ".$resultatInfoAgent[$i][1]; $j++?><br>
+                            </div>
                         </div>
-                        <div id="optionDiv">
-                            Option 2 :
-                            <label>Oui</label><input type="radio"></input>
-                            <label>Non</label><input type="radio"></input><br>
-                        </div>
+                        <?php } }?>
                     </article>
                 </div>
             
@@ -257,11 +289,11 @@
                     <?php for($i=0;$i<count($resultatInfo); $i++){
                                     if($resultatInfo>1 && $i!=0){
                                         echo "+</br>";
-                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                        echo $resultatInfo[$i][4]." x ".$resultatInfo[$i][1]." = "; affichagePrix($resultatInfo[$i][3]);
                                     }
                                     else
                                     {
-                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                        echo $resultatInfo[$i][4]." x ".$resultatInfo[$i][1]." = "; affichagePrix($resultatInfo[$i][3]);
                                     }
                                     
                                     echo "</br>";

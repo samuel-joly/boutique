@@ -13,6 +13,7 @@
 		<header> 
 			<?php 
 				include("header.php");
+			        include("functionPrix.php");
 				
 				if(!isset($_SESSION["id"]))
 				{
@@ -109,11 +110,11 @@
 					    break;	
 						    
 					    case "cart":
+						    echo "<div class='flexc just-center align-center' id='cart-zone'>";	
+							include("basket.php");
+							include("basket_pay.php");
 
-						    echo "<div class='profil-data-container'>";
-							    
-							    
-						    echo "</div";
+						    echo "</div>";
 					    break;	
 				    }
 			    }
@@ -141,133 +142,134 @@
 			    }
 
 			?>
-			
-			<form action='profil.php' enctype='multipart/form-data' method='POST' id='profil-container' class='flexc just-around'>
-				<h1 class='center'><u><?=$usr["name"]?></u></h1>
-				<label for='avatar-input' id='image-container'>
-					<label for='image' id='sub-img-container'>
-						<img src='Media/Images/Avatars/<?=$usr["avatar"]?>' alt='Img not found' id='profil-image'/>
-						<span>
-							<p>Click to change</p>
-						</span>
-						<input type='file' name='image'/>
+			<div class='flexc just-start align-center'>
+				<form action='profil.php' enctype='multipart/form-data' method='POST' id='profil-container' class='flexc just-around'>
+					<h1 class='center'><u><?=$usr["name"]?></u></h1>
+					<label for='avatar-input' id='image-container'>
+						<label for='image' id='sub-img-container'>
+							<img src='Media/Images/Avatars/<?=$usr["avatar"]?>' alt='Img not found' id='profil-image'/>
+							<span>
+								<p>Click to change</p>
+							</span>
+							<input type='file' name='image'/>
+						</label>
+						<input type='file' name='avatar' id='avatar-input'/>
 					</label>
-					<input type='file' name='avatar' id='avatar-input'/>
-				</label>
 
-				<span id='profil-data' class='flexc wrap align-center center'>
-					<a href='profil.php?show=cart'>Your cart</a>
-					<a href='profil.php?show=bought'>Your purchases</a>
-				</span>
-				
-				<label for='name' class='center input-zone just-between align-center'>Name
-					<input type='text' value='<?=$usr["name"]?>' name='name'/>
-				</label>
+					<span id='profil-data' class='flexc wrap align-center center'>
+						<a href='profil.php?show=cart'>Your cart</a>
+						<a href='profil.php?show=bought'>Your purchases</a>
+					</span>
+					
+					<label for='name' class='center input-zone just-between align-center'>Name
+						<input type='text' value='<?=$usr["name"]?>' name='name'/>
+					</label>
 
-				<label for='mail' class='center input-zone just-between align-center'>Email
-					<input type='email' value='<?=$usr["email"]?>' name='mail'/>
-				</label>
+					<label for='mail' class='center input-zone just-between align-center'>Email
+						<input type='email' value='<?=$usr["email"]?>' name='mail'/>
+					</label>
 
-				<label for='password' class='center input-zone just-between align-center'>Password
-					<input type='password' name='password'/>
-				</label>
+					<label for='password' class='center input-zone just-between align-center'>Password
+						<input type='password' name='password'/>
+					</label>
 
 
-				<label for='Npassword' class='center input-zone just-between align-center'>New Password 
-					<input type='password'  name='Npassword'/>
-				</label>
-				
-				<label for='CNpassword' class='center input-zone just-between align-center'>Confirm Password 
-					<input type='password'  name='CNpassword'/>
-				</label>
+					<label for='Npassword' class='center input-zone just-between align-center'>New Password 
+						<input type='password'  name='Npassword'/>
+					</label>
+					
+					<label for='CNpassword' class='center input-zone just-between align-center'>Confirm Password 
+						<input type='password'  name='CNpassword'/>
+					</label>
 
-				<input type='submit' value='Save' name='save_btn' class='profil-submit'/>
+					<input type='submit' value='Save' name='save_btn' class='profil-submit'/>
 
-				<?php
-					if(isset($_POST["save_btn"]))
-					{
-						$name = htmlspecialchars(addslashes($_POST["name"]));
-						if(password_verify($_POST["password"],$usr["password"]))
+					<?php
+						if(isset($_POST["save_btn"]))
 						{
-							if($name != $usr["name"])
+							$name = htmlspecialchars(addslashes($_POST["name"]));
+							if(password_verify($_POST["password"],$usr["password"]))
 							{
-							    if ($stmt->query("UPDATE users SET name='".$name."' WHERE id=".$_SESSION["id"]))
-							    {
-							    	echo "<p class='error'>User name changed to ".$name."</p>";
-								unset($name);
-								unset($_POST["name"]);
-							    }
-							}
-							if($_POST["mail"] != $usr["email"])
-							{
-								if($stmt->query("UPDATE users SET email='".$_POST["mail"]."' WHERE id=".$_SESSION["id"]))	
+								if($name != $usr["name"])
 								{
-									echo "<p class='error'>Your email has been changed</p>";
-									unset($_POST["mail"]);
+								    if ($stmt->query("UPDATE users SET name='".$name."' WHERE id=".$_SESSION["id"]))
+								    {
+									echo "<p class='error'>User name changed to ".$name."</p>";
+									unset($name);
+									unset($_POST["name"]);
+								    }
 								}
-							}
-							if(strlen($_POST["Npassword"]) > 0)
-							{
-								if($_POST["Npassword"] == $_POST["CNpassword"])
+								if($_POST["mail"] != $usr["email"])
 								{
-									if(!password_verify($_POST["Npassword"], $usr["password"]))
+									if($stmt->query("UPDATE users SET email='".$_POST["mail"]."' WHERE id=".$_SESSION["id"]))	
 									{
-										$password = password_hash($_POST["Npassword"], PASSWORD_BCRYPT);
-										if($stmt->query("UPDATE users SET password='".$password."' WHERE id=".$_SESSION["id"]))
+										echo "<p class='error'>Your email has been changed</p>";
+										unset($_POST["mail"]);
+									}
+								}
+								if(strlen($_POST["Npassword"]) > 0)
+								{
+									if($_POST["Npassword"] == $_POST["CNpassword"])
+									{
+										if(!password_verify($_POST["Npassword"], $usr["password"]))
 										{
-											echo "<p class='error'>Your password has been changed</p>";
-											unset($_POST["Npassword"]);
-											unset($_POST["CNpassword"]);
+											$password = password_hash($_POST["Npassword"], PASSWORD_BCRYPT);
+											if($stmt->query("UPDATE users SET password='".$password."' WHERE id=".$_SESSION["id"]))
+											{
+												echo "<p class='error'>Your password has been changed</p>";
+												unset($_POST["Npassword"]);
+												unset($_POST["CNpassword"]);
+											}
+										}
+										else
+										{
+											echo "<p class='error'>Your password still the same</p>";
+											die;
 										}
 									}
 									else
 									{
-										echo "<p class='error'>Your password still the same</p>";
+										echo "<p class='error'>New password doesnt match with confirm password</p>";
+										unset($_POST["Npassword"]);
+										unset($_POST["CNpassword"]);
 										die;
 									}
 								}
-								else
+								if(isset($_FILES["avatar"]))
 								{
-									echo "<p class='error'>New password doesnt match with confirm password</p>";
-									unset($_POST["Npassword"]);
-									unset($_POST["CNpassword"]);
-									die;
-								}
-							}
-							if(isset($_FILES["avatar"]))
-							{
-								$type = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-								if($type != 'jpg' && $type != 'png' && $type != 'jpeg')
-								{
-									echo "<p class='error'>Image format allowed: jpg, png, jpeg</p>";
-									die;
-								}
-
-								$name = $_SESSION["id"].".".$type;
-								foreach(scandir("Media/Images/Avatars/") as $avatar)
-								{
-									if(pathinfo($avatar, PATHINFO_FILENAME) == pathinfo($name,PATHINFO_FILENAME))
+									$type = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+									if($type != 'jpg' && $type != 'png' && $type != 'jpeg')
 									{
-										$path = "Media/Images/Avatars/".$avatar;
-										unset($path);
+										echo "<p class='error'>Image format allowed: jpg, png, jpeg</p>";
+										die;
 									}
+
+									$name = $_SESSION["id"].".".$type;
+									foreach(scandir("Media/Images/Avatars/") as $avatar)
+									{
+										if(pathinfo($avatar, PATHINFO_FILENAME) == pathinfo($name,PATHINFO_FILENAME))
+										{
+											$path = "Media/Images/Avatars/".$avatar;
+											unset($path);
+										}
+									}
+									move_uploaded_file($_FILES["avatar"]["tmp_name"], "Media/Images/Avatars/".$name);
+									$stmt->query("UPDATE users SET avatar='".$name."' WHERE id=".$_SESSION["id"]);
 								}
-								move_uploaded_file($_FILES["avatar"]["tmp_name"], "Media/Images/Avatars/".$name);
-								$stmt->query("UPDATE users SET avatar='".$name."' WHERE id=".$_SESSION["id"]);
 							}
+							else
+							{
+								echo "<p class='error'>Wrong password</p>";
+								die;
+							}
+							unset($_POST);
 						}
-						else
-						{
-							echo "<p class='error'>Wrong password</p>";
-							die;
-						}
-						unset($_POST);
-					}
 
 
-				?>
-				
-			</form>
+					?>
+					
+				</form>
+				</div>
 		</main>
 
 		<footer>
