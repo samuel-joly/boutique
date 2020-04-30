@@ -6,7 +6,7 @@
 		<link rel='stylesheet' type='text/css' href="CSS/stylesheet.css" />		
 		<link rel="stylesheet" type="text/css" href="CSS/products.css">
 		<link rel="stylesheet" type="text/css" href="CSS/filter.css">
-		<link rel="stylesheet" type="text/css" href="CSS/boot.css"/>
+		<link rel="stylesheet" type="text/css" href="CSS/boot.css">
 		<meta charset='UTF-8'>
 	</head>
 
@@ -23,7 +23,6 @@
 				{ 
 					include("filter.php"); 
 				} 
-
 
 				if(isset($_GET["filter"]))
 				{
@@ -110,9 +109,12 @@
 						<p class='filter-separator' style='margin-bottom:5px;'>Category</p>
 						<div class='filter-tag' style='max-height:280px;'>
 							<?php
+					$category_tag = $stmt->query("SELECT `category-tag`.id as id, category.name as name
+					FROM `category-tag` INNER JOIN category ON `category-tag`.id = category.id")->fetchAll();
+
+					$sub_category_tag = $stmt->query("SELECT `sub-category-tag`.id as id, `sub-category`.name as name 
+					FROM `sub-category-tag` INNER JOIN `sub-category` ON `sub-category-tag`.id = `sub-category`.id")->fetchAll();
 							
-							$category = $stmt->query('SELECT * FROM category')->fetchAll(PDO::FETCH_ASSOC);
-							$sub_category = $stmt->query('SELECT * FROM `sub-category`')->fetchAll(PDO::FETCH_ASSOC);
 							
 							foreach($category as $cat_tag)
 							{

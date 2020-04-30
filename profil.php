@@ -63,8 +63,8 @@
 						    ratings.value AS rate, bought.date
 						    FROM bought
 						    INNER JOIN products ON bought.id_product = products.id
-						    INNER JOIN agents ON products.id_agent = agents.id
-						    INNER JOIN users ON agents.id_user = users.id
+						    LEFT JOIN agents ON products.id_agent = agents.id
+						    LEFT JOIN users ON agents.id_user = users.id
 						    LEFT JOIN ratings ON products.id = ratings.id_product
 						    WHERE bought.id_user =".$_SESSION["id"])->fetchAll(PDO::FETCH_ASSOC);
 						    if(!empty($bought))
@@ -81,7 +81,7 @@
 								    echo "</div>";
 								    echo "<div class='bought-agent-zone flexc align-center just-center'>";
 									    echo "<img src='".$product["image"]."' class='bought-product-image'/>";
-									    echo "<h2>Sold by <b>".$product["agent_name"]."</b></h2>";
+									    echo "<h2>Sold by <b>".($product["agent_name"]??"<i>Agent deleted</i>")."</b></h2>";
 									    echo "<span class='flexr just-center align-center center'>";
 									    for($i=1;$i<=5;$i++) {
 									    	    if($i < $product["rate"]+1)
@@ -268,7 +268,6 @@
 				?>
 				
 			</form>
-			
 		</main>
 
 		<footer>

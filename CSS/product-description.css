@@ -164,8 +164,6 @@ border:2px black solid;
 border-radius:9em;
 background-color: rgb(241, 241, 241);
 }
-
-
 /* SECTION DROITE PAGE PRODUCT-DESCRIPTION */
 
 #tag-product-descr
@@ -204,7 +202,7 @@ margin-top: 10%;
 height: 43%;
 padding: 0% 4% 0%;
 font-size: 26px;
-background-color: rgba(255, 99, 71, 0.911);
+background-color: rgb(92, 164, 167);
 }
 
 .specificitesDiv{
@@ -217,7 +215,7 @@ border-radius: 0.3em;
 margin: 10% 0px;
 padding: 8%;
 height: 19%;
-background-color: rgba(122, 243, 231, 0.835);
+background-color: rgba(255, 99, 71, 0.911);
 }
 
 .addcartgoback-inside{
@@ -253,11 +251,42 @@ margin: 1% auto 1%;
 #validationPanier{
 background-color: rgba(255, 169, 71, 0.959);
 border: 2px black solid;
-width: 47.5%;
+width: 38.5%;
 padding: 2%;
 text-align: center;
 font-size: 2vw;
 border-radius: 0.3em;
-margin: -14% 20%;
+margin: -14% 26%;
 position: absolute;
 }
+
+#validationPanierbis input{
+text-align: center;
+width: 50%;
+margin: 1% auto 1%;
+}
+
+#validationPanierbis{
+background-color: rgba(255, 169, 71, 0.808);
+border: 2px black solid;
+width: 40%;
+padding: 1% 1% 2%;
+text-align: center;
+font-size: 2vw;
+border-radius: 0.3em;
+margin: -4.7% 22.5%;
+position: absolute;
+}
+
+#validationPanierbis2{
+background-color: rgba(255, 92, 71, 0.911);
+border: 2px black solid;
+width: 37%;
+padding: 4% 2%;
+text-align: center;
+font-size: 2vw;
+border-radius: 0.3em;
+margin: -6.5% 23.5%;
+position: absolute;
+}
+	

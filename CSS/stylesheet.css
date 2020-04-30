@@ -14,19 +14,15 @@
 body
 {
 	font-family:lato;
-	margin:0;
 	padding:0;
+	margin:0;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
-
-	background-color:#484848;
-	min-height:100vh;
 }
 
 main
 {
-	
 	min-height:100vh;
 }
 
@@ -230,8 +226,6 @@ header a
 
 
 
-
-
 /*-------------------FOOOTER---------------*/
 
 footer
@@ -240,6 +234,7 @@ footer
 	justify-content:space-evenly;
 	height:10em;
 	background:#484848;
+	margin:0;
 }
 
 .footer-container
@@ -299,3 +294,4 @@ footer a:hover
 	color:red;
 	font-size:0.9em;
 }
+

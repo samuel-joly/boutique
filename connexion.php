@@ -59,6 +59,7 @@
 				if(password_verify($password, $usr["password"]))
 				{
 					$_SESSION["id"] = $usr["id"];
+					$_SESSION["login"]=$_POST["login"];
 					if(!empty($admin)) { $_SESSION["admin"] = 1; }
 					header("location:index.php");
 				}

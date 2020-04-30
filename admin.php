@@ -78,6 +78,11 @@
 				{
 					include("admin_profil.php");
 				}
+				if(isset($_GET["user_delete"]))
+				{
+					$stmt->query("DELETE FROM users WHERE id=".$_GET["user_delete"]);
+					header('location:admin.php');
+				}
 		?>
 
 			<label for='admin-prod-desc' id='admin-products' class='admin-top flexc just-start align-start center'>
@@ -148,8 +153,8 @@
 									<img src='Media/Images/Avatars/".$agent["avatar"]."' class='admin-agent-avatar'/>
 								</span>
 								<span class='flexr just-between align-start center'>
-									<a href='admin.php?profil=".$agent["id"]."' class='admin-input'>See Infos</a>
-									<a href='admin.php?agent_delete=".$agent["id"]."' class='admin-remove'>Delete</a>
+									<a href='admin.php?profil=".$agent["id"]."' class='admin-input'>More</a>
+									<a href='admin.php?agent_delete=".$agent["id"]."' class='admin-remove'>Downgrade</a>
 								</span>
 							</div>";
 							$count++;
