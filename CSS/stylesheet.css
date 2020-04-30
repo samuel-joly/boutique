@@ -1302,3 +1302,9 @@ background-color: rgb(246, 117, 94);
 font-size: 26px;
 border-radius: 0em 0em 0.3em 0.3em;
 }
+
+#flexrow{
+display: flex;
+flex-direction: row;
+margin:0 25%;
+}

@@ -73,15 +73,18 @@
                             Buy product(s) <br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
-                                    <input id="inputPayement" type="text" name="Name" placeholder="Name">
-                                    <input id="inputPayement" type="text" name="LastName" placeholder="Last name">
-                                    <input id="inputPayement" type="text" name="Adress" placeholder="Adress">
-                                    <input id="inputPayement" type="text" name="Tel" placeholder="Tel">
-                                    <input id="inputPayement" type="text" name="Email" placeholder="Email">
+                                    <input id="inputPayement" type="text" required name="Name" placeholder="Name">
+                                    <input id="inputPayement" type="text" required name="LastName" placeholder="Last name">
+                                    <input id="inputPayement" type="text"  required name="Adress" placeholder="Adress">
+                                    <input id="inputPayement" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
+                                    <input id="inputPayement" type="email" required name="Email" placeholder="Email">
                                     <br>
-                                    <input id="inputPayement" type="text" name="Codecarte1" placeholder="code1">
-                                    <input id="inputPayement" type="text" name="Codecarte2" placeholder="code2">
-                                    <input id="inputPayement" type="text" name="Codecarte3" placeholder="code3"></br>
+                                    <input id="inputPayement" type="text" minlength="16" required maxlength="16" name="Codecarte1" placeholder="Card number">
+                                    <div id="flexrow">
+                                        <input type="number" name="trip-start" value="01" min="01" required max="12">
+                                        <input type="number" name="trip-start1" value="2020" min="2020" required max="2030">
+                                    </div>
+                                    <input id="inputPayement" type="text" minlength="3" maxlength="3" required name="Codecarte3" placeholder="Visual cryptogram"></br>
                                     <input id="inputPayement" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
                                 </div>
                             </form>or </br>
@@ -102,13 +105,24 @@
             
             if(isset($_POST['validerReel'])){
 
+                if(isset($_POST['Name']) && isset($_POST['LastName']) && isset($_POST['Adress']) && isset($_POST['Tel']) && isset($_POST['Email']) && isset($_POST['Codecarte1']) && isset($_POST['trip-start']) && isset($_POST['trip-start1']) && isset($_POST['Codecarte3']) && isset($_POST['Name'])){
+
                     $connexion=mysqli_connect("localhost","root","","boutique");
                     $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
                     $query=mysqli_query($connexion,$requete);
                     $resultatReel=mysqli_fetch_all($query);
 
                     InsertAndDelete($resultatReel,$connexion);
-                    delete($deleteAll);              
+                    delete($deleteAll);  
+
+                    // Si le site était réellement fonctionnelle on proposerait de sauvegarder les informations si l'utilisateur en avait envie, et on crypterai le tout pour proteger les informations confidentielle de l'utilisateur et l'on enverrai cela dans la bdd.
+                    // On pourrait également faire une facture, que l'on renverrai sur l'addresse mail que l'utilisateur aurait laissé
+                    // Le débit se ferait après vérifications des informations et questionnement de la banque pour savoir si cette achat peux se faire
+                    // Après toute ces vérifications et action, l'utilisateur aura acheter le produit, et il en sera informé (fenêtre de confirmation, facture envoyer sur son email etc...)
+                } 
+                else{
+                    echo "Please fill in all the necessary information</br>";
+                }          
             }
             ?>
 
