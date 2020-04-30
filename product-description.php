@@ -136,7 +136,7 @@
 
                     <form method="POST">
                             <article class='addcartgoback-inside'>
-                                <input type="submit" name="valider" class="addcartgoback-insideBis" value="Add to Cart"><br>
+                                <input type="submit" name="valider" class="addcartgoback-insideBis0" value="Add to Cart"><br>
                             </article>
                     </form>
 
@@ -166,7 +166,7 @@
                     if(count($resultatVerif)<$max_quantity AND count($resultatB)<$max_quantity AND (count($resultatVerif)+count($resultatB))<$max_quantity){
                     ?>
                         <div id="validationPanier">
-                            Put in your Cart ? 
+                            Put in your Cart ?
                             <form method="POST">
                                 <input type='submit' name='validerReel' class="addcartgoback-insideBis" value='Yes'>
                             </form>or </br>
@@ -203,7 +203,7 @@
             $connexion= mysqli_connect("localhost","root","","boutique");
             $requeteInsert= "INSERT INTO `basket`(`id_user`, `id_product`, `quantity`) VALUES ('".$_SESSION['id']."','".$id_product."',1)";
             $query=mysqli_query($connexion,$requeteInsert);
-            echo $requeteInsert;
+            // echo $requeteInsert;
         }
         ?>
 

@@ -234,21 +234,39 @@
 
                 <div id="infoProduct">
                     <article id="infoTechnique">
-                        Info technique sur le/les biens
-                        <!-- HERE -->
-
+                    <div id="nbcart">
+                        Number of Product in your cart : <?php if(isset($products)){ echo count($products);} else{echo 0;} ?> <br>
+                    </div>
+                    <div id="nbbought">
+                        Number of Product Purchased : <?php if(isset($_SESSION['nb_prod_achete'])){echo $_SESSION['nb_prod_achete'];} else{echo 0;} ?>
+                    </div>
                     </article>
+
+                    <?php if(!empty($resultatInfo)){
+                        $requeteInfo="SELECT DISTINCT id_product, quantity, max_quantity,price as totalprice,title,id_agent FROM basket INNER JOIN products On basket.id_product=products.id WHERE id_user='".$_SESSION['id']."'";
+                        $queryInfo=mysqli_query($connexion,$requeteInfo);
+                        $resultatInfo=mysqli_fetch_all($queryInfo);
+                        ?>
                     <article id="option">
+                        <?php
+
+                        $j=1;
+                    for($i=0;$i<count($resultatInfo); $i++){
+                        $connexion=mysqli_connect("localhost","root","","boutique");
+                        $requeteInfoAgent="SELECT name,email,avatar,title FROM users INNER JOIN products ON users.id='".$resultatInfo[$i][5]."'";
+                        // echo $requeteInfoAgent;
+                        $queryInfoAgent=mysqli_query($connexion,$requeteInfoAgent);
+                        $resultatInfoAgent=mysqli_fetch_all($queryInfoAgent);
+                        // var_dump($resultatInfoAgent);
+                            // var_dump($resultatInfo);
+                        ?>
                         <div id="optionDiv">
-                            Option 1 :
-                            <label for="ouiOption1">Oui</label><input type="radio">
-                            <label for="nonOption1">Non</label><input type="radio"><br>
+                            <div id=alignTextProducts><?php echo "Contact Agent (".ucfirst($resultatInfoAgent[$i][3]); ?>)<br></div>
+                            <div id="infoAgent"><?php echo "Name : ".ucfirst($resultatInfoAgent[$i][0]); ?><br>
+                                <?php echo "Email : ".$resultatInfoAgent[$i][1]; $j++?><br>
+                            </div>
                         </div>
-                        <div id="optionDiv">
-                            Option 2 :
-                            <label>Oui</label><input type="radio"></input>
-                            <label>Non</label><input type="radio"></input><br>
-                        </div>
+                        <?php } }?>
                     </article>
                 </div>
             
@@ -257,11 +275,11 @@
                     <?php for($i=0;$i<count($resultatInfo); $i++){
                                     if($resultatInfo>1 && $i!=0){
                                         echo "+</br>";
-                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                        echo $resultatInfo[$i][4]." x ".$resultatInfo[$i][1]." = "; affichagePrix($resultatInfo[$i][3]);
                                     }
                                     else
                                     {
-                                        echo $resultatInfo[$i][4]." ".affichagePrix($resultatInfo[$i][3])." x".$resultatInfo[$i][1];
+                                        echo $resultatInfo[$i][4]." x ".$resultatInfo[$i][1]." = "; affichagePrix($resultatInfo[$i][3]);
                                     }
                                     
                                     echo "</br>";
