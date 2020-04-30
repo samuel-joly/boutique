@@ -1,4 +1,31 @@
 <?php
+            $deleteAll="DELETE FROM basket WHERE id_user='".$_SESSION['id']."' ";
+            // FONCTION PERMETTANT SOIT DELETE ALL SOIT DELETE UN ARTICLE
+            function delete($requeteDelete){
+                $connexion=mysqli_connect("localhost","root","","boutique");
+                $requete=$requeteDelete;
+                $query=mysqli_query($connexion,$requete);
+                header("location:profil.php?show=bought");
+            }
+
+            function InsertAndDelete($resultat,$connexion){
+                foreach($resultat as $achat){
+
+                    $requeteVerif="SELECT id_product FROM bought where id_user='".$_SESSION['id']."'";
+                    $queryVerif=mysqli_query($connexion,$requeteVerif);
+                    $resultatVerif=mysqli_fetch_all($queryVerif);
+                    
+                    if($resultatVerif[0]!=$achat[2]){
+                        $date=date("Y-m-d:H-m-s");
+                        
+                        $requeteInsert="INSERT INTO `bought` (`id_user`,`id_product`,`date`,`quantity`) VALUES ('".$achat[1]."','".$achat[2]."','".$date."','".$achat[3]."')";
+
+                        $query=mysqli_query($connexion,$requeteInsert);
+                        $requeteDelete="DELETE FROM basket WHERE id_product='".$achat[2]."' AND id_user='".$achat[1]."'";
+                        $queryDelete=mysqli_query($connexion,$requeteDelete);
+                    }
+                }
+            }
 	if(isset($_GET["del_prod"]))
 	{
 		$stmt->query("DELETE FROM basket WHERE id_product=".$_GET["del_prod"]);
@@ -80,5 +107,26 @@
 			    echo "</div>";
 		    echo "</div>";
 	    echo "</div>";
+    }
+    if(isset($_POST['validerReel'])){
+
+	if(isset($_POST['Name']) && isset($_POST['LastName']) && isset($_POST['Adress']) && isset($_POST['Tel']) && isset($_POST['Email']) && isset($_POST['Codecarte1']) && isset($_POST['trip-start']) && isset($_POST['trip-start1']) && isset($_POST['Codecarte3']) && isset($_POST['Name'])){
+
+	    $connexion=mysqli_connect("localhost","root","","boutique");
+	    $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
+	    $query=mysqli_query($connexion,$requete);
+	    $resultatReel=mysqli_fetch_all($query);
+
+	    InsertAndDelete($resultatReel,$connexion);
+	    delete($deleteAll);  
+
+	    // Si le site était réellement fonctionnelle on proposerait de sauvegarder les informations si l'utilisateur en avait envie, et on crypterai le tout pour proteger les informations confidentielle de l'utilisateur et l'on enverrai cela dans la bdd.
+	    // On pourrait également faire une facture, que l'on renverrai sur l'addresse mail que l'utilisateur aurait laissé
+	    // Le débit se ferait après vérifications des informations et questionnement de la banque pour savoir si cette achat peux se faire
+	    // Après toute ces vérifications et action, l'utilisateur aura acheter le produit, et il en sera informé (fenêtre de confirmation, facture envoyer sur son email etc...)
+	} 
+	else{
+	    echo "Please fill in all the necessary information</br>";
+	}          
     }
 ?>
