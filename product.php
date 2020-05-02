@@ -31,7 +31,9 @@
 
 				if(!isset($_SESSION["product_filter"]))
 				{
-					$query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost , staff, location, orientation FROM products
+					$query = "SELECT title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost ,
+						staff, location, orientation , agents.id as id_agent
+						FROM products
 						INNER JOIN agents ON products.id_agent = agents.id
 						INNER JOIN users ON agents.id_user = users.id WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)";
 				}
@@ -59,6 +61,26 @@
 									<div class='product-agent-zone flexc just-center align-center'>
 										<h1 class='product-agent-name'><?=$product["name"]?></h1>
 										<img src='Media/Images/Avatars/<?=$product["avatar"]?>' class='product-agent-avatar'/>
+										<div class='flexr just-center aling center'>
+											<?php
+			
+												$rating = $stmt->query("SELECT AVG(value) FROM ratings 
+												WHERE id_agent =".$product["id_agent"])->fetch();
+												for($i=0;$i<5;$i++)
+												{
+													if($i < $rating[0])
+													{
+														echo "<img src='Media/Images/Assets/star.png' class='rating-star'/>";
+													}
+													else
+													{
+														echo "<img src='Media/Images/Assets/empty-star.png' class='rating-star'/>";
+													}
+												}
+
+
+											?>
+										</div>
 									</div>
 								</div>
 
