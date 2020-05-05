@@ -58,7 +58,7 @@
 										<p>Agency : <?=$product["cost"]?> $</p>
 									</div>
 
-									<div class='product-agent-zone flexc just-center align-center'>
+									<a href='agent.php?agent=<?=$product["id_agent"]?>' class=' text-black product-agent-zone flexc just-center align-center'>
 										<h1 class='product-agent-name'><?=$product["name"]?></h1>
 										<img src='Media/Images/Avatars/<?=$product["avatar"]?>' class='product-agent-avatar'/>
 										<div class='flexr just-center aling center'>
@@ -81,7 +81,7 @@
 
 											?>
 										</div>
-									</div>
+									</a>
 								</div>
 
 							</div>

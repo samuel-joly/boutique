@@ -115,3 +115,121 @@
 {
 	margin:1em;
 }
+
+
+.rating-star
+{
+	width:1em;
+	height:1em;
+	margin:0.2em;
+}
+#product-manage-zone
+{
+	max-height:15em;	
+	overflow-y:scroll;
+}
+
+#product-manage-zone::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#product-manage-zone::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+#product-manage-zone::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+#product-manage-zone>div
+{
+	margin:0.3em;
+	width:15em;
+	color:white;
+	background:#E8E8E8bd;
+	padding:0.3em;
+}
+
+.managed-prod-img
+{
+	width:7em;
+}
+
+#product-manage-zone img
+{
+	margin:0.3em;
+}
+
+.admin-input
+{
+	padding:0.3em;
+	color:white;
+	transition:all 0.3s ease;
+	margin:0.3em;
+	background:#484747;
+	text-decoration:none;
+	font-weight:bold;
+	height:fit-content;
+	align-self:center;
+}
+
+.admin-input:hover
+{
+	color:black;
+	background:#3bccad;
+}
+
+.admin-remove:hover
+{
+	color:black;
+	background:#ff6464;
+}
+
+#comment-zone
+{
+	width:30em;
+	max-height:35em;
+	min-height:10em;
+	overflow-y:scroll;
+	padding:0.5em;
+	color:white;
+	background:#484848;
+	margin:1em;
+}
+
+
+#comment-zone::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#comment-zone::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+#comment-zone::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
+
+#comment-zone>div
+{
+	background:#E7E7E7bd;
+	padding:0.3em;
+	width:98%;
+	margin:0.4em;
+}
+.comment-head
+{
+	border-bottom:1px solid white;
+	width:100%;
+}
+
+#agent-profile
+{
+	background:#484848;
+	padding:0.5em;
+}
