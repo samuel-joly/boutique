@@ -30,7 +30,7 @@
 				
 
 				$users = $stmt->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);	
-				$agents = $stmt->query("SELECT users.name, users.id, SUM(products.price) AS price, users.avatar AS avatar 
+				$agents = $stmt->query("SELECT users.name as name, users.id, agents.id as agent_id, SUM(products.price) AS price, users.avatar AS avatar 
 							FROM agents 
 							INNER JOIN users ON agents.id_user = users.id 
 							LEFT JOIN products ON agents.id = products.id_agent 
@@ -153,8 +153,8 @@
 									<img src='Media/Images/Avatars/".$agent["avatar"]."' class='admin-agent-avatar'/>
 								</span>
 								<span class='flexr just-between align-start center'>
-									<a href='admin.php?profil=".$agent["id"]."' class='admin-input'>More</a>
-									<a href='admin.php?agent_delete=".$agent["id"]."' class='admin-remove'>Downgrade</a>
+									<a href='admin.php?profil=".$agent["agent_id"]."' class='admin-input'>More</a>
+									<a href='admin.php?agent_delete=".$agent["agent_id"]."' class='admin-remove'>Downgrade</a>
 								</span>
 							</div>";
 							$count++;

@@ -1,7 +1,7 @@
 <?php
 	$product = $stmt->query("SELECT products.title, products.price, users.name, products.image , products.description,
 				products.orientation, products.staff, products.size, products.cost, products.location, 
-				products.id_agent as id_agent, products.max_quantity
+				products.id_agent as agent_id, products.max_quantity
 				FROM products 
 				LEFT JOIN agents ON products.id_agent = agents.id
 				LEFT JOIN users ON agents.id_user = users.id
@@ -261,11 +261,11 @@
 						    $selected = "";
 						    foreach($agents as $agent)
 						    {
-							    if($agent["id"] == $product["id_agent"])
+							    if($agent["agent_id"] == $product["agent_id"])
 							    {
 								    $selected = "selected";
 							    }
-							    echo "<option value='".$agent["id"]."' ".$selected.">".$agent["name"]."</option>";
+							    echo "<option value='".$agent["agent_id"]."' ".$selected.">".$agent["name"]."</option>";
 							    $selected = "";
 						    }
 					    ?>

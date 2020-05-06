@@ -35,11 +35,33 @@
 						staff, location, orientation , agents.id as id_agent
 						FROM products
 						INNER JOIN agents ON products.id_agent = agents.id
-						INNER JOIN users ON agents.id_user = users.id WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)";
+						INNER JOIN users ON agents.id_user = users.id 
+						WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)";
 				}
 				else
 				{
 					$query = $_SESSION["product_filter"];
+				}
+
+				if (isset($_GET["category"]))
+				{
+					$query = "SELECT  title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost ,
+						staff, location, orientation , agents.id as id_agent
+						FROM products
+						INNER JOIN agents ON products.id_agent = agents.id
+						INNER JOIN users ON agents.id_user = users.id 
+						WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)
+						AND EXISTS(SELECT * FROM `category-tag` WHERE `category-tag`.id_product = products.id and `category-tag`.id_category =".$_GET["category"].")";
+				}
+				else if(isset($_GET["sub_category"]))
+				{
+					$query = "SELECT  title, image, users.name, users.avatar as avatar,  products.id as id_prod, size, price, cost ,
+						staff, location, orientation , agents.id as id_agent
+						FROM products
+						INNER JOIN agents ON products.id_agent = agents.id
+						INNER JOIN users ON agents.id_user = users.id 
+						WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)
+						AND EXISTS(SELECT * FROM `sub-category-tag` WHERE  `sub-category-tag`.id_product = products.id AND `sub-category-tag`.`id_sub-category` =".$_GET["sub_category"].")";
 				}
 					
 				$products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
