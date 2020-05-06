@@ -96,7 +96,7 @@
 				?>
 				</div>
 
-				<div class='flexc just-center align-center' id='product-manage-zone'>
+				<div class='flexc just-between' id='product-manage-zone'>
 					<?php
 						foreach($products as $product)
 						{ ?>
@@ -104,7 +104,7 @@
 								<img src='<?=$product["image"]?>' class='managed-prod-img'/>
 								<span class='flexc just-start align-start'>
 									<?=$product["title"]?>
-									<?=$product["price"]?>
+									<?=$product["price"]?>$
 									<a class='admin-input' href='product-description.php?id=<?=$product["id"]?>'/>See More</a>
 								</span>
 							</div>

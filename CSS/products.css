@@ -125,8 +125,15 @@
 }
 #product-manage-zone
 {
+	height:10em;
 	max-height:15em;	
 	overflow-y:scroll;
+}
+
+
+#product-manage-zone div
+{
+	height:5em;
 }
 
 #product-manage-zone::-webkit-scrollbar {

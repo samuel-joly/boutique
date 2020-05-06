@@ -23,6 +23,19 @@
 				<h1 id="main-topTitle">HouseBrand</h1>
 				<h2 id="main-subTitle">Re-invent living</h2>
 			</div>
+			<div id='product-display' class='flexr just-center'>
+				<?php
+					$products = $stmt->query("SELECT * FROM products WHERE EXISTS(SELECT * FROM frontpage WHERE id_product = products.id)")->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($products as $product)
+					{ ?>
+							<a class='product-displayer' href='product-description.php?id=<?=$product["id"]?>'
+							style='background:url(<?=$product["image"]?>);background-size:cover'>
+								<h1><u><?=$product["title"]?></u></h1>
+							</a>
+				<?php	}
+				?>
+			</div>
 		</main>
 
 		<footer>
