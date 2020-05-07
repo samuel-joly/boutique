@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product description</title>
         <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="CSS/product-description.css">
         <link rel="stylesheet" type="text/css" href="CSS/boot.css">
     </head>
 
@@ -12,7 +13,9 @@
     <body id="product-descritption-body">
 
         <header> 
-            <?php include("header.php"); ?> 
+            <?php include("header.php");
+            include("functionPrix.php");
+            ?> 
         </header>    
 
         <main class='flexr just-center align-center'>
@@ -26,18 +29,30 @@
             $resultat=mysqli_fetch_assoc($query);
 
             // requete TAG
-            $nameCat=$_GET['cat'];
-            $requete2="SELECT name FROM `sub-category` where id_category='".$nameCat."'";
+            $requete2="SELECT `sub-category`.name FROM products 
+	    		INNER JOIN `sub-category-tag` ON `products`.id=`sub-category-tag`.`id_product` 
+			INNER JOIN `sub-category` ON `sub-category-tag`.`id_sub-category` = `sub-category`.id 
+			WHERE products.id=".$_GET["id"];
             $query2= mysqli_query($connexion,$requete2);
             $resultat2=mysqli_fetch_all($query2);
             $i=0;
             
 
             // requete CATEGORIE
-            $requete3="SELECT name FROM category where id='".$nameCat."'";
+            $requete3="SELECT `category`.name FROM category 
+		 	INNER JOIN `category-tag` ON `category`.id=`category-tag`.`id_category` 
+			WHERE `category-tag`.id_product=".$_GET["id"];
             $query3= mysqli_query($connexion,$requete3);
-            $resultat3=mysqli_fetch_row($query3);
-            $nameCategory=$resultat3[0];
+            $resultat3=mysqli_fetch_all($query3);
+            $nameCategory=$resultat3;
+
+	    $requete4="SELECT users.name as name, users.avatar as avatar FROM agents 
+	    		INNER JOIN users ON agents.id_user = users.id
+			INNER JOIN products ON agents.id = products.id_agent
+			WHERE products.id=".$_GET["id"];
+	    $query4= mysqli_query($connexion, $requete4);
+	    $resultat4=mysqli_fetch_row($query4);
+	    $agent = $resultat4;
 
             $id_product=$_GET['id'];
             $image=$resultat['img'];
@@ -54,7 +69,7 @@
             $max_quantity=$resultat['max_quantity'];
             ?>
             
-            <section id="imgDescr"  class='flexc just-between align-center'>
+            <section id="imgDescr"  class='flexc just-center align-center'>
 
                 <div id="img-product" style='background-image:url("<?php echo $image; ?>"); background-size:cover;'>
                 </div>
@@ -67,39 +82,14 @@
                     
                     <article id="infos-product-description">
                         <article id="prixetagent">
-                            <div id="price-product"><?php echo $price;?> $</div>
+                            <div id="price-product"><?php affichagePrix($price);?></div>
                             <section id="agent-pics">
-                                <div id="agentPics">Agent pics</div>
-                                <div id="agentName"> Agent name</div>
+                                <div id="agentPics"><img src='Media/Images/Avatars/<?=$agent[1]?>'/></div>
+                                <div id="agentName"><?=$agent[0]?></div>
                             </section>
                             
                         </article>
 
-                        <article id="flex-img-div4">
-                            <div class="img-div4">IMG</div>
-                            <div class="img-div4">IMG</div>
-                            <div class="img-div4">IMG</div>
-                            <div class="img-div4">IMG</div>
-                        </article>
-
-                    </article>
-                </div>
-
-                <div id="agent-note">
-                    <article class="agent-note-div">
-                        <div class="inside-agent-note"></div>
-                        <div class="agent-note-footer">
-                            <div class="info-agent">Info agent</div>
-                            <div class="agentName1">Agent pics</div>
-                        </div>
-                    </article>
-
-                    <article class="agent-note-div">
-                        <div class="inside-agent-note"></div>
-                        <div class="agent-note-footer">
-                            <div class="info-agent">Info agent</div>
-                            <div class="agentName1">Agent pics</div>
-                        </div>
                     </article>
                 </div>
 
@@ -122,12 +112,12 @@
 
                 </div>
                 <div id="specificites">
-                    <div class="specificitesDiv"> Category : <?php echo $nameCategory; ?> </div>
+                    <div class="specificitesDiv"> Category : <?php foreach($nameCategory as $cat) {echo "|".$cat[0];}?> </div>
                     <div class="specificitesDiv"> Size : <?php echo $taille; ?> m²</div>
                     <div class="specificitesDiv"> Location : <?php echo $location; ?></div>
                     <div class="specificitesDiv"> Direction : <?php echo $orientation; ?></div>
                     <div class="specificitesDiv"> Staff : <?php echo $staff; ?></div>
-                    <div class="specificitesDiv"> Cost/Year : <?php echo $cost; ?> $</div>
+                    <div class="specificitesDiv"> Cost/Year : <?php affichagePrix($cost); ?></div>
                 </div>
 
                 <!-- ADD TO CART SECTION -->
@@ -140,7 +130,7 @@
                             </article>
                     </form>
 
-                    <a href="product.php?category=<?php echo $nameCat;?>"><article class="addcartgoback-inside">Go Back</article></a>
+                    <a href="product.php"><article class="addcartgoback-inside">Go Back</article></a>
                 </div>
             </section>
         
@@ -170,7 +160,7 @@
                             <form method="POST">
                                 <input type='submit' name='validerReel' class="addcartgoback-insideBis" value='Yes'>
                             </form>or </br>
-                            <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a> 
+                            <a href='product-description.php?id=<?php echo $id_product; ?>'>Come Back</a> 
                         </div>
 
                     <?php
