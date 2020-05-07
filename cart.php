@@ -71,20 +71,21 @@
                 if(!empty($products)){
                     ?>
                         <div id="validationPanierbis">
+				Buy Product<br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
-                                    <input id="inputPayements" type="text" required name="Name" placeholder="Name">
-                                    <input id="inputPayements" type="text" required name="LastName" placeholder="Last name">
-                                    <input id="inputPayements" type="text"  required name="Adress" placeholder="Adress">
-                                    <input id="inputPayements" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
-                                    <input id="inputPayement" type="email" required name="Email" placeholder="Email">
+                                    <input class="inputPayements center" type="text" required name="Name" placeholder="Name">
+                                    <input class="inputPayements center" type="text" required name="LastName" placeholder="Last name">
+                                    <input class="inputPayements center" type="text"  required name="Adress" placeholder="Adress">
+                                    <input class="inputPayements center" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
+                                    <input class="inputPayements center" type="email" required name="Email" placeholder="Email">
                                     <br>
-                                    <input id="inputPayement" type="text" minlength="16" required maxlength="16" name="Codecarte1" placeholder="Card number">
+                                    <input class="inputPayements center" type="text" minlength="16" required maxlength="16" name="Codecarte1" placeholder="Card number">
                                     <div id="flexrow">
                                         <input type="number" id="validationPanierbis3" name="trip-start" value="01" min="01" required max="12">
                                         <input type="number" id="validationPanierbis3" name="trip-start1" value="2020" min="2020" required max="2030">
                                     </div>
-                                    <input id="inputPayement" type="text" minlength="3" maxlength="3" required name="Codecarte3" placeholder="Visual cryptogram"></br>
+                                    <input class="inputPayements center" type="text" minlength="3" maxlength="3" required name="Codecarte3" placeholder="Visual cryptogram"></br>
                                     <input id="validationPanierbis4" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
                                 or </br>
                                 <a href='cart.php' id="validationPanierbis5" class="addcartgoback-insideBis">Come Back</a> 
