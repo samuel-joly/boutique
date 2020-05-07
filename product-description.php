@@ -13,7 +13,9 @@
     <body id="product-descritption-body">
 
         <header> 
-            <?php include("header.php"); ?> 
+            <?php include("header.php");
+            include("functionPrix.php");
+            ?> 
         </header>    
 
         <main class='flexr just-center align-center'>
@@ -80,7 +82,7 @@
                     
                     <article id="infos-product-description">
                         <article id="prixetagent">
-                            <div id="price-product"><?php echo $price;?> $</div>
+                            <div id="price-product"><?php affichagePrix($price);?></div>
                             <section id="agent-pics">
                                 <div id="agentPics"><img src='Media/Images/Avatars/<?=$agent[1]?>'/></div>
                                 <div id="agentName"><?=$agent[0]?></div>
@@ -115,7 +117,7 @@
                     <div class="specificitesDiv"> Location : <?php echo $location; ?></div>
                     <div class="specificitesDiv"> Direction : <?php echo $orientation; ?></div>
                     <div class="specificitesDiv"> Staff : <?php echo $staff; ?></div>
-                    <div class="specificitesDiv"> Cost/Year : <?php echo $cost; ?> $</div>
+                    <div class="specificitesDiv"> Cost/Year : <?php affichagePrix($cost); ?></div>
                 </div>
 
                 <!-- ADD TO CART SECTION -->
