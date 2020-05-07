@@ -46,7 +46,7 @@
             $resultat3=mysqli_fetch_all($query3);
             $nameCategory=$resultat3;
 
-	    $requete4="SELECT users.name as name, users.avatar as avatar FROM agents 
+	    $requete4="SELECT users.name as name, users.avatar as avatar, agents.id FROM agents 
 	    		INNER JOIN users ON agents.id_user = users.id
 			INNER JOIN products ON agents.id = products.id_agent
 			WHERE products.id=".$_GET["id"];
@@ -84,8 +84,8 @@
                         <article id="prixetagent">
                             <div id="price-product"><?php affichagePrix($price);?></div>
                             <section id="agent-pics">
-                                <div id="agentPics"><img src='Media/Images/Avatars/<?=$agent[1]?>'/></div>
-                                <div id="agentName"><?=$agent[0]?></div>
+                                <a href='agent.php?agent=<?=$agent[2]?>' id="agentPics"><img src='Media/Images/Avatars/<?=$agent[1]?>'/></a>
+                                <a href='agent.php?agent=<?=$agent[2]?>' id="agentName"><?=$agent[0]?></a>
                             </section>
                             
                         </article>

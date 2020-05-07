@@ -10,7 +10,6 @@ color: white;
 }
 
 #imgDescr{
-margin: -5% 3% 5% 12%;
 display: flex;
 flex-direction: column;
 height: 1200px;
@@ -46,26 +45,10 @@ text-align: center;
 font-size: 24px;
 margin-bottom: 3%;
 overflow-y: scroll;
-background: #E8E8E8bd;
+background: #484861;
 border-radius: 0.3em;
-color:black;
-font-weight:bold;
 }
 
-#description-product-description::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-#description-product-description::-webkit-scrollbar-track {
-  background: #484848;
-}
-
-/* Handle */
-#description-product-description::-webkit-scrollbar-thumb {
-  background: #e7e7e7;
-  border-radius:2px;
-}
 #flex-img-div4{
 color:black;
 display: flex;
@@ -97,20 +80,22 @@ flex-direction: column;
 justify-content: space-evenly;
 }
 
-#agentPics img{
-	width: 4em;
-	height:4em;
-	border-radius:50%;
-}
 #agentPics{
 text-align: center;
+padding: 19% 0% 0% 0%;
 color:black;
 margin: auto;
-width:4em ;
-height: 4em ;
+width:90px ;
+height: 58px ;
 border:2px black solid;
 border-radius:9em;
 background-color: rgb(241, 241, 241);
+}
+
+#agentPics img{
+	width:90px;
+	margin-top:-1.8em;
+	border-radius:50%;
 }
 
 #agentName{
@@ -119,6 +104,7 @@ text-align: center;
 margin: 8px auto 0%;
 border-radius:0.5em;
 width: 70%;
+color:white;
 padding-bottom: 2px;
 background-color: teal;
 }
@@ -133,7 +119,7 @@ background-color: rgb(184, 184, 184);
 
 #infos-product-description{
 height: fit-content;
-padding: 3%;
+padding-top: 3%;
 background-color: #353434ca;
 border-radius: 0.3em;
 }
@@ -191,7 +177,7 @@ background-color: rgb(241, 241, 241);
 
 #tag-product-descr
 {
-margin-top: -21.45em;
+margin-top:-10em;
 margin-left: 4em;
 margin-right: -12em;
 color: white;
@@ -232,15 +218,9 @@ padding: 4.5% 0;
 }
 
 #addcartgoback{
-border-radius: 0.3em;
 margin: 10% 0px;
 padding: 8%;
 height: 19%;
-}
-
-#addcartgoback form
-{
-	margin:0.5em;
 }
 
 .addcartgoback-inside{
@@ -301,16 +281,43 @@ width: 50%;
 margin: 1% auto 1%;
 }
 
+#validationPanierbis3{
+text-align: center;
+width: 50%;
+height: 40px;
+font-size: x-large;
+margin: 1% auto 1%;
+}
+#validationPanierbis4{
+text-align: center;
+width: 50%;
+height: 40px;
+color: white;
+font-size: x-large;
+margin: 1% auto 1%;
+background-color: #484848c3;
+}
+
+#validationPanierbis5{
+text-align: center;
+width: 50%;
+height: 40px;
+color: white;
+font-size: xx-large;
+margin: 1% auto 1%;
+background-color: #484848c3;
+}
+
 #validationPanierbis{
-background: rgb(255, 205, 113);
+background: #484950c9;
 border: 4px black solid;
 width: 40%;
-color:black;
+color:white;
 padding: 1% 1% 2%;
 text-align: center;
 font-size: 2vw;
 border-radius: 0.3em;
-margin: -4.7% 22.5%;
+margin: -4.7% 22%;
 position: absolute;
 }
 
@@ -325,4 +332,3 @@ border-radius: 0.3em;
 margin: -6.5% 23.5%;
 position: absolute;
 }
-	

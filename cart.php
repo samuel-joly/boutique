@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Panier</title>
         <link rel="stylesheet" type="text/css" href="CSS/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="CSS/cart.css">
         <link rel="stylesheet" type="text/css" href="CSS/boot.css">
     </head>
 
@@ -70,7 +71,6 @@
                 if(!empty($products)){
                     ?>
                         <div id="validationPanierbis">
-                            Buy product(s) <br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
                                     <input id="inputPayements" type="text" required name="Name" placeholder="Name">
