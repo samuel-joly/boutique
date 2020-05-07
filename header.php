@@ -47,7 +47,6 @@
 			<a href="connexion.php" class="header-link" id="profil-link">Log in</a>
 	<?php	} ?>
 	<a href="cart.php" class="header-link" id="cart-link" >Cart</a>
-	<a href="contact.php" class="header-link" id="contact-link" >Contact</a>
 </div>
 
 <div id="header-categorie">
