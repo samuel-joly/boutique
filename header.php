@@ -46,7 +46,7 @@
 			<a href="inscription.php" class="header-link" id="profil-link">Sign up</a>
 			<a href="connexion.php" class="header-link" id="profil-link">Log in</a>
 	<?php	} ?>
-	<a href="profil.php?show=cart" class="header-link" id="cart-link" >Cart</a>
+	<a href="cart.php" class="header-link" id="cart-link" >Cart</a>
 	<a href="contact.php" class="header-link" id="contact-link" >Contact</a>
 </div>
 

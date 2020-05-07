@@ -39,7 +39,7 @@
                     $queryVerif=mysqli_query($connexion,$requeteVerif);
                     $resultatVerif=mysqli_fetch_all($queryVerif);
                     
-                    if($resultatVerif[0]!=$achat[2]){
+                    if(empty($resutatVerif)){
                         $date=date("Y-m-d:H-m-s");
                         
                         $requeteInsert="INSERT INTO `bought` (`id_user`,`id_product`,`date`,`quantity`) VALUES ('".$achat[1]."','".$achat[2]."','".$date."','".$achat[3]."')";
@@ -159,7 +159,7 @@
                         <div class='flexr just-between product-zone-cart'>
 
                             <div class='product-box flexr just-between align-center center' 
-                                style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
+                                style='background-image:url(<?=$product["image"]?>); background-size:cover;width:60em;height:20em;'> 
                             </div>
 
                             <div class='product-infos-basket flexc just-evenly align-start'>    
@@ -211,9 +211,6 @@
                     <article id="infoTechnique">
                     <div id="nbcart">
                         Number of Product in your cart : <?php if(isset($products)){ echo count($products);} else{echo 0;} ?> <br>
-                    </div>
-                    <div id="nbbought">
-                        Number of Product Purchased : <?php if(isset($_SESSION['nb_prod_achete'])){echo $_SESSION['nb_prod_achete'];} else{echo 0;} ?>
                     </div>
                     </article>
 

@@ -660,7 +660,7 @@ display: flex;
 #products-box-basket{
 width: 900px;
 max-height: 106vh;
-overflow-y: scroll;
+
 }
 
 /* MAISON LISTE */
@@ -668,16 +668,31 @@ overflow-y: scroll;
 #panierList{
 margin: 3% 0% 0% 32%;
 width: 81%;
-height: 388px;
+height: 40em;
 background: #484861;
 font-size: 16px;
 text-align: center;
 border-radius: 3px black solid;
 overflow-y: scroll;
-overflow-x: visible;
+overflow-x: hidden;
 border-radius: 0.3em;
+justify-content:center;
 }
 
+#panierList::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#panierList::-webkit-scrollbar-track {
+  background: #484848;
+}
+
+/* Handle */
+#panierList::-webkit-scrollbar-thumb {
+  background: #e7e7e7;
+  border-radius:2px;
+}
 
 #houseInBasket{
 width: 95%;
@@ -906,5 +921,4 @@ color:white;
 padding:2% 2% 3%;
 font-size: 26px;
 border-radius: 0em 0em 0.3em 0.3em;
->>>>>>> amine
 }

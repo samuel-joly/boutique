@@ -181,7 +181,7 @@
                 ?>
                     <div id="validationPanier">
                         You have <b>bought</b> the maximum purchase number for this product (<?php echo $max_quantity ?> Max) </br><br>
-                        <a href='product-description.php?id=<?php echo $id_product; ?>&cat=<?php echo $nameCat;?>'>Come Back</a>
+                        <a href='product-description.php?id=<?php echo $id_product; ?>'>Come Back</a>
                     </div>
                 <?php
     
