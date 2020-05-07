@@ -142,10 +142,13 @@
 		    {
 			    if(empty($stmt->query("SELECT * FROM products WHERE title='$title'")->fetchAll()))
 			    {
-				    if(empty($error) &&  isset($_FILES["admin-image-product"]))
+				    if(isset($_FILES["admin-image-product"]))
 				    {
-					    $stmt->prepare("INSERT INTO `products`(`id`, `price`, `title`, `description`, `image`, `size`, `location`, `orientation`, `staff`, `cost`, `id_agent`, `max_quantity`) 
-					     VALUES (NULL, $price, '$title','$desc', 'default',$size, '$location','$orientation',$staff,$cost,$agent, $quantity )")->execute();
+					    $stmt->prepare("INSERT INTO `products`(`id`, `price`, `title`, `description`, `image`, `size`, `location`,
+					    `orientation`, `staff`, `cost`, `id_agent`, `max_quantity`) 
+					     VALUES (NULL, $price, '$title',\"$desc\", 'default',$size, '$location','$orientation',$staff,$cost,$agent, $quantity )
+					     ")->execute();
+					     
 					     $id = $stmt->query("SELECT id FROM products WHERE title='".$title."'")->fetch(PDO::FETCH_ASSOC)["id"];
 
 					    if(checkImage($_FILES["admin-image-product"]))
@@ -163,19 +166,18 @@
 						move_uploaded_file($_FILES["admin-image-product"]["tmp_name"], $image );		
 						$stmt->prepare("UPDATE products SET image='$image' WHERE id=".$id)->execute();
 					    }
-					
-					foreach($_POST["category"] as $category)
-					{
-						$stmt->query("INSERT INTO `category-tag`(`id`,`id_category`,`id_product`) 
-							      VALUES(NULL, $category, $id)");
-					}
-					
-					foreach($_POST["sub_sub_category"] as $subcategory)
-					{
-						$stmt->query("INSERT INTO `sub-category-tag`(`id`,`id_sub-category`,`id_product`) 
-							      VALUES(NULL, '$subcategory', $id)");
-					}
 				    }
+				foreach($_POST["category"] as $category)
+				{
+					$stmt->query("INSERT INTO `category-tag`(`id`,`id_category`,`id_product`) 
+						      VALUES(NULL, $category, $id)");
+				}
+				
+				foreach($_POST["sub_sub_category"] as $subcategory)
+				{
+					$stmt->query("INSERT INTO `sub-category-tag`(`id`,`id_sub-category`,`id_product`) 
+						      VALUES(NULL, '$subcategory', $id)");
+				}
 			    }
 			    unset($_POST);
 			    header("location:admin.php");

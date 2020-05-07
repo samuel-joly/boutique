@@ -27,7 +27,6 @@ max-height: 106vh;
 #panierList{
 margin: 3% 0% 0% 32%;
 width: 81%;
-height: 40em;
 background: #484861;
 font-size: 16px;
 text-align: center;
@@ -165,8 +164,8 @@ border-radius:0.3em;
 .product-infos-basket
 {
 height: 90%;
+width:fit-content;
 padding-left:1em;
-margin-left:1em;
 margin-top: 14px;
 color:#e7e7e7;
 width: 196px;

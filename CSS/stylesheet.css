@@ -284,27 +284,3 @@ footer a:hover
 	border:0px;
 }
 
-.input-zone input:focus
-{
-	outline:none;
-	text-decoration:underline;
-	transition:all 0.2s ease;
-	margin:1em;
-	text-align:center;
-	font-size:1em;
-}
-
-
-
-	
-	
-	
-	
-
-
-
-
-
-
-
-

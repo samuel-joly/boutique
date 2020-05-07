@@ -30,6 +30,9 @@
 						    `date`, `comment`, `id_product`) VALUES (NULL, ".$_SESSION["id"].", ".$_GET["id_agent"].",
 						    CURRENT_DATE, '".$comment."', ".$_GET["id_prod"].")");
 
+						    
+
+
 						    $stmt->query("INSERT INTO `ratings`(`id`,`id_agent`,`value`,`id_creator`, `id_product`) VALUES
 						    (NULL, ".$_GET["id_agent"].", ".$_GET["rate"].", ".$_SESSION["id"].", ".$_GET["id_prod"].")");
 					    }
@@ -60,7 +63,7 @@
 						    echo "<div class='flexc just-center align-center' id='bought-zone'>";	
 						    $bought = $stmt->query("SELECT 
 						    products.title, products.price, products.description, products.image, products.id,
-						    users.id AS agent_id ,users.name AS agent_name,
+						    agents.id AS agent_id ,users.name AS agent_name,
 						    ratings.value AS rate, bought.date
 						    FROM bought
 						    INNER JOIN products ON bought.id_product = products.id

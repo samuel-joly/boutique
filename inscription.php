@@ -80,7 +80,7 @@
 			{
 				if($password == $check_password)
 				{
-					if($stmt->query("INSERT INTO users(`id`,`name`,`email`,`password`,`avatar`) VALUES(NULL, '$login', '$email', '".password_hash($password, PASSWORD_BCRYPT)."', 'avatar/default.png')"))
+					if($stmt->query("INSERT INTO users(`id`,`name`,`email`,`password`,`avatar`) VALUES(NULL, '$login', '$email', '".password_hash($password, PASSWORD_BCRYPT)."', 'default.png')"))
 					{
 						header("location:connexion.php?login=$login");
 					}
