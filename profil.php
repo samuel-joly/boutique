@@ -112,7 +112,19 @@
 					    case "cart":
 						    echo "<div class='flexc just-center align-center' id='cart-zone'>";	
 							include("basket.php");
-							include("basket_pay.php");
+							$query = "SELECT title, image, users.name, users.avatar as avatar,
+							products.description as description,products.id as id,  products.id as id_prod, size, 
+							price, cost , staff, location, orientation, basket.id as id_basket 
+							FROM products
+							INNER JOIN agents ON products.id_agent = agents.id
+							    INNER JOIN users ON agents.id_user = users.id
+							    INNER JOIN basket ON products.id = basket.id_product
+							    WHERE basket.id_user='".$_SESSION['id']."'";
+							    $products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC);
+							if(!empty($products))
+							{
+								include("basket_pay.php");
+							}
 
 						    echo "</div>";
 					    break;	

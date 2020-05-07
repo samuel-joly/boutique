@@ -63,7 +63,6 @@
 						WHERE NOT EXISTS(SELECT * FROM bought WHERE id_product=products.id)
 						AND EXISTS(SELECT * FROM `sub-category-tag` WHERE  `sub-category-tag`.id_product = products.id AND `sub-category-tag`.`id_sub-category` =".$_GET["sub_category"].")";
 				}
-					
 				$products = $stmt->query($query)->fetchAll(PDO::FETCH_ASSOC); 
 				foreach($products as $product)
 				{ ?>

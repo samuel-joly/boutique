@@ -2,7 +2,7 @@
 <div style='width:fit-content;height:fit-content;border-radius:10px; background-color:#4c4b4b; padding:1em;'>--!>
 
 <?php
-	$query = "SELECT title, image, users.name, users.avatar as avatar, products.id as id_prod, size, price, cost , staff, location, orientation FROM products
+	$query = "SELECT title, image, users.name, users.avatar as avatar, agents.id as id_agent, products.id as id_prod, size, price, cost , staff, location, orientation FROM products
 	INNER JOIN agents ON products.id_agent = agents.id INNER JOIN users ON agents.id_user = users.id";
 	
 	$is_first = true;

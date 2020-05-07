@@ -1,12 +1,5 @@
 <?php
             $deleteAll="DELETE FROM basket WHERE id_user='".$_SESSION['id']."' ";
-            // FONCTION PERMETTANT SOIT DELETE ALL SOIT DELETE UN ARTICLE
-            function delete($requeteDelete){
-                $connexion=mysqli_connect("localhost","root","","boutique");
-                $requete=$requeteDelete;
-                $query=mysqli_query($connexion,$requete);
-                header("location:profil.php?show=bought");
-            }
 
             function InsertAndDelete($resultat,$connexion){
                 foreach($resultat as $achat){
@@ -15,7 +8,7 @@
                     $queryVerif=mysqli_query($connexion,$requeteVerif);
                     $resultatVerif=mysqli_fetch_all($queryVerif);
                     
-                    if($resultatVerif[0]!=$achat[2]){
+                    if(empty($resultatVerif)){
                         $date=date("Y-m-d:H-m-s");
                         
                         $requeteInsert="INSERT INTO `bought` (`id_user`,`id_product`,`date`,`quantity`) VALUES ('".$achat[1]."','".$achat[2]."','".$date."','".$achat[3]."')";
@@ -74,24 +67,19 @@
 			</div>
 		    </form>		</div></div>
 	    <?php 
-	     }
-	else{
+
+    	     }
+	     else{
 	    ?>
-		<div id="validationPanierbis2">
-		    You cart is empty... <br><br>
-		    <a href='cart.php'>Come Back</a> 
+		<div id="totalPrice" class='flexc align-center just-center'>
+		    <h3>You cart is empty... <br><br></h3>
+		    <a class='cart-btn a-null text-black ' href='product.php'>Come Back</a> 
 		</div>
 	    <?php
 	} 
+
     }
-
-
-        if(empty($products))
-	{ ?>
-		<div id="aucunAchat">Your cart is empty</div>
-<?php   }
-
-    foreach($products as $product)
+foreach($products as $product)
     {
 	    echo "<div class='profil-data-container'>";
 		    echo "<div class='bought-product-zone flexr just-between align-center'>";
@@ -116,7 +104,6 @@
 	    $requete="SELECT id,id_user,id_product,quantity FROM basket WHERE id_user='".$_SESSION['id']."'";
 	    $query=mysqli_query($connexion,$requete);
 	    $resultatReel=mysqli_fetch_all($query);
-
 	    InsertAndDelete($resultatReel,$connexion);
 	    delete($deleteAll);  
 
@@ -129,4 +116,14 @@
 	    echo "Please fill in all the necessary information</br>";
 	}          
     }
+
+
+
+            // FONCTION PERMETTANT SOIT DELETE ALL SOIT DELETE UN ARTICLE
+            function delete($requeteDelete){
+                $connexion=mysqli_connect("localhost","root","","boutique");
+                $requete=$requeteDelete;
+                $query=mysqli_query($connexion,$requete);
+            }
+
 ?>
