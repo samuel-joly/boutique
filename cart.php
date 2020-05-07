@@ -73,22 +73,23 @@
                             Buy product(s) <br><br>
                             <form method="POST">
                                 <div id="formulairePayement">                            
-                                    <input id="inputPayement" type="text" required name="Name" placeholder="Name">
-                                    <input id="inputPayement" type="text" required name="LastName" placeholder="Last name">
-                                    <input id="inputPayement" type="text"  required name="Adress" placeholder="Adress">
-                                    <input id="inputPayement" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
+                                    <input id="inputPayements" type="text" required name="Name" placeholder="Name">
+                                    <input id="inputPayements" type="text" required name="LastName" placeholder="Last name">
+                                    <input id="inputPayements" type="text"  required name="Adress" placeholder="Adress">
+                                    <input id="inputPayements" type="tel" required name="Tel" minlength="10" maxlength="11" placeholder="Tel">
                                     <input id="inputPayement" type="email" required name="Email" placeholder="Email">
                                     <br>
                                     <input id="inputPayement" type="text" minlength="16" required maxlength="16" name="Codecarte1" placeholder="Card number">
                                     <div id="flexrow">
-                                        <input type="number" name="trip-start" value="01" min="01" required max="12">
-                                        <input type="number" name="trip-start1" value="2020" min="2020" required max="2030">
+                                        <input type="number" id="validationPanierbis3" name="trip-start" value="01" min="01" required max="12">
+                                        <input type="number" id="validationPanierbis3" name="trip-start1" value="2020" min="2020" required max="2030">
                                     </div>
                                     <input id="inputPayement" type="text" minlength="3" maxlength="3" required name="Codecarte3" placeholder="Visual cryptogram"></br>
-                                    <input id="inputPayement" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
+                                    <input id="validationPanierbis4" type='submit' name='validerReel' class="addcartgoback-insideBis" value='Buy Product(s)'>
+                                or </br>
+                                <a href='cart.php' id="validationPanierbis5" class="addcartgoback-insideBis">Come Back</a> 
                                 </div>
-                            </form>or </br>
-                            <a href='cart.php'>Come Back</a> 
+                            </form>
                         </div>
                     <?php 
                      }
@@ -181,47 +182,7 @@
 
                 </section>
 
-                <div class="titrePanier">Purchased (<?php if(isset($_SESSION['nb_prod_achete'])){echo $_SESSION['nb_prod_achete'];} else{echo 0;} ?>)
-                </div>
-
-                <section id="panierList"  class='flexc just-between align-center'>
-            
-                    <div id='products-box-basket' class='flexc just-between align-center'>
-                        
-                        <!-- AFFICHAGE PRODUIT ACHETER -->
-
-                        <?php
-                        $requeteBought="SELECT title, image, users.name, users.avatar as avatar, products.id as id_prod, size, price, cost, staff, location, orientation FROM products
-                        INNER JOIN agents ON products.id_agent = agents.id
-                        INNER JOIN users ON agents.id_user = users.id
-                        INNER JOIN bought ON products.id = bought.id_product
-                        WHERE bought.id_user='".$_SESSION['id']."'";
-
-                        $productsBought = $stmt->query($requeteBought)->fetchAll(PDO::FETCH_ASSOC); 
-                        $_SESSION['nb_prod_achete']=count($productsBought);
-                        if(empty($productsBought)){
-                        ?>    <div id="aucunAchat">You made no purchase</div> <?php
-                        }
-                        foreach($productsBought as $product){ 
-                        ?>
-                            <div class='flexr just-between product-zone'>
-
-                                <div class='product-box flexr just-between align-center center' 
-                                style='background-image:url(<?=$product["image"]?>); background-size:cover;'> 
-                                </div>
-
-								<div id='product-bought'><?php echo $product['title'] ?>  <br>
-                                    Purchased product
-                                </div>
-								    
-                            </div>
-                        <?php 
-                        } 
-                        ?>
-                    </div>	
-
-                </section>
-
+                
             </section>
 
             <!-- SECTION DIV DROITE INFO ACHAT ET ACHAT -->

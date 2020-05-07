@@ -997,16 +997,43 @@ width: 50%;
 margin: 1% auto 1%;
 }
 
+#validationPanierbis3{
+text-align: center;
+width: 50%;
+height: 40px;
+font-size: x-large;
+margin: 1% auto 1%;
+}
+#validationPanierbis4{
+text-align: center;
+width: 50%;
+height: 40px;
+color: white;
+font-size: x-large;
+margin: 1% auto 1%;
+background-color: #484848c3;
+}
+
+#validationPanierbis5{
+text-align: center;
+width: 50%;
+height: 40px;
+color: white;
+font-size: xx-large;
+margin: 1% auto 1%;
+background-color: #484848c3;
+}
+
 #validationPanierbis{
-background: rgb(255, 205, 113);
+background: #484950c9;
 border: 4px black solid;
 width: 40%;
-color:black;
+color:white;
 padding: 1% 1% 2%;
 text-align: center;
 font-size: 2vw;
 border-radius: 0.3em;
-margin: -4.7% 22.5%;
+margin: -4.7% 22%;
 position: absolute;
 }
 
@@ -1114,9 +1141,7 @@ margin: 2% auto;
 padding: 2% 0;
 width: 95%;
 height: 60%;
-border: 2px black solid;
 border-radius:0.3em;
-background-color: wheat;
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
@@ -1137,9 +1162,8 @@ width: 95%;
 height: 77%;
 padding: 1%;
 text-align: center;
-border: 2px black solid;
+border: 2px white solid;
 border-radius: 0.3em;
-background-color: rgb(177, 75, 75);
 }
 
 #option{
@@ -1182,7 +1206,6 @@ width: 95%;
 height: fit-content;
 border: 2px black solid;
 border-radius:0.3em;
-background-color: bisque;
 }
 
 .product-infos-basket
@@ -1203,8 +1226,8 @@ text-align: center;
 }
 
 #InfoAvantValidation{
-margin:2% auto;
-width: 95%;
+margin: 1% auto;
+width: 99%;
 height: fit-content;
 background: #484950;
 text-align: center;
@@ -1220,7 +1243,6 @@ width: 95%;
 padding: 5% 0;
 border-radius: 0.3em;
 height: auto;
-background-color: rgba(255, 99, 71, 0.911);
 text-align: center;	
 display: flex;
 flex-direction: column;
@@ -1261,6 +1283,8 @@ font-style: bolder;
 font-size: 39px;
 border-radius: 0.3em;
 text-align: center;
+color: white;
+background-color:#484848;
 }
 
 #formulairePayement{
@@ -1268,13 +1292,18 @@ display: flex;
 border-radius: 0.3em;
 flex-direction: column;
 padding:2%;
-background: #a3a3c8e5;
+background: white;
+color:black;
 }
 
 #inputPayement{
 width: 100%;
 font-size: x-large;
+}
 
+#inputPayements{
+width: 50%;
+font-size: x-large;
 }
 
 #totalPrice{
@@ -1286,19 +1315,15 @@ padding: 2% 0;
 }
 
 #nbcart{
-color:rgb(235, 235, 114);
-background-color:black;
+color:white;
 padding:2%;
 font-size: 26px;
-background-color: rgb(246, 117, 94);
 border-radius: 0.3em 0.3em 0em 0em;
 }
 
 #nbbought{
-color:rgb(235, 235, 114);
-background-color:black;
+color:white;
 padding:2% 2% 3%;
-background-color: rgb(246, 117, 94);
 font-size: 26px;
 border-radius: 0em 0em 0.3em 0.3em;
 }
